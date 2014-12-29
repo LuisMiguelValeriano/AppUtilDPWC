@@ -37,16 +37,16 @@ public class G_File extends C_File  implements  I_File {
                 pw.println(Linea);
             }
             while((Linea=br.readLine())!=null){
-                if(Linea.substring(0,3).equals("UNH")){
+                if(TextStartWith(Linea,"UNH")){//Linea.substring(0,3).equals("UNH")){
                     Resultado="";
                     Print=false;
                 }
-                if(Linea.substring(0,6).equals("TDT+20")){
-                    if(Linea.substring(((Linea.length()-1)-VesselName.length()),Linea.length()-1).equals(VesselName)){
+                if(TextStartWith(Linea,"TDT+20")){ //Linea.substring(0,6).equals("TDT+20")){Linea.substring(((Linea.length()-1)-VesselName.length()),Linea.length()-1).equals(VesselName)
+                    if(TextEndWith(Linea, VesselName)){//Linea.substring(((Linea.length()-1)-VesselName.length()),Linea.length()-1).equals(VesselName)){
                         Print=true;
                     }
                 }
-                if(Linea.substring(0,3).equals("UNT")){
+                if(TextStartWith(Linea,"UNT")){//Linea.substring(0,3).equals("UNT")){
                     Resultado+=Linea+";";//Resultado+=Linea;
                     if(Print){
                         MultilaneWriteArchive(pw, Resultado, ';');
@@ -55,7 +55,7 @@ public class G_File extends C_File  implements  I_File {
                 }else{
                     Resultado+=Linea+";";
                 }
-                if(Linea.substring(0,3).equals("UNZ")){
+                if(TextStartWith(Linea,"UNZ")){//Linea.substring(0,3).equals("UNZ")){
                     pw.println(Linea);
                 }
             }

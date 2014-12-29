@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.swing.JOptionPane;
 
 /**
@@ -41,5 +42,22 @@ public class C_File extends C_General{
             JOptionPane.showMessageDialog(null,"No se creo el archivo .txt resultante en la ruta indicada. "+ ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
         return archivo;
+    }
+    protected void MultilaneWriteArchive(PrintWriter pw, String Cadena, char Token){
+    //Se recive un PrintWriter que se encargara de escribir y una cadena de 
+    //texto el cual debemos escribir cada seccion de esta,la cual esta
+    //delimitada por el token indicado como parametro, con un salto de linea.
+        String Line = "";
+        for(int i=0;i<Cadena.length();i++){
+            if(Cadena.charAt(i) == Token){
+                pw.println(Line);
+                Line="";
+            }else{
+                Line+=Cadena.charAt(i);
+            }
+        }
+    }
+    protected void CountTextAtStartLineBetweenUNH_UNT(){
+        
     }
 }

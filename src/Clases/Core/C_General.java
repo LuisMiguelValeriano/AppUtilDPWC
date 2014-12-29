@@ -6,25 +6,24 @@
 
 package Clases.Core;
 
-import java.io.PrintWriter;
-
 /**
  *
  * @author LuisMiguel
  */
 public class C_General {
-    protected void MultilaneWriteArchive(PrintWriter pw, String Cadena, char Token){
-    //Se recive un PrintWriter que se encargara de escribir y una cadena de 
-    //texto el cual debemos escribir cada seccion de esta,la cual esta
-    //delimitada por el token indicado como parametro, con un salto de linea.
-        String Line = "";
-        for(int i=0;i<Cadena.length();i++){
-            if(Cadena.charAt(i) == Token){
-                pw.println(Line);
-                Line="";
-            }else{
-                Line+=Cadena.charAt(i);
-            }
+    
+    protected boolean TextStartWith(String CompleateString, String BeginString){
+        return CompleateString.substring(BeginString.length()).toUpperCase().equals(BeginString.toUpperCase());
+    }
+    protected boolean TextEndWith(String CompleateString, String EndString){
+        return CompleateString.substring(((CompleateString.length()-1)-EndString.length()),CompleateString.length()-1).toUpperCase().equals(EndString.toUpperCase());
+    }
+    protected String DelimitedReplaceCaractersInText(String CompleteText,String LeftText, String RigthText, String Caracteres){
+        if(CompleteText.contains(LeftText) && CompleteText.indexOf(RigthText,CompleteText.indexOf(LeftText)+LeftText.length())>=0){
+            int FirstIndexCaracaters = CompleteText.indexOf(LeftText) + LeftText.length();
+            int LastIndexCaracters  = CompleteText.indexOf(RigthText,CompleteText.indexOf(LeftText)+LeftText.length()) - 1;
+            return CompleteText.substring(0, FirstIndexCaracaters)+Caracteres+CompleteText.substring(LastIndexCaracters+1, CompleteText.length());
         }
+        return "ERROR";
     }
 }
