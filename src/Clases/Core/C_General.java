@@ -6,11 +6,13 @@
 
 package Clases.Core;
 
+import java.util.Calendar;
+
 /**
  *
  * @author LuisMiguel
  */
-public class C_General {
+public class C_General extends C_Exception{
     
     protected boolean TextStartWith(String CompleateString, String BeginString){
         /*
@@ -81,4 +83,66 @@ public class C_General {
         }
         return countOccurrencesOfLines;
     }
+    /*
+    protected String ReturnDateInSelectedFormat(String InputDate, String FormatInputDate, String FormatOutputDate){
+        String OutputDate = "";
+        switch (FormatInputDate){
+            case "YYYY-MM-DD HH:MM":
+                break;
+            case "YYYYMMDD HH:MM":
+                break;
+            case "YYYYMMDDHHMM":
+                break;
+        }
+    }
+    protected boolean ValidateDateInFormat(String Date, String FormatDate){
+        boolean Result = false;
+        switch (FormatDate){
+            case "YYYY-MM-DD HH:MM":
+                if()
+                break;
+            case "YYYYMMDD HH:MM":
+                break;
+            case "YYYYMMDDHHMM":
+                break;
+        }
+    }
+    
+*/
+    protected boolean ValidateYearInFormatYYYY(String Year, int... Exceptions){
+        
+        //Exepciones:
+        //    1 - Year es un numero
+        //    2 - Year tiene longitud diferente de 4
+        //    3 - Year es menor o igual al año actual
+        for int
+        
+        if(Exceptions.length <= 3){
+            int countExceptions = 0;
+            for(int ActualException : Exceptions){
+                Calendar fecha;
+                switch (ActualException){
+                    case 1:
+                        fecha = Calendar.getInstance();
+                        return compareTextLength(Year,"!=", 4) && ComparePosibleIntegers(Year, "<=", fecha.get(Calendar.YEAR)); 
+                    case 2:
+                        fecha = Calendar.getInstance();
+                        return IsInteger(Year) && ComparePosibleIntegers(Year, "<=", fecha.get(Calendar.YEAR));
+                    case 3:
+                        return IsInteger(Year) && compareTextLength(Year,"!=", 4);
+                }
+            }
+        }else{
+            return false;
+        }
+        try {
+            int IntYear = Integer.parseInt(Year.trim());
+            if (Year.trim().length()!=4){
+                return false;
+            }
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    
 }

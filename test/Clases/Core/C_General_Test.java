@@ -42,6 +42,16 @@ public class C_General_Test extends C_General{
     public void DelimitedReplaceCaractersInText(){
         System.out.println("Resultado : " + DelimitedReplaceCaractersInText("DTM+203:201412221801:203'", "", "DTM", "201412221802")); 
     }
+    
+    @Test
+    public void IsInteger(){
+        System.out.println("Resultado : " + IsInteger(" 2014")); 
+    }
+    
+    @Test
+    public void ComparePosibleIntegers(){
+        System.out.println("Resultado : " + ComparePosibleIntegers("2014a",">",2015)); 
+    }
 
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
