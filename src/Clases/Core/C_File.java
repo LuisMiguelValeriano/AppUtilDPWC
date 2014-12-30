@@ -19,34 +19,53 @@ import javax.swing.JOptionPane;
  * @author LuisMiguel
  */
 public class C_File extends C_General{
-    protected FileReader ReturnArchiveInMemory(String FilePath){
+    protected FileReader ReturnObjectOfArchiveReadyToRead(String FilePath){
+        /*
+        Parametros:
+            -FilePath: es la ruta fisica en la cual se encuentra el archivo con el formato 
+             siguiente "Ruta de archivo\Nombre del archivo.Su extencion".
+        Resultante:
+            Nos devuelve un objeto del archivo indicado en "FilePath" del cual podamos 
+            leer su contenido si existe el archivo, si no existe lo crea en la ruta indicada.  
+        */
         File archivo = null;
         FileReader fr = null;
-        //BufferedReader br = null;
         try {
             archivo = new File(FilePath);
             fr = new FileReader(archivo);
-            //br = new BufferedReader(fr);
         } catch (FileNotFoundException ex) {
             JOptionPane.showMessageDialog(null,"No se encontro el archivo .txt en la ruta indicada. "+ ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
         return fr;
     }
-    protected FileWriter ReturnArchiveReadyToWrite(String FilePath){
+    protected FileWriter ReturnCreatedObjectOfArchiveToWrite(String FilePath){
+        /*
+        Parametros:
+            -FilePath: es la ruta fisica en la cual se encuentra el archivo con el formato 
+             siguiente "Ruta de archivo\Nombre del archivo.Su extencion".
+        Resultante:
+            Nos devuelve un objeto del archivo indicado en "FilePath" del cual remplazara el archivo
+            en la ruta indicada si existe el archivo, en el caso no exista este creara uno nuevo en 
+            la ruta especificada.  
+        */
         FileWriter archivo = null;
-        //PrintWriter pw = null;
         try {
             archivo = new FileWriter(FilePath);
-            //pw = new PrintWriter(archivo);
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null,"No se creo el archivo .txt resultante en la ruta indicada. "+ ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
         return archivo;
     }
     protected void MultilaneWriteArchive(PrintWriter pw, String Cadena, char Token){
-    //Se recive un PrintWriter que se encargara de escribir y una cadena de 
-    //texto el cual debemos escribir cada seccion de esta,la cual esta
-    //delimitada por el token indicado como parametro, con un salto de linea.
+        /*
+        Parametros:
+            -PrintWriter: es el objeto un archivo el cual esta listo para escibirse en el.
+            -Cadena: Es una linea que contiene varias lineas delimitadas con un token.
+            -Token: es el caracter que indica que acaba una linea.
+        Resultante:
+            Nos escribe en el archivo, del cual pertenece el objeto "PrintWriter", varias lineas
+            con salto de linea que son las lineas contenidas en "Cadena" y delimitadas con "Token".  
+        */
         String Line = "";
         for(int i=0;i<Cadena.length();i++){
             if(Cadena.charAt(i) == Token){
@@ -56,8 +75,5 @@ public class C_File extends C_General{
                 Line+=Cadena.charAt(i);
             }
         }
-    }
-    protected void CountTextAtStartLineBetweenUNH_UNT(){
-        
     }
 }
