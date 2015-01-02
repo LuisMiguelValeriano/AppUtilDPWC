@@ -1,10 +1,10 @@
+package Clases.Core;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-package Clases.Core;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -14,11 +14,11 @@ import org.junit.Test;
 
 /**
  *
- * @author LuisMiguel
+ * @author lvaleriano
  */
-public class C_Exception_Test extends C_Exception{
+public class C_Text_Test extends C_Text{
     
-    public C_Exception_Test() {
+    public C_Text_Test() {
     }
     
     @BeforeClass
@@ -37,15 +37,9 @@ public class C_Exception_Test extends C_Exception{
     public void tearDown() {
     }
     
-    
     @Test
-    public void IsInteger(){
-        System.out.println("Resultado : " + IsInteger(" 2014")); 
-    }
-    
-    @Test
-    public void ComparePosibleIntegers(){
-        System.out.println("Resultado : " + ComparePosibleIntegers("2014a",">",2015)); 
+    public void DelimitedReplaceCaractersInText(){
+        System.out.println("Resultado : " + DelimitedReplaceCaractersInText("DTM+203:201412221801:203'", "", "DTM", "201412221802")); 
     }
 
     // TODO add test methods here.

@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
  *
  * @author LuisMiguel
  */
-public class C_File extends C_General{
+public class C_File extends C_Text{
     protected FileReader ReturnObjectOfArchiveReadyToRead(String FilePath){
         /*
         Parametros:
