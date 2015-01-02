@@ -100,18 +100,25 @@ public class C_Validation {
                 ListOfExceptions += ","+ActualException;
             }
         }
-        //return ListOfExceptions;
         for (int i = 1; i <= NumberOfValidation; i++) {
             switch(i){
                 //en este switch si modificamos la cantidad de validaciones agregaremos una case mas o quitaremos segun sea el caso.
                 case 1:
-                    //&& !ListOfExceptions.contains(","+String.valueOf(i))
-                    if(!IsInteger(Year) && !ListOfExceptions.contains(","+String.valueOf(i))) return false; break;
+                    if(!IsInteger(Year) && !ListOfExceptions.contains(","+String.valueOf(i))){
+                        return false;
+                    } 
+                    break;
                 case 2:
-                    if(!compareTextLength(Year,"==", 4) && !ListOfExceptions.contains(","+String.valueOf(i))) return false; break;
+                    if(!compareTextLength(Year,"==", 4) && !ListOfExceptions.contains(","+String.valueOf(i))){
+                        return false;
+                    } 
+                    break;
                 case 3:
                     Calendar fecha = Calendar.getInstance();
-                    if(!ComparePosibleIntegers(Year, "<=", fecha.get(Calendar.YEAR)) && !ListOfExceptions.contains(","+String.valueOf(i))) return false; break;
+                    if(!ComparePosibleIntegers(Year, "<=", fecha.get(Calendar.YEAR)) && !ListOfExceptions.contains(","+String.valueOf(i))){
+                        return false;
+                    } 
+                    break;
             }
         }
         return true;
