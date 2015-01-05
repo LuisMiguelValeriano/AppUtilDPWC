@@ -79,16 +79,17 @@ public class C_Validation {
         */
         return ComparePosibleIntegers(String.valueOf(Text.trim().length()), compareSymbol, compareNumber);
     }
-    protected boolean FormatOfTheYearLessThanOrEqualToTheCurrentYYYY(String Year, int... Exceptions){
+    protected boolean FormatOfTheMonth(String Month, int... Exceptions){
         /*
         Parametros:
-            -Year: es un texto cualquiera que representa un año.
+            -Month: es un texto cualquiera que representa un mes en numeros.
             -Exceptions: es el conjunto de paramateros siguientes que representan el numero 
              identificador de cada validacion que no se tomaran en cuenta. 
              Siendo los siguientes:
-                1 - Year es un numero
-                2 - Year tiene longitud de 4
-                3 - Year es menor o igual al año actual
+                1 - Month es un numero
+                2 - Month tiene longitud de 2
+                3 - Month es menor o igual que 12
+                4 - Month es mayor o igual que 1
         Resultante:
             Nos devuelve verdadero en el caso que cumpla todas las validaciones ya habiendo
             omitido algunas de estas dictadas por "Exceptions".
@@ -104,16 +105,66 @@ public class C_Validation {
             switch(i){
                 //en este switch si modificamos la cantidad de validaciones agregaremos una case mas o quitaremos segun sea el caso.
                 case 1:
+                    if(!IsInteger(Month) && !ListOfExceptions.contains(","+String.valueOf(i))){
+                        return false;
+                    } 
+                    break;
+                case 2:
+                    if(!compareTextLength(Month,"==", 4) && !ListOfExceptions.contains(","+String.valueOf(i))){
+                        return false;
+                    } 
+                    break;
+                case 3:
+                    Calendar fecha = Calendar.getInstance();
+                    if(!ComparePosibleIntegers(Month, "<=", fecha.get(Calendar.YEAR)) && !ListOfExceptions.contains(","+String.valueOf(i))){
+                        return false;
+                    } 
+                    break;
+            }
+        }
+        return true;
+    }
+    protected boolean FormatOfTheYearLessThanOrEqualToTheCurrentYYYY(String Year, int... Exceptions){
+        /*
+        Parametros:
+            -Year: es un texto cualquiera que representa un año.
+            -Exceptions: es el conjunto de paramateros siguientes que representan el numero 
+             identificador de cada validacion que no se tomaran en cuenta. 
+             Siendo los siguientes:
+                1 - Year es un numero
+                2 - Year es un numero positivo
+                3 - Year tiene longitud de 4
+                4 - Year es menor o igual al año actual
+        Resultante:
+            Nos devuelve verdadero en el caso que cumpla todas las validaciones ya habiendo
+            omitido algunas de estas dictadas por "Exceptions".
+        */
+        int NumberOfValidation = 4;//Si se decea modificar la cantidad de validaciones debemos modificar el numero de validaciones en esta linea
+        String ListOfExceptions = "0";
+        if(Exceptions.length>0){
+            for(int ActualException : Exceptions){
+                ListOfExceptions += ","+ActualException;
+            }
+        }
+        for (int i = 1; i <= NumberOfValidation; i++) {
+            switch(i){
+                //en este switch si modificamos la cantidad de validaciones agregaremos una case mas o quitaremos segun sea el caso.
+                case 1:
                     if(!IsInteger(Year) && !ListOfExceptions.contains(","+String.valueOf(i))){
                         return false;
                     } 
                     break;
                 case 2:
+                    if(!ComparePosibleIntegers(Year, ">=", 1) && !ListOfExceptions.contains(","+String.valueOf(i))){
+                        return false;
+                    }
+                    break;
+                case 3:
                     if(!compareTextLength(Year,"==", 4) && !ListOfExceptions.contains(","+String.valueOf(i))){
                         return false;
                     } 
                     break;
-                case 3:
+                case 4:
                     Calendar fecha = Calendar.getInstance();
                     if(!ComparePosibleIntegers(Year, "<=", fecha.get(Calendar.YEAR)) && !ListOfExceptions.contains(","+String.valueOf(i))){
                         return false;
