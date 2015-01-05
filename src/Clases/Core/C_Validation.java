@@ -110,13 +110,17 @@ public class C_Validation {
                     } 
                     break;
                 case 2:
-                    if(!compareTextLength(Month,"==", 4) && !ListOfExceptions.contains(","+String.valueOf(i))){
+                    if(!compareTextLength(Month,"==", 2) && !ListOfExceptions.contains(","+String.valueOf(i))){
                         return false;
                     } 
                     break;
                 case 3:
-                    Calendar fecha = Calendar.getInstance();
-                    if(!ComparePosibleIntegers(Month, "<=", fecha.get(Calendar.YEAR)) && !ListOfExceptions.contains(","+String.valueOf(i))){
+                    if(!ComparePosibleIntegers(Month, "<=", 12) && !ListOfExceptions.contains(","+String.valueOf(i))){
+                        return false;
+                    } 
+                    break;
+                case 4:
+                    if(!ComparePosibleIntegers(Month, ">=", 1) && !ListOfExceptions.contains(","+String.valueOf(i))){
                         return false;
                     } 
                     break;

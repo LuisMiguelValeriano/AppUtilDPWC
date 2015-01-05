@@ -41,7 +41,9 @@ public class C_Validation_Test extends C_Validation{
     
     @Test
     public void IsInteger(){
-        System.out.println("Resultado : " + IsInteger(" 2014")); 
+        System.out.println("Resultado ' 2014': " + IsInteger(" 2014"));
+        System.out.println("Resultado '01' : " + IsInteger("01"));
+        System.out.println("Resultado '01' : " + Integer.parseInt("01"));
     }
     
     @Test
@@ -67,6 +69,16 @@ public class C_Validation_Test extends C_Validation{
         System.out.println("Resultado de 14: " + FormatOfTheYearLessThanOrEqualToTheCurrentYYYY("14",2,3));
         System.out.println("Resultado de 2016a: " + FormatOfTheYearLessThanOrEqualToTheCurrentYYYY("2016a",1,2,3));
         
+    }
+    
+    @Test
+    public void FormatOfTheMonth(){
+        System.out.println("Resultado de 01: "+ FormatOfTheMonth("01"));
+        System.out.println("Resultado de 1: "+ FormatOfTheMonth("1"));
+        System.out.println("Resultado de aa: "+ FormatOfTheMonth("aa",1,3,4));
+        System.out.println("Resultado de 13: "+ FormatOfTheMonth("13",3));
+        System.out.println("Resultado de -1: "+ FormatOfTheMonth("-1",4));
+        System.out.println("Resultado de 13: "+ FormatOfTheMonth("13"));
     }
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
