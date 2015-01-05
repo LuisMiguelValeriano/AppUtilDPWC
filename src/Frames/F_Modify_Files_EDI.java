@@ -5,11 +5,13 @@
  */
 package Frames;
 
+import java.awt.Component;
+
 /**
  *
  * @author lvaleriano
  */
-public class F_Modify_Files_EDI extends javax.swing.JFrame {
+public class F_Modify_Files_EDI extends javax.swing.JFrame{
 
     /**
      * Creates new form F_Modify_Files_EDI
@@ -133,15 +135,16 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(F_Modify_Files_EDI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new F_Modify_Files_EDI().setVisible(true);
+                
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox chbReferencia;
     private javax.swing.JButton jButton1;
@@ -149,4 +152,19 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame {
     private javax.swing.JPanel pnlReferencia;
     private javax.swing.JTextField txtReferencia;
     // End of variables declaration//GEN-END:variables
+
+    
+    @Override
+    public void setEnabled(boolean en) {
+        super.setEnabled(en);
+        setComponentsEnabled(this, en);
+    }
+    private void setComponentsEnabled(java.awt.Container c, boolean en) {
+        Component[] components = c.getComponents();
+        for (Component comp: components) {
+            if (comp instanceof java.awt.Container)
+                setComponentsEnabled((java.awt.Container) comp, en);
+            comp.setEnabled(en);
+        }
+    }
 }
