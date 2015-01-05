@@ -5,7 +5,11 @@
  */
 package Clases.Core;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  *
@@ -79,6 +83,114 @@ public class C_Validation {
         */
         return ComparePosibleIntegers(String.valueOf(Text.trim().length()), compareSymbol, compareNumber);
     }
+    protected boolean FormatOfDateYYYY_MM_DD_HH_SS(String Date){
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:ss");
+        try {
+            dateFormat.setLenient(false);
+            Date date = dateFormat.parse(Date);
+            return true;
+        } catch (ParseException ex) {
+            return false;
+        }
+    }
+    protected boolean FormatOfTheHour(String Hour, int... Exceptions){
+        /*
+        Parametros:
+            -Hour: es un texto cualquiera que representa una hora determinada.
+            -Exceptions: es el conjunto de paramateros siguientes que representan el numero 
+             identificador de cada validacion que no se tomaran en cuenta. 
+             Siendo los siguientes:
+                1 - Hour es un numero
+                2 - Hour tiene longitud de 2
+                3 - Hour es menor o igual que 23
+                4 - Hour es mayor o igual que 00
+        Resultante:
+            Nos devuelve verdadero en el caso que cumpla todas las validaciones ya habiendo
+            omitido algunas de estas dictadas por "Exceptions".
+        */
+        int NumberOfValidation = 4;//Si se decea modificar la cantidad de validaciones debemos modificar el numero de validaciones en esta linea
+        String ListOfExceptions = "0";
+        if(Exceptions.length>0){
+            for(int ActualException : Exceptions){
+                ListOfExceptions += ","+ActualException;
+            }
+        }
+        for (int i = 1; i <= NumberOfValidation; i++) {
+            switch(i){
+                //en este switch si modificamos la cantidad de validaciones agregaremos una case mas o quitaremos segun sea el caso.
+                case 1:
+                    if(!IsInteger(Hour) && !ListOfExceptions.contains(","+String.valueOf(i))){
+                        return false;
+                    } 
+                    break;
+                case 2:
+                    if(!compareTextLength(Hour,"==", 2) && !ListOfExceptions.contains(","+String.valueOf(i))){
+                        return false;
+                    } 
+                    break;
+                case 3:
+                    if(!ComparePosibleIntegers(Hour, "<=", 23) && !ListOfExceptions.contains(","+String.valueOf(i))){
+                        return false;
+                    } 
+                    break;
+                case 4:
+                    if(!ComparePosibleIntegers(Hour, ">=", 0) && !ListOfExceptions.contains(","+String.valueOf(i))){
+                        return false;
+                    } 
+                    break;
+            }
+        }
+        return true;
+    }
+    protected boolean FormatOfTheMinute(String Minute, int... Exceptions){
+        /*
+        Parametros:
+            -Minute: es un texto cualquiera que representa un minuto determinado.
+            -Exceptions: es el conjunto de paramateros siguientes que representan el numero 
+             identificador de cada validacion que no se tomaran en cuenta. 
+             Siendo los siguientes:
+                1 - Minute es un numero
+                2 - Minute tiene longitud de 2
+                3 - Minute es menor o igual que 59
+                4 - Minute es mayor o igual que 00
+        Resultante:
+            Nos devuelve verdadero en el caso que cumpla todas las validaciones ya habiendo
+            omitido algunas de estas dictadas por "Exceptions".
+        */
+        int NumberOfValidation = 4;//Si se decea modificar la cantidad de validaciones debemos modificar el numero de validaciones en esta linea
+        String ListOfExceptions = "0";
+        if(Exceptions.length>0){
+            for(int ActualException : Exceptions){
+                ListOfExceptions += ","+ActualException;
+            }
+        }
+        for (int i = 1; i <= NumberOfValidation; i++) {
+            switch(i){
+                //en este switch si modificamos la cantidad de validaciones agregaremos una case mas o quitaremos segun sea el caso.
+                case 1:
+                    if(!IsInteger(Minute) && !ListOfExceptions.contains(","+String.valueOf(i))){
+                        return false;
+                    } 
+                    break;
+                case 2:
+                    if(!compareTextLength(Minute,"==", 2) && !ListOfExceptions.contains(","+String.valueOf(i))){
+                        return false;
+                    } 
+                    break;
+                case 3:
+                    if(!ComparePosibleIntegers(Minute, "<=", 59) && !ListOfExceptions.contains(","+String.valueOf(i))){
+                        return false;
+                    } 
+                    break;
+                case 4:
+                    if(!ComparePosibleIntegers(Minute, ">=", 0) && !ListOfExceptions.contains(","+String.valueOf(i))){
+                        return false;
+                    } 
+                    break;
+            }
+        }
+        return true;
+    }
     protected boolean FormatOfTheMonth(String Month, int... Exceptions){
         /*
         Parametros:
@@ -94,7 +206,7 @@ public class C_Validation {
             Nos devuelve verdadero en el caso que cumpla todas las validaciones ya habiendo
             omitido algunas de estas dictadas por "Exceptions".
         */
-        int NumberOfValidation = 3;//Si se decea modificar la cantidad de validaciones debemos modificar el numero de validaciones en esta linea
+        int NumberOfValidation = 4;//Si se decea modificar la cantidad de validaciones debemos modificar el numero de validaciones en esta linea
         String ListOfExceptions = "0";
         if(Exceptions.length>0){
             for(int ActualException : Exceptions){

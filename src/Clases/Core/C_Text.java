@@ -82,32 +82,40 @@ public class C_Text extends C_Validation{
         }
         return countOccurrencesOfLines;
     }
-    /*
-    protected String ReturnDateInSelectedFormat(String InputDate, String FormatInputDate, String FormatOutputDate){
-        String OutputDate = "";
-        switch (FormatInputDate){
-            case "YYYY-MM-DD HH:MM":
-                break;
-            case "YYYYMMDD HH:MM":
-                break;
-            case "YYYYMMDDHHMM":
-                break;
+    protected String GetTextFromOneCharterToAnother(String CompleteText, String BeginDelimiter, int FewTimeBeginDelimiter, String EndDelimiter, int FewTimeEndDelimiter){
+        
+        int indexBeginDelimiter = 0;
+        int indexEndDelimiter = CompleteText.length()-1;
+        
+        int countBeginDelimiter = 0;
+        int countEndDelimiter = 0;
+        for(int i=0; i<= CompleteText.length()-1; i++){
+            if(String.valueOf(CompleteText.charAt(i)).equals(BeginDelimiter)){
+                countBeginDelimiter++;
+            }
+            if(countBeginDelimiter == FewTimeBeginDelimiter){
+                indexBeginDelimiter = i+1;
+                i = CompleteText.length();
+            }
         }
-    }
-    protected boolean ValidateDateInFormat(String Date, String FormatDate){
-        boolean Result = false;
-        switch (FormatDate){
-            case "YYYY-MM-DD HH:MM":
-                if()
-                break;
-            case "YYYYMMDD HH:MM":
-                break;
-            case "YYYYMMDDHHMM":
-                break;
+        for(int j = indexBeginDelimiter; j<= CompleteText.length()-1;j++){
+            if(String.valueOf(CompleteText.charAt(j)).equals(EndDelimiter)){
+                countEndDelimiter++;
+            }
+            if(countEndDelimiter == FewTimeEndDelimiter){
+                indexEndDelimiter = j;
+                j = CompleteText.length();
+            }
         }
+        return CompleteText.substring(indexBeginDelimiter, indexEndDelimiter);
     }
-    
-*/
-    
-    
+    protected int CountLetersInText(String CompleteText, char CharacterCount){
+        int count=0;
+        for(int i=0; i<= CompleteText.length()-1; i++){    
+            if(CharacterCount == CompleteText.charAt(i)){
+                count++;
+            }
+        }
+        return count;
+    }
 }

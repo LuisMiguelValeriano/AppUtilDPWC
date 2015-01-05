@@ -6,7 +6,13 @@
 
 package Clases.Core;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -79,6 +85,16 @@ public class C_Validation_Test extends C_Validation{
         System.out.println("Resultado de 13: "+ FormatOfTheMonth("13",3));
         System.out.println("Resultado de -1: "+ FormatOfTheMonth("-1",4));
         System.out.println("Resultado de 13: "+ FormatOfTheMonth("13"));
+    }
+    
+    @Test
+    public void FormatOfTheDayYYYY_MM_DD(){
+        
+        System.out.println("Fecha 2015-02-29 11:50 : "+FormatOfDateYYYY_MM_DD_HH_SS("2015-02-29 11:50"));
+        System.out.println("Fecha 2015-02-28 13:50 : "+FormatOfDateYYYY_MM_DD_HH_SS("2015-02-28 13:50"));
+        System.out.println("Fecha 2015-02-27 25:50 : "+FormatOfDateYYYY_MM_DD_HH_SS("2015-02-27 25:50"));
+        System.out.println("Fecha 2015-02-27 24:00 : "+FormatOfDateYYYY_MM_DD_HH_SS("2015-02-27 24:00"));
+        System.out.println("Fecha 2015-02-26 00:00 : "+FormatOfDateYYYY_MM_DD_HH_SS("2015-02-26 00:00"));
     }
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
