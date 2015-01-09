@@ -34,6 +34,8 @@ public class G_File extends C_File  implements  I_File {
             fw = ReturnCreatedObjectOfArchiveToWrite(FilePath.substring(0, FilePath.length()-4)+"_RESULT.txt");
             PrintWriter pw = new PrintWriter(fw);
             if((Linea = br.readLine())!=null){
+                //GetTextFromOneCharterToAnother(Linea,"'",1,"+",1,false);
+                //GetTextFromOneCharterToAnother(Linea,"+",1,":",1,false);
                 pw.println(Linea);
             }
             while((Linea=br.readLine())!=null){

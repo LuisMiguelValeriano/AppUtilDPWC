@@ -44,9 +44,20 @@ public class C_Text_Test extends C_Text{
     @Test
     public void GetTextFromOneCharterToAnother(){
         String CompleteText = "UNB+UNOA:2+UNIMAR+CMA+150101:0701+1727472311'";
-        System.out.println("Resultado 1 : " + GetTextFromOneCharterToAnother(CompleteText, "+", 1, ":", 1));
-        System.out.println("Resultado 2 : " + GetTextFromOneCharterToAnother(CompleteText, "+", 1, "+", 1));
-        System.out.println("Resultado 3 : " + GetTextFromOneCharterToAnother(CompleteText, "", 1, "U", 1));
+        
+        System.out.println("Resultado 1 : " + GetTextFromOneCharterToAnother(CompleteText, "", 1, "U", 1, true));
+        System.out.println("Resultado 2 : " + GetTextFromOneCharterToAnother(CompleteText, "", 1, "'", 1, false));
+        System.out.println("Resultado 3 : " + GetTextFromOneCharterToAnother(CompleteText, "", 1, "", 1, true));
+        System.out.println("Resultado 4 : " + GetTextFromOneCharterToAnother(CompleteText, "", 1, "", 1, false));
+        
+        System.out.println("Resultado 5 : " + GetTextFromOneCharterToAnother(CompleteText, "+", 1, ":", 1, true));
+        System.out.println("Resultado 6 : " + GetTextFromOneCharterToAnother(CompleteText, "+", 1, "+", 1, true));
+        System.out.println("Resultado 7 : " + GetTextFromOneCharterToAnother(CompleteText, "", 1, "+", 1, true));
+
+        System.out.println("Resultado 8 : " + GetTextFromOneCharterToAnother(CompleteText, "'", 1, "+", 1, false));
+        System.out.println("Resultado 9 : " + GetTextFromOneCharterToAnother(CompleteText, "+", 1, "+", 1, false));
+        System.out.println("Resultado 10 : " + GetTextFromOneCharterToAnother(CompleteText, "", 1, "+", 1, false));
+        
     }
 
     // TODO add test methods here.

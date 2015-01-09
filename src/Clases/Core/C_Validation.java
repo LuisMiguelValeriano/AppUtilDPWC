@@ -15,7 +15,7 @@ import java.util.Date;
  *
  * @author lvaleriano
  */
-public class C_Validation {
+public class C_Validation extends C_General{
     
     protected boolean IsInteger(String posibleInteger){
         /*
