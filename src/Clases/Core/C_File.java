@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
  * @author LuisMiguel
  */
 public class C_File extends C_Text{
-    protected FileReader ReturnObjectOfArchiveReadyToRead(String FilePath){
+    public FileReader ReturnObjectOfArchiveReadyToRead(String FilePath){
         /*
         Parametros:
             -FilePath: es la ruta fisica en la cual se encuentra el archivo con el formato 
@@ -38,7 +38,7 @@ public class C_File extends C_Text{
         }
         return fr;
     }
-    protected FileWriter ReturnCreatedObjectOfArchiveToWrite(String FilePath){
+    public FileWriter ReturnCreatedObjectOfArchiveToWrite(String FilePath){
         /*
         Parametros:
             -FilePath: es la ruta fisica en la cual se encuentra el archivo con el formato 
@@ -56,7 +56,7 @@ public class C_File extends C_Text{
         }
         return archivo;
     }
-    protected void MultilaneWriteArchive(PrintWriter pw, String Cadena, char Token){
+    public void MultilaneWriteArchive(PrintWriter pw, String Cadena, char Token){
         /*
         Parametros:
             -PrintWriter: es el objeto un archivo el cual esta listo para escibirse en el.

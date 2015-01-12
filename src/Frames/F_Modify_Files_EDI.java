@@ -5,7 +5,8 @@
  */
 package Frames;
 
-import java.awt.Component;
+import Clases.Core.C_ComponentFrame;
+import Clases.Core.C_File;
 
 /**
  *
@@ -13,11 +14,14 @@ import java.awt.Component;
  */
 public class F_Modify_Files_EDI extends javax.swing.JFrame{
 
+    C_ComponentFrame Obj_ComponentFrame = new C_ComponentFrame();
     /**
      * Creates new form F_Modify_Files_EDI
      */
     public F_Modify_Files_EDI() {
         initComponents();
+        Obj_ComponentFrame.setEnableJPanelComponentsWithCheckBox(pnlReferencia, chbReferencia);
+        Obj_ComponentFrame.setEnableJPanelComponentsWithCheckBox(pnlUNBUNZ, chbUNBUNZ);
     }
 
     /**
@@ -29,15 +33,20 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jFileChooser1 = new javax.swing.JFileChooser();
         pnlReferencia = new javax.swing.JPanel();
         txtReferencia = new javax.swing.JTextField();
         lblReferencia = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         chbReferencia = new javax.swing.JCheckBox();
+        pnlUNBUNZ = new javax.swing.JPanel();
+        lblUNBUNZ = new javax.swing.JLabel();
+        txtUNBUNZ = new javax.swing.JTextField();
+        chbUNBUNZ = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        pnlReferencia.setBorder(javax.swing.BorderFactory.createTitledBorder("Cambiar Referencia :"));
+        pnlReferencia.setBorder(javax.swing.BorderFactory.createTitledBorder("Cambiar Referencia"));
 
         lblReferencia.setText("Texto de referencia :");
 
@@ -60,10 +69,46 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
         );
 
         jButton1.setText("Modificar EDI");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         chbReferencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chbReferenciaActionPerformed(evt);
+            }
+        });
+
+        pnlUNBUNZ.setBorder(javax.swing.BorderFactory.createTitledBorder("Sumar unidad a minuto y segundo a UNB-UNZ"));
+
+        lblUNBUNZ.setText("Unidad Sumada :");
+
+        txtUNBUNZ.setText("1");
+        txtUNBUNZ.setToolTipText("");
+
+        javax.swing.GroupLayout pnlUNBUNZLayout = new javax.swing.GroupLayout(pnlUNBUNZ);
+        pnlUNBUNZ.setLayout(pnlUNBUNZLayout);
+        pnlUNBUNZLayout.setHorizontalGroup(
+            pnlUNBUNZLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlUNBUNZLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblUNBUNZ)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtUNBUNZ, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        pnlUNBUNZLayout.setVerticalGroup(
+            pnlUNBUNZLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlUNBUNZLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(lblUNBUNZ)
+                .addComponent(txtUNBUNZ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        chbUNBUNZ.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chbUNBUNZActionPerformed(evt);
             }
         });
 
@@ -72,43 +117,62 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(86, 86, 86)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(146, 146, 146)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addComponent(chbReferencia)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pnlReferencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(57, Short.MAX_VALUE))
+                    .addComponent(chbReferencia, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(chbUNBUNZ, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(pnlUNBUNZ, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlReferencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addComponent(pnlUNBUNZ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(pnlReferencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
+                        .addGap(14, 14, 14)
+                        .addComponent(chbUNBUNZ)
+                        .addGap(27, 27, 27)
                         .addComponent(chbReferencia)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 273, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 191, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addGap(24, 24, 24))
+                .addGap(23, 23, 23))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void chbReferenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbReferenciaActionPerformed
-        if(chbReferencia.isSelected()){
-            pnlReferencia.setEnabled(true);
-        }else{
-            pnlReferencia.setEnabled(false);
-        }
+        Obj_ComponentFrame.setEnableJPanelComponentsWithCheckBox(pnlReferencia, chbReferencia);
     }//GEN-LAST:event_chbReferenciaActionPerformed
 
+    private void chbUNBUNZActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbUNBUNZActionPerformed
+        Obj_ComponentFrame.setEnableJPanelComponentsWithCheckBox(pnlUNBUNZ, chbUNBUNZ);
+    }//GEN-LAST:event_chbUNBUNZActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            C_File O_File= new C_File();
+            O_File.ReturnObjectOfArchiveReadyToRead(null);
+        } catch (Exception e) {
+        }
+        if(chbUNBUNZ.isSelected()){
+            //String milisecond = GetTextFromOneCharterToAnother(Linea,"'",1,"+",1,false);
+            //GetTextFromOneCharterToAnother(Linea,"+",1,":",1,false);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+    
     /**
      * @param args the command line arguments
      */
@@ -147,24 +211,14 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox chbReferencia;
+    private javax.swing.JCheckBox chbUNBUNZ;
     private javax.swing.JButton jButton1;
+    private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel lblReferencia;
+    private javax.swing.JLabel lblUNBUNZ;
     private javax.swing.JPanel pnlReferencia;
+    private javax.swing.JPanel pnlUNBUNZ;
     private javax.swing.JTextField txtReferencia;
+    private javax.swing.JTextField txtUNBUNZ;
     // End of variables declaration//GEN-END:variables
-
-    
-    @Override
-    public void setEnabled(boolean en) {
-        super.setEnabled(en);
-        setComponentsEnabled(this, en);
-    }
-    private void setComponentsEnabled(java.awt.Container c, boolean en) {
-        Component[] components = c.getComponents();
-        for (Component comp: components) {
-            if (comp instanceof java.awt.Container)
-                setComponentsEnabled((java.awt.Container) comp, en);
-            comp.setEnabled(en);
-        }
-    }
 }

@@ -13,7 +13,7 @@ package Clases.Core;
  */
 public class C_Text extends C_Validation{
     
-    protected boolean TextStartWith(String CompleateString, String BeginString){
+    public boolean TextStartWith(String CompleateString, String BeginString){
         /*
         Parametros:
             -CompleateString: es el texto completo que analizaremos.
@@ -25,7 +25,7 @@ public class C_Text extends C_Validation{
         */
         return CompleateString.substring(0,BeginString.length()).toUpperCase().equals(BeginString.toUpperCase());
     }
-    protected boolean TextEndWith(String CompleateString, String EndString){
+    public boolean TextEndWith(String CompleateString, String EndString){
         /*
         Parametros:
             -CompleateString: es el texto completo que analizaremos.
@@ -37,7 +37,7 @@ public class C_Text extends C_Validation{
         */
         return CompleateString.substring(((CompleateString.length()-1)-EndString.length()),CompleateString.length()-1).toUpperCase().equals(EndString.toUpperCase());
     }
-    protected String DelimitedReplaceCaractersInText(String CompleteText,String LeftText, String RigthText, String Caracteres){
+    public String DelimitedReplaceCaractersInText(String CompleteText,String LeftText, String RigthText, String Caracteres){
         /*
         Parametros:
             -CompleateString: es el texto completo que analizaremos.
@@ -58,7 +58,7 @@ public class C_Text extends C_Validation{
         }
         return "ERROR";
     }
-    protected int CountTextAtStartLineInBlockTextDelimited(String BlockText, String StartOfLine, char Token){
+    public int CountTextAtStartLineInBlockTextDelimited(String BlockText, String StartOfLine, char Token){
         /*
         Parametros:
             -BlocText: Son el conjunto de lineas que fueron juntadas en una sola linea con un 
@@ -82,7 +82,7 @@ public class C_Text extends C_Validation{
         }
         return countOccurrencesOfLines;
     }
-    protected String GetTextFromOneCharterToAnother(String CompleteText, String BeginDelimiter, int FewTimeBeginDelimiter, String EndDelimiter, int FewTimeEndDelimiter, boolean BeginsFromTheLeft){
+    public String GetTextFromOneCharterToAnother(String CompleteText, String BeginDelimiter, int FewTimeBeginDelimiter, String EndDelimiter, int FewTimeEndDelimiter, boolean BeginsFromTheLeft){
         /*
         Parametros:
             -CompleteText: es un texto cualquiera.
@@ -162,7 +162,7 @@ public class C_Text extends C_Validation{
         }
         
     }
-    protected int CountLetersInText(String CompleteText, char CharacterCount){
+    public int CountLetersInText(String CompleteText, char CharacterCount){
         /*
         Parametros:
             -CompleteText: es un texto cualquiera.

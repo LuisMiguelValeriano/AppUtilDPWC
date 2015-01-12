@@ -17,7 +17,7 @@ import java.util.Date;
  */
 public class C_Validation extends C_General{
     
-    protected boolean IsInteger(String posibleInteger){
+    public boolean IsInteger(String posibleInteger){
         /*
         Parametros:
             -posibleInteger: es un texto cualquiera el cual se tratara de
@@ -33,7 +33,7 @@ public class C_Validation extends C_General{
             return false;
         }
     }
-    protected boolean ComparePosibleIntegers(String posibleNumber, String compareSymbol, int compareNumber){
+    public boolean ComparePosibleIntegers(String posibleNumber, String compareSymbol, int compareNumber){
         /*
         Parametros:
             -posibleNumber: es un texto cualquiera el cual se tratara de
@@ -68,7 +68,7 @@ public class C_Validation extends C_General{
             return false;
         }
     }
-    protected boolean compareTextLength(String Text, String compareSymbol, int compareNumber ){
+    public boolean compareTextLength(String Text, String compareSymbol, int compareNumber ){
         /*
         Parametros:
             -Text: es un texto cualquiera.
@@ -83,7 +83,7 @@ public class C_Validation extends C_General{
         */
         return ComparePosibleIntegers(String.valueOf(Text.trim().length()), compareSymbol, compareNumber);
     }
-    protected boolean FormatOfDateYYYY_MM_DD_HH_SS(String Date){
+    public boolean FormatOfDateYYYY_MM_DD_HH_SS(String Date){
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:ss");
         try {
             dateFormat.setLenient(false);
@@ -93,7 +93,7 @@ public class C_Validation extends C_General{
             return false;
         }
     }
-    protected boolean FormatOfTheHour(String Hour, int... Exceptions){
+    public boolean FormatOfTheHour(String Hour, int... Exceptions){
         /*
         Parametros:
             -Hour: es un texto cualquiera que representa una hora determinada.
@@ -142,7 +142,7 @@ public class C_Validation extends C_General{
         }
         return true;
     }
-    protected boolean FormatOfTheMinute(String Minute, int... Exceptions){
+    public boolean FormatOfTheMinute(String Minute, int... Exceptions){
         /*
         Parametros:
             -Minute: es un texto cualquiera que representa un minuto determinado.
@@ -191,7 +191,7 @@ public class C_Validation extends C_General{
         }
         return true;
     }
-    protected boolean FormatOfTheMonth(String Month, int... Exceptions){
+    public boolean FormatOfTheMonth(String Month, int... Exceptions){
         /*
         Parametros:
             -Month: es un texto cualquiera que representa un mes en numeros.
@@ -240,7 +240,7 @@ public class C_Validation extends C_General{
         }
         return true;
     }
-    protected boolean FormatOfTheYearLessThanOrEqualToTheCurrentYYYY(String Year, int... Exceptions){
+    public boolean FormatOfTheYearLessThanOrEqualToTheCurrentYYYY(String Year, int... Exceptions){
         /*
         Parametros:
             -Year: es un texto cualquiera que representa un año.

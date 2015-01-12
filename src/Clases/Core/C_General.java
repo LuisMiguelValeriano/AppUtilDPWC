@@ -10,7 +10,7 @@ package Clases.Core;
  * @author lvaleriano
  */
 public class C_General {
-    protected String AddToInteger(String myNumber, int numberToAdd){
+    public String AddToInteger(String myNumber, int numberToAdd){
         try {
             int number = Integer.parseInt(myNumber);
             number += numberToAdd;
@@ -27,7 +27,7 @@ public class C_General {
             return "ERROR - No se puede sumar los numeros";
         }
     }
-    protected String AddOneSecondDWPC(String mySecond){
+    public String AddOneSecondDWPC(String mySecond){
         try {
             int secondResult = Integer.parseInt(AddToInteger(mySecond,1));
             if(secondResult >= 60){
