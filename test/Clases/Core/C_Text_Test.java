@@ -39,7 +39,8 @@ public class C_Text_Test extends C_Text{
     
     @Test
     public void DelimitedReplaceCaractersInText(){
-        System.out.println("Resultado : " + DelimitedReplaceCaractersInText("DTM+203:201412221801:203'", "", "DTM", "201412221802")); 
+        System.out.println("Resultado 1: " + DelimitedReplaceCaractersInText("DTM+203:201412221801:203'", "", "DTM", "201412221802")); 
+        System.out.println("Resultado 2: " + DelimitedReplaceCaractersInText("DTM+203:201412221801:203'", "DTM+", ":", "LUISMI")); 
     }
     @Test
     public void GetTextFromOneCharterToAnother(){

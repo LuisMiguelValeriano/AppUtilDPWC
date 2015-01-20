@@ -39,4 +39,19 @@ public class C_General {
             return "ERROR - No se puede sumar un segundo al numero";
         }
     }
+    public String AddNMinutesDWPC(String mySecond, int minutesToAdd){
+        try {
+            int secondResult = Integer.parseInt(AddToInteger(mySecond,minutesToAdd));
+            if(secondResult >= 60){
+                if(secondResult%60 < 10){
+                    return "0"+(secondResult%60);
+                }
+                return ""+(secondResult%60);
+            }else{
+                return AddToInteger(mySecond,1);
+            }
+        } catch (Exception e) {
+            return "ERROR - No se puede sumar "+minutesToAdd+" minutos al numero.";
+        }
+    }
 }

@@ -35,13 +35,23 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="chbReferencia" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="chbUNBUNZ" alignment="1" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="pnlUNBUNZ" max="32767" attributes="0"/>
-                  <Component id="pnlReferencia" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                      <Component id="btnSelectEDI" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="lblPathEDI" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="chbReferencia" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="chbUNBUNZ" alignment="1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="pnlUNBUNZ" max="32767" attributes="0"/>
+                          <Component id="pnlReferencia" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
           </Group>
@@ -50,7 +60,12 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnSelectEDI" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblPathEDI" alignment="3" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="pnlUNBUNZ" min="-2" max="-2" attributes="0"/>
@@ -64,7 +79,7 @@
                       <Component id="chbReferencia" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="191" max="32767" attributes="0"/>
+              <EmptySpace pref="158" max="32767" attributes="0"/>
               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
           </Group>
@@ -84,20 +99,33 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="lblReferencia" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="lblReferencia" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="chbTDT20" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="txtReferencia" min="-2" pref="113" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="chbRFFVON" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtReferencia" min="-2" pref="113" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtReferencia" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblReferencia" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="txtReferencia" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblReferencia" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="7" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="chbTDT20" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="chbRFFVON" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
           </Group>
         </DimensionLayout>
@@ -108,6 +136,16 @@
         <Component class="javax.swing.JLabel" name="lblReferencia">
           <Properties>
             <Property name="text" type="java.lang.String" value="Texto de referencia :"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chbTDT20">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="TDT+20"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chbRFFVON">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="RFF+VON"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -173,6 +211,22 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chbUNBUNZActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnSelectEDI">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Seleccionar EDI"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSelectEDIActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblPathEDI">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="No ha seleccionado archivo EDI"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

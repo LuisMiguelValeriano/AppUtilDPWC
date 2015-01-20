@@ -7,6 +7,17 @@ package Frames;
 
 import Clases.Core.C_ComponentFrame;
 import Clases.Core.C_File;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -37,12 +48,16 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
         pnlReferencia = new javax.swing.JPanel();
         txtReferencia = new javax.swing.JTextField();
         lblReferencia = new javax.swing.JLabel();
+        chbTDT20 = new javax.swing.JCheckBox();
+        chbRFFVON = new javax.swing.JCheckBox();
         jButton1 = new javax.swing.JButton();
         chbReferencia = new javax.swing.JCheckBox();
         pnlUNBUNZ = new javax.swing.JPanel();
         lblUNBUNZ = new javax.swing.JLabel();
         txtUNBUNZ = new javax.swing.JTextField();
         chbUNBUNZ = new javax.swing.JCheckBox();
+        btnSelectEDI = new javax.swing.JButton();
+        lblPathEDI = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,22 +65,35 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
 
         lblReferencia.setText("Texto de referencia :");
 
+        chbTDT20.setText("TDT+20");
+
+        chbRFFVON.setText("RFF+VON");
+
         javax.swing.GroupLayout pnlReferenciaLayout = new javax.swing.GroupLayout(pnlReferencia);
         pnlReferencia.setLayout(pnlReferenciaLayout);
         pnlReferenciaLayout.setHorizontalGroup(
             pnlReferenciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlReferenciaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblReferencia)
+                .addGroup(pnlReferenciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblReferencia)
+                    .addComponent(chbTDT20))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtReferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnlReferenciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(chbRFFVON)
+                    .addComponent(txtReferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlReferenciaLayout.setVerticalGroup(
             pnlReferenciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlReferenciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(txtReferencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(lblReferencia))
+            .addGroup(pnlReferenciaLayout.createSequentialGroup()
+                .addGroup(pnlReferenciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtReferencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblReferencia))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addGroup(pnlReferenciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(chbTDT20)
+                    .addComponent(chbRFFVON)))
         );
 
         jButton1.setText("Modificar EDI");
@@ -112,6 +140,16 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
             }
         });
 
+        btnSelectEDI.setText("Seleccionar EDI");
+        btnSelectEDI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSelectEDIActionPerformed(evt);
+            }
+        });
+
+        lblPathEDI.setForeground(new java.awt.Color(0, 0, 255));
+        lblPathEDI.setText("No ha seleccionado archivo EDI");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -123,18 +161,29 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(chbReferencia, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(chbUNBUNZ, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(pnlUNBUNZ, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlReferencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(btnSelectEDI)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblPathEDI))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(chbReferencia, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(chbUNBUNZ, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(pnlUNBUNZ, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(pnlReferencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(10, 10, 10))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSelectEDI)
+                    .addComponent(lblPathEDI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(pnlUNBUNZ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -145,7 +194,7 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
                         .addComponent(chbUNBUNZ)
                         .addGap(27, 27, 27)
                         .addComponent(chbReferencia)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 191, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 158, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(23, 23, 23))
         );
@@ -162,6 +211,7 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
     }//GEN-LAST:event_chbUNBUNZActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String FilePath = "";
         try {
             C_File O_File= new C_File();
             O_File.ReturnObjectOfArchiveReadyToRead(null);
@@ -172,6 +222,77 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
             //GetTextFromOneCharterToAnother(Linea,"+",1,":",1,false);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnSelectEDIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectEDIActionPerformed
+        // TODO add your handling code here:
+        
+        JFileChooser chosser = new JFileChooser();
+        int returnVal = chosser.showOpenDialog(this);
+        if(returnVal == JFileChooser.APPROVE_OPTION){
+            File myFile = chosser.getSelectedFile();
+            String FilePath = myFile.getPath();
+            lblPathEDI.setText(FilePath);
+            
+            //Declaramos fr y fw
+            FileReader fr = null;
+            FileWriter fw = null;
+            //Instanciamos el objeto O_FILE
+            C_File O_File = new C_File();
+            
+            try {
+                fr = O_File.ReturnObjectOfArchiveReadyToRead(FilePath);
+                BufferedReader br = new BufferedReader(fr);
+                String Resultado="";
+                String Linea="";
+                boolean Print=false;
+                fw = O_File.ReturnCreatedObjectOfArchiveToWrite(O_File.GetTextFromOneCharterToAnother(FilePath,"", 1, ".", 1, true)+"_RESULT.txt");
+                PrintWriter pw = new PrintWriter(fw);
+                //Leemos la primera linea
+                if((Linea = br.readLine())!=null){
+                    if(chbUNBUNZ.isSelected()){
+                        String seconds = O_File.AddToInteger(O_File.GetTextFromOneCharterToAnother(Linea,"'",1,"+",1,false),1);
+                        String minutes = O_File.AddNMinutesDWPC(O_File.GetTextFromOneCharterToAnother(Linea,"+",1,":",1,false),Integer.parseInt(txtUNBUNZ.getText()));
+                        Linea = Linea.replace(O_File.GetTextFromOneCharterToAnother(Linea,"'",1,"+",1,false), seconds);
+                        Linea = Linea.replace(O_File.GetTextFromOneCharterToAnother(Linea,"+",1,":",1,false), minutes);
+                    }
+                    pw.println(Linea);
+                }
+                while((Linea=br.readLine())!=null){
+                    if(O_File.TextStartWith(Linea,"UNH")){
+                        Resultado="";
+                        Print=false;
+                    }
+                    if(O_File.TextStartWith(Linea,"TDT+20")){ 
+                        if(chbReferencia.isSelected() && chbTDT20.isSelected()){
+                            Linea = O_File.DelimitedReplaceCaractersInText(Linea,"TDT+20+","+",txtReferencia.getText());
+                        }
+                        /*if(TextEndWith(Linea, VesselName)){
+                            Print=true;
+                        }*/
+                    }
+                    if(O_File.TextStartWith(Linea,"RFF+VON")){
+                        if(chbReferencia.isSelected() && chbRFFVON.isSelected()){
+                            Linea = O_File.DelimitedReplaceCaractersInText(Linea,"RFF+VON:","'",txtReferencia.getText());
+                        }
+                    }
+                    if(O_File.TextStartWith(Linea,"UNT")){
+                        Resultado+=Linea+";";
+                        if(Print){
+                            O_File.MultilaneWriteArchive(pw, Resultado, ';');
+                        }
+                    }
+                    else{
+                        Resultado+=Linea+";";
+                    }
+                    if(O_File.TextStartWith(Linea,"UNZ")){
+                        pw.println(Linea);
+                    }
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(F_Modify_Files_EDI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_btnSelectEDIActionPerformed
     
     /**
      * @param args the command line arguments
@@ -210,10 +331,14 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSelectEDI;
+    private javax.swing.JCheckBox chbRFFVON;
     private javax.swing.JCheckBox chbReferencia;
+    private javax.swing.JCheckBox chbTDT20;
     private javax.swing.JCheckBox chbUNBUNZ;
     private javax.swing.JButton jButton1;
     private javax.swing.JFileChooser jFileChooser1;
+    private javax.swing.JLabel lblPathEDI;
     private javax.swing.JLabel lblReferencia;
     private javax.swing.JLabel lblUNBUNZ;
     private javax.swing.JPanel pnlReferencia;
