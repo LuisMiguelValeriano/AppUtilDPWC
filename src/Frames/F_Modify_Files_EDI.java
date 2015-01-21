@@ -277,8 +277,15 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
                     }
                     if(O_File.TextStartWith(Linea,"UNT")){
                         Resultado+=Linea+";";
-                        if(Print){
-                            O_File.MultilaneWriteArchive(pw, Resultado, ';');
+                        if(O_File.CountTextAtStartLineInBlockTextDelimited(Resultado,"DGS",';')>6 || O_File.CountTextAtStartLineInBlockTextDelimited(Resultado,"FTX",';')>6){
+                            if(O_File.CountTextAtStartLineInBlockTextDelimited(Resultado,"DGS",';')>6){
+                                
+                            }
+                        }
+                        else{
+                            if(Print){
+                                O_File.MultilaneWriteArchive(pw, Resultado, ';');
+                            }
                         }
                     }
                     else{

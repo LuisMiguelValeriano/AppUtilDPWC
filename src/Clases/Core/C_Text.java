@@ -6,6 +6,9 @@
 
 package Clases.Core;
 
+import java.awt.List;
+import java.util.ArrayList;
+
 
 /**
  *
@@ -23,7 +26,11 @@ public class C_Text extends C_Validation{
             Nos retornara un booleano que indica si determinado texto comienza 
             con cierto conjunto de caracteres ordenados.  
         */
-        return CompleateString.substring(0,BeginString.length()).toUpperCase().equals(BeginString.toUpperCase());
+        if(CompleateString.length() > BeginString.length()){
+            return CompleateString.substring(0,BeginString.length()).toUpperCase().equals(BeginString.toUpperCase());
+        }else{
+            return false;
+        }
     }
     public boolean TextEndWith(String CompleateString, String EndString){
         /*
@@ -71,14 +78,15 @@ public class C_Text extends C_Validation{
             Nos retornara un entero que representa el numero de lineas que anteriormente se juntaron 
             en una sola que comenzaron con determinado texto.  
         */
-        int countChars = 0;
         int countOccurrencesOfLines = 0;
-        while(countChars <= BlockText.length() && StartOfLine.length() <= (BlockText.length()-countChars)){
-            countChars++;
-            if(BlockText.charAt(countChars-1)==Token && TextStartWith(BlockText.substring(countChars),StartOfLine)){
+        while(BlockText.contains(String.valueOf(Token))){
+            if(TextStartWith(BlockText,StartOfLine)){
                 countOccurrencesOfLines++;
-                countChars += (StartOfLine.length() - 1);
             }
+            BlockText = BlockText.substring(BlockText.indexOf(Token)+1);
+        }
+        if(TextStartWith(BlockText,StartOfLine)){
+                countOccurrencesOfLines++;
         }
         return countOccurrencesOfLines;
     }
@@ -178,5 +186,27 @@ public class C_Text extends C_Validation{
             }
         }
         return count;
+    }
+    public String DeleteDuplicateLinesThatStartWith(String BlockText,String StartOfLine, char Token, int MaximumAllowedTimes){
+        String SectionAnalysed = "";
+        int countLines = 0;
+        ArrayList ListLinesAnalysed = new ArrayList();
+        while(BlockText.contains(String.valueOf(Token))){
+            if(TextStartWith(BlockText,StartOfLine)){
+                SectionAnalysed += BlockText.substring(0, BlockText.indexOf(Token)+1);
+                ListLinesAnalysed.add(BlockText.substring(0, BlockText.indexOf(Token)));
+            }
+            BlockText = BlockText.substring(BlockText.indexOf(Token)+1);
+        }
+        if(TextStartWith(BlockText,StartOfLine)){
+            SectionAnalysed += BlockText;
+            ListLinesAnalysed.add(BlockText);
+        }
+        ArrayList CopyListLinesAnalysed = (ArrayList) ListLinesAnalysed.clone();
+        if(ListLinesAnalysed.size() > MaximumAllowedTimes){
+            for(int i=0; i < ListLinesAnalysed.size(); i++){
+                for(int j=0; i < ListLinesAnalysed)
+            }
+        }
     }
 }

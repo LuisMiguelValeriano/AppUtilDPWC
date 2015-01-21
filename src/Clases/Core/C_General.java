@@ -5,6 +5,8 @@
  */
 package Clases.Core;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author lvaleriano
@@ -53,5 +55,8 @@ public class C_General {
         } catch (Exception e) {
             return "ERROR - No se puede sumar "+minutesToAdd+" minutos al numero.";
         }
+    }
+    public ArrayList ReturnArrayListWithOutRepetition(ArrayList myArray, int minElements){
+        for(int i=0;i<myArray.size())
     }
 }
