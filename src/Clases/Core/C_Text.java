@@ -65,6 +65,31 @@ public class C_Text extends C_Validation{
         }
         return "ERROR";
     }
+    public String GetTextAtStartLineInBlockTextDelimited(String BlockText, String StartOfLine, char Token){
+        /*
+        Parametros:
+            -BlocText: Son el conjunto de lineas que fueron juntadas en una sola linea con un 
+             separador que indicara el fin de las lineas.
+            -StartOfLine: es el texto con el que verificaremos que hallan comenzado las lineas que se
+             juntaron en una sola linea con un separador.
+            -Token: Es el separador que tiene BlockText que indica el final de cada linea que se
+             junto en una sola linea.
+        Resultante:
+            Nos retornara el conjunto de lineas que comienzan con StartOfLine y que seran delimitadas por
+            Token.  
+        */
+        String result = "";
+        while(BlockText.contains(String.valueOf(Token))){
+            if(TextStartWith(BlockText,StartOfLine)){
+                result += BlockText.substring(0,BlockText.indexOf(Token));
+            }
+            BlockText = BlockText.substring(BlockText.indexOf(Token)+1);
+        }
+        if(TextStartWith(BlockText,StartOfLine)){
+                result += BlockText;
+        }
+        return result;
+    }
     public int CountTextAtStartLineInBlockTextDelimited(String BlockText, String StartOfLine, char Token){
         /*
         Parametros:
@@ -170,7 +195,7 @@ public class C_Text extends C_Validation{
         }
         
     }
-    public int CountLetersInText(String CompleteText, char CharacterCount){
+    public int CountCharacterInText(String CompleteText, char CharacterCount){
         /*
         Parametros:
             -CompleteText: es un texto cualquiera.
@@ -187,8 +212,23 @@ public class C_Text extends C_Validation{
         }
         return count;
     }
-    public String DeleteDuplicateLinesThatStartWith(String BlockText,String StartOfLine, char Token, int MaximumAllowedTimes){
-        String SectionAnalysed = "";
+    public String DeleteDuplicateLinesToMinimumOfThem(String BlockText, char Token, int ManimumAllowedTimes){
+        if(ManimumAllowedTimes <= 0){
+            
+        }else{
+            String result = "";
+            int numLines=CountCharacterInText(BlockText, Token) +1;
+            String[] Lines = new String[numLines];
+            for(int i=0;i<numLines;i++){
+                if(i == numLines-1){
+                    Lines[i] = BlockText;
+                }else{
+                    //Lines[i];
+                }
+            }
+        }
+        
+        /*String SectionAnalysed = "";
         int countLines = 0;
         ArrayList ListLinesAnalysed = new ArrayList();
         while(BlockText.contains(String.valueOf(Token))){
@@ -207,6 +247,6 @@ public class C_Text extends C_Validation{
             for(int i=0; i < ListLinesAnalysed.size(); i++){
                 for(int j=0; i < ListLinesAnalysed)
             }
-        }
+        }*/
     }
 }

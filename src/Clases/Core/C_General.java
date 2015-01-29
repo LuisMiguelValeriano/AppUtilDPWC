@@ -57,6 +57,6 @@ public class C_General {
         }
     }
     public ArrayList ReturnArrayListWithOutRepetition(ArrayList myArray, int minElements){
-        for(int i=0;i<myArray.size())
+        //for(int i=0;i<myArray.size())
     }
 }
