@@ -136,6 +136,7 @@ public class F_Unit_by_Vessel extends javax.swing.JFrame {
         // TODO add your handling code here:
         I_File objFile = new G_File();
         objFile.LogicExtractFileByVesselName(txtPathFile.getText(),txtVesselName.getText());
+        //objFile.LogicExtractFileByVesselName("D:\\1420746930238ALI_COARRI.txt","CAP TALBOT");
     }//GEN-LAST:event_btnFiltrarActionPerformed
 
     /**
