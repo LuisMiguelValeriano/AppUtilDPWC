@@ -56,7 +56,4 @@ public class C_General {
             return "ERROR - No se puede sumar "+minutesToAdd+" minutos al numero.";
         }
     }
-    public ArrayList ReturnArrayListWithOutRepetition(ArrayList myArray, int minElements){
-        //for(int i=0;i<myArray.size())
-    }
 }

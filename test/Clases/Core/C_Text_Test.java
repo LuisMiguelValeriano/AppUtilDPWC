@@ -98,6 +98,74 @@ public class C_Text_Test extends C_Text{
         int numLines=CountCharacterInText(BlockText1,';') +1;
         System.out.println("Resultado 1 : " + Arrays.toString(PutLinesDelimitedInArray(BlockText1, numLines, ';')));
     }
+    
+    @Test
+    public void DeleteDuplicateLinesInArrayToMinimumOfThem(){
+        String BlockText1 = "BGM+270++1';BGM+270++2';BGM+270++3';BGM+270++4';BGM+270++5';BGM+270++6'";
+        String BlockText2 = "BGM+270++1';BGM+270++2';BGM+270++3';BGM+270++4';BGM+270++5';BGM+270++6';BGM+270++7'";
+        String BlockText3 = "BGM+270++6';BGM+270++1';BGM+270++2';BGM+270++3';BGM+270++4';BGM+270++5';BGM+270++6'";
+        String BlockText4 = "BGM+270++9'";
+        String BlockText5 = "BGM+270++8';BGM+270++9';BGM+270++9';BGM+270++9';BGM+270++9';BGM+270++9';BGM+270++9';BGM+270++8'";
+        String BlockText6 = "BGM+270++9';BGM+270++8';BGM+270++8';BGM+270++9';BGM+270++9';BGM+270++9';BGM+270++9';BGM+270++9'";
+        String BlockText7 = "BGM+270++9';BGM+270++9';BGM+270++9';BGM+270++9';BGM+270++9';BGM+270++8';BGM+270++8';BGM+270++9'";
+        String BlockText8 = "BGM+270++9';BGM+270++9';BGM+270++9';BGM+270++9';BGM+270++9';BGM+270++9';BGM+270++8';BGM+270++8'";
+        String BlockText9 = "BGM+270++8';BGM+270++8';BGM+270++9';BGM+270++9';BGM+270++9';BGM+270++9';BGM+270++9';BGM+270++9'";
+        
+        int numLines=CountCharacterInText(BlockText1, ';') +1;
+        System.out.println("Resultado 1 : " + Arrays.toString(DeleteDuplicateLinesInArrayToMinimumOfThem(PutLinesDelimitedInArray(BlockText1, numLines, ';'),6,true)));
+        
+        numLines=CountCharacterInText(BlockText2, ';') +1;
+        System.out.println("Resultado 2 : " + Arrays.toString(DeleteDuplicateLinesInArrayToMinimumOfThem(PutLinesDelimitedInArray(BlockText2, numLines, ';'),6,true)));
+        
+        numLines=CountCharacterInText(BlockText3, ';') +1;
+        System.out.println("Resultado 3 : " + Arrays.toString(DeleteDuplicateLinesInArrayToMinimumOfThem(PutLinesDelimitedInArray(BlockText3, numLines, ';'),6,true)));
+        
+        numLines=CountCharacterInText(BlockText4, ';') +1;
+        System.out.println("Resultado 4 : " + Arrays.toString(DeleteDuplicateLinesInArrayToMinimumOfThem(PutLinesDelimitedInArray(BlockText4, numLines, ';'),6,true)));
+        
+        numLines=CountCharacterInText(BlockText5, ';') +1;
+        System.out.println("Resultado 5 : " + Arrays.toString(DeleteDuplicateLinesInArrayToMinimumOfThem(PutLinesDelimitedInArray(BlockText5, numLines, ';'),0,true)));
+        
+        numLines=CountCharacterInText(BlockText6, ';') +1;
+        System.out.println("Resultado 6 : " + Arrays.toString(DeleteDuplicateLinesInArrayToMinimumOfThem(PutLinesDelimitedInArray(BlockText6, numLines, ';'),6,true)));
+        
+        numLines=CountCharacterInText(BlockText7, ';') +1;
+        System.out.println("Resultado 7 : " + Arrays.toString(DeleteDuplicateLinesInArrayToMinimumOfThem(PutLinesDelimitedInArray(BlockText7, numLines, ';'),6,true)));
+        
+        numLines=CountCharacterInText(BlockText8, ';') +1;
+        System.out.println("Resultado 8 : " + Arrays.toString(DeleteDuplicateLinesInArrayToMinimumOfThem(PutLinesDelimitedInArray(BlockText8, numLines, ';'),6,true)));
+        
+        numLines=CountCharacterInText(BlockText9, ';') +1;
+        System.out.println("Resultado 9 : " + Arrays.toString(DeleteDuplicateLinesInArrayToMinimumOfThem(PutLinesDelimitedInArray(BlockText9, numLines, ';'),6,true)));
+    }
+    
+    @Test
+    public void DeleteLinesInArrayToMinimumOfThem(){
+        String BlockText1 = "BGM+270++1';BGM+270++2';BGM+270++3';BGM+270++4';BGM+270++5';BGM+270++6'";
+        String BlockText2 = "BGM+270++1';BGM+270++2';BGM+270++3';BGM+270++4';BGM+270++5';BGM+270++6';BGM+270++7'";
+        String BlockText3 = "BGM+270++1';BGM+270++2';BGM+270++3';BGM+270++4';BGM+270++5';BGM+270++6';BGM+270++7'";
+        String BlockText4 = "BGM+270++9'";
+        String BlockText5 = "BGM+270++1';BGM+270++2';BGM+270++3';BGM+270++4';BGM+270++5';BGM+270++6';BGM+270++7'";
+        String BlockText6 = "BGM+270++9'";
+        
+        int numLines=CountCharacterInText(BlockText1, ';') +1;
+        System.out.println("Resultado 1 : " + Arrays.toString(DeleteLinesInArrayToMinimumOfThem(PutLinesDelimitedInArray(BlockText1, numLines, ';'), 6, true)));
+        
+        numLines=CountCharacterInText(BlockText2, ';') +1;
+        System.out.println("Resultado 2 : " + Arrays.toString(DeleteLinesInArrayToMinimumOfThem(PutLinesDelimitedInArray(BlockText2, numLines, ';'), 6, true)));
+        
+        numLines=CountCharacterInText(BlockText3, ';') +1;
+        System.out.println("Resultado 3 : " + Arrays.toString(DeleteLinesInArrayToMinimumOfThem(PutLinesDelimitedInArray(BlockText3, numLines, ';'), 0, true)));
+        
+        numLines=CountCharacterInText(BlockText4, ';') +1;
+        System.out.println("Resultado 4 : " + Arrays.toString(DeleteLinesInArrayToMinimumOfThem(PutLinesDelimitedInArray(BlockText4, numLines, ';'), 6, true)));
+        
+        numLines=CountCharacterInText(BlockText5, ';') +1;
+        System.out.println("Resultado 5 : " + Arrays.toString(DeleteLinesInArrayToMinimumOfThem(PutLinesDelimitedInArray(BlockText5, numLines, ';'), 6, false)));
+        
+        numLines=CountCharacterInText(BlockText6, ';') +1;
+        System.out.println("Resultado 6 : " + Arrays.toString(DeleteLinesInArrayToMinimumOfThem(PutLinesDelimitedInArray(BlockText6, numLines, ';'), 0, true)));
+    }
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //

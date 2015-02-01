@@ -209,25 +209,10 @@ public class C_Text extends C_Validation{
         }
         return count;
     }
-    public String[] DeleteDuplicateLinesInArrayToMinimumOfThem (String[] Array, int MaximumLines, boolean SearchUpToDown){
+    public String[] DeleteDuplicateLinesInArrayToMinimumOfThem (String[] Array, int MaximumLines, boolean DeleteUpToDown){
         if(Array.length > MaximumLines){
             int AuxNumLines = Array.length;
-            if(SearchUpToDown){
-                for(int i=Array.length-1; i>=0; i--){
-                    if(!"".equals(Array[i])){
-                        for(int k=Array.length-1; k>=0; k--){
-                            if(i!=k && Array[i].equals(Array[k])){
-                                Array[i]="";
-                                AuxNumLines--;
-                                k=-1;
-                                if(AuxNumLines == MaximumLines && MaximumLines>=0){
-                                    i=-1;
-                                }
-                            }
-                        }
-                    }
-                }
-            }else{
+            if(DeleteUpToDown){
                 for(int i=0; i<Array.length; i++){
                     if(!"".equals(Array[i])){
                         for(int k=0; k<Array.length;k++){
@@ -242,6 +227,21 @@ public class C_Text extends C_Validation{
                         }
                     }
                 }
+            }else{
+                for(int i=Array.length-1; i>=0; i--){
+                    if(!"".equals(Array[i])){
+                        for(int k=Array.length-1; k>=0; k--){
+                            if(i!=k && Array[i].equals(Array[k])){
+                                Array[i]="";
+                                AuxNumLines--;
+                                k=-1;
+                                if(AuxNumLines == MaximumLines && MaximumLines>=0){
+                                    i=-1;
+                                }
+                            }
+                        }
+                    }
+                }
             }
             return DeleteNullStringsInArray(Array);
         }else{
@@ -250,17 +250,17 @@ public class C_Text extends C_Validation{
         
     }
     public String[] DeleteLinesInArrayToMinimumOfThem (String[] Array, int MaximumLines, boolean DeleteUpToDown){
-        if(Array.length > MaximumLines && MaximumLines>=0){
+        if(Array.length > MaximumLines && MaximumLines>0){
             String[] ArrayWithMaximumLength = new String[MaximumLines];
             int numLines = Array.length;
             if(DeleteUpToDown){
                 int countLines=0;
                 for(int j=Array.length-1; j>=0; j--){
-                    ArrayWithMaximumLength[j] = Array[j];
-                    countLines++;
+                    ArrayWithMaximumLength[j-1] = Array[j];
                     if(MaximumLines == countLines+1){
                         j=-1;
                     }
+                    countLines++;
                 }
             }else{
                 for(int i=0; i<Array.length; i++){
@@ -275,6 +275,17 @@ public class C_Text extends C_Validation{
             return Array;
         }
     }
+    public String PutStringElementsOfArrayInBlockText(String[] Array){
+        String result="";
+        for(int i=0; i<Array.length; i++){
+            if(i == Array.length - 1){
+                result += Array[i];
+            }else{
+                result += Array[i] + ";";
+            }
+        }
+        return result;
+    }
     public String DeleteDuplicateLinesToMinimumOfThem(String BlockText, char Token, int MaximumLines, boolean SearchUpToDown){
         
         String result = "";
@@ -285,42 +296,9 @@ public class C_Text extends C_Validation{
             String[] Lines = PutLinesDelimitedInArray(BlockText, numLines, Token);
             Lines = DeleteDuplicateLinesInArrayToMinimumOfThem(Lines,MaximumLines,SearchUpToDown);
             Lines = DeleteLinesInArrayToMinimumOfThem(Lines,MaximumLines,SearchUpToDown);
-            /*if(numLines > MaximumLines){
-                int AuxNumLines = numLines;
-                if(SearchUpToDown){
-                    for(int i=numLines-1; i>=0; i--){
-                        if(!"".equals(Lines[i])){
-                            for(int k=numLines-1; k>=0; k--){
-                                if(i!=k && Lines[i].equals(Lines[k])){
-                                    Lines[i]="";
-                                    AuxNumLines--;
-                                    k=-1;
-                                    if(AuxNumLines == MaximumLines && MaximumLines>=0){
-                                        i=-1;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }else{
-                    for(int i=0; i<numLines; i++){
-                        if(!"".equals(Lines[i])){
-                            for(int k=0; k<numLines;k++){
-                                if(i!=k && Lines[i].equals(Lines[k])){
-                                    Lines[i]="";
-                                    AuxNumLines--;
-                                    k=numLines;
-                                    if(AuxNumLines == MaximumLines && MaximumLines>=0){
-                                        i=numLines;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                DeleteNullStringsInArray(Lines);
-            }*/
+            result = PutStringElementsOfArrayInBlockText(Lines);
         }
+        return result;
     }
     public String[] DeleteNullStringsInArray(String[] Array){
         int countNotNullString = 0;
