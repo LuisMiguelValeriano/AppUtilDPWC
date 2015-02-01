@@ -6,9 +6,6 @@
 
 package Clases.Core;
 
-import java.awt.List;
-import java.util.ArrayList;
-
 
 /**
  *
