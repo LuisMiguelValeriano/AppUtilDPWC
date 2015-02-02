@@ -14,18 +14,26 @@ import javax.swing.JPanel;
  * @author lvaleriano
  */
 public class C_ComponentFrame {
-    public void setEnableJPanelComponents(Component []components, boolean Enabled){
+    public void setEnableJPanelComponents(Component []components, boolean Enabled, String... ExComponent){
         if(components.length > 0){
             for (Component component : components) {
+                boolean OriginalValueEnabled = Enabled;
+                for(int i=0; i<ExComponent.length; i++){
+                    if(component.getName().equals(ExComponent[i])){
+                        Enabled = !Enabled;
+                        i = ExComponent.length;
+                    }
+                }
                 component.setEnabled(Enabled);
+                Enabled = OriginalValueEnabled;
             }
         }
     }
-    public void setEnableJPanelComponentsWithCheckBox(JPanel panel, JCheckBox checkbox){
+    public void setEnableJPanelComponentsWithCheckBox(JPanel panel, JCheckBox checkbox, String... ExComponent){
         if(checkbox.isSelected()){
-            setEnableJPanelComponents(panel.getComponents(), true);
+            setEnableJPanelComponents(panel.getComponents(), true, ExComponent);
         }else{
-            setEnableJPanelComponents(panel.getComponents(), false);
+            setEnableJPanelComponents(panel.getComponents(), false, ExComponent);
         }
     }
 }

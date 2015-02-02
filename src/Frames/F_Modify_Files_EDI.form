@@ -27,13 +27,8 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
-              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
-          </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="4" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
@@ -41,19 +36,30 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="lblPathEDI" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="chbReferencia" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="chbUNBUNZ" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="chbReferencia" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="chbUNBUNZ" alignment="1" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="chbSegmentoDGS" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="chbSegmentoFTX" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="pnlDGS" max="32767" attributes="0"/>
                           <Component id="pnlUNBUNZ" max="32767" attributes="0"/>
-                          <Component id="pnlReferencia" min="-2" max="-2" attributes="0"/>
+                          <Component id="pnlReferencia" max="32767" attributes="0"/>
+                          <Component id="pnlFTX" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
+              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -67,19 +73,25 @@
               </Group>
               <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="pnlUNBUNZ" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="pnlReferencia" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                      <Component id="chbUNBUNZ" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                      <Component id="chbReferencia" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="pnlUNBUNZ" min="-2" max="-2" attributes="0"/>
+                  <Component id="chbUNBUNZ" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="158" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="chbReferencia" min="-2" max="-2" attributes="0"/>
+                  <Component id="pnlReferencia" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="chbSegmentoDGS" min="-2" max="-2" attributes="0"/>
+                  <Component id="pnlDGS" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="chbSegmentoFTX" min="-2" max="-2" attributes="0"/>
+                  <Component id="pnlFTX" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="102" max="32767" attributes="0"/>
               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
           </Group>
@@ -94,6 +106,7 @@
             <TitledBorder title="Cambiar Referencia"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="pnlReferencia" noResource="true"/>
       </Properties>
 
       <Layout>
@@ -132,20 +145,26 @@
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JTextField" name="txtReferencia">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="txtReferencia" noResource="true"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblReferencia">
           <Properties>
             <Property name="text" type="java.lang.String" value="Texto de referencia :"/>
+            <Property name="name" type="java.lang.String" value="lblReferencia" noResource="true"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JCheckBox" name="chbTDT20">
           <Properties>
             <Property name="text" type="java.lang.String" value="TDT+20"/>
+            <Property name="name" type="java.lang.String" value="chbTDT20" noResource="true"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JCheckBox" name="chbRFFVON">
           <Properties>
             <Property name="text" type="java.lang.String" value="RFF+VON"/>
+            <Property name="name" type="java.lang.String" value="chbRFFVON" noResource="true"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -159,6 +178,9 @@
       </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="chbReferencia">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="chbReferencia" noResource="true"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chbReferenciaActionPerformed"/>
       </Events>
@@ -170,6 +192,7 @@
             <TitledBorder title="Sumar unidad a minuto y segundo a UNB-UNZ"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="pnlUNBUNZ" noResource="true"/>
       </Properties>
 
       <Layout>
@@ -197,17 +220,21 @@
         <Component class="javax.swing.JLabel" name="lblUNBUNZ">
           <Properties>
             <Property name="text" type="java.lang.String" value="Unidad Sumada :"/>
+            <Property name="name" type="java.lang.String" value="lblUNBUNZ" noResource="true"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtUNBUNZ">
           <Properties>
-            <Property name="text" type="java.lang.String" value="1"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
+            <Property name="name" type="java.lang.String" value="txtUNBUNZ" noResource="true"/>
           </Properties>
         </Component>
       </SubComponents>
     </Container>
     <Component class="javax.swing.JCheckBox" name="chbUNBUNZ">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="chbUNBUNZ" noResource="true"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chbUNBUNZActionPerformed"/>
       </Events>
@@ -227,6 +254,172 @@
         </Property>
         <Property name="text" type="java.lang.String" value="No ha seleccionado archivo EDI"/>
       </Properties>
+    </Component>
+    <Container class="javax.swing.JPanel" name="pnlDGS">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+            <TitledBorder title="Controlar Segemento DGS"/>
+          </Border>
+        </Property>
+        <Property name="name" type="java.lang.String" value="pnlDGS" noResource="true"/>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="chbEliminarRepeticionesDGS" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="chbNumMaxLinesDGS" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="12" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="txtNumMaxLinesDGS" pref="58" max="32767" attributes="0"/>
+                      <Component id="txtNumMaxRepDGS" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="txtNumMaxRepDGS" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="chbEliminarRepeticionesDGS" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="chbNumMaxLinesDGS" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtNumMaxLinesDGS" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JCheckBox" name="chbEliminarRepeticionesDGS">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Eliminar repeticiones"/>
+            <Property name="name" type="java.lang.String" value="chbEliminarRepeticionesDGS" noResource="true"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chbEliminarRepeticionesDGSActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtNumMaxRepDGS">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="txtNumMaxRepDGS" noResource="true"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chbNumMaxLinesDGS">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="N&#xfa;mero maximo de lineas :"/>
+            <Property name="name" type="java.lang.String" value="chbNumMaxLinesDGS" noResource="true"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chbNumMaxLinesDGSActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtNumMaxLinesDGS">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="txtNumMaxLinesDGS" noResource="true"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="javax.swing.JCheckBox" name="chbSegmentoDGS">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="chbSegmentoDGS" noResource="true"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chbSegmentoDGSActionPerformed"/>
+      </Events>
+    </Component>
+    <Container class="javax.swing.JPanel" name="pnlFTX">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+            <TitledBorder title="Controlar Segemento FTX"/>
+          </Border>
+        </Property>
+        <Property name="name" type="java.lang.String" value="pnlFTX" noResource="true"/>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="chbEliminarRepeticionesFTX" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="chbNumMaxLinesFTX" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="txtNumMaxLinesFTX" pref="57" max="32767" attributes="0"/>
+                      <Component id="txtNumMaxRepFTX" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="txtNumMaxRepFTX" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="chbEliminarRepeticionesFTX" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="txtNumMaxLinesFTX" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="chbNumMaxLinesFTX" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JCheckBox" name="chbNumMaxLinesFTX">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="N&#xfa;mero maximo de lineas :"/>
+            <Property name="name" type="java.lang.String" value="chbNumMaxLinesFTX" noResource="true"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chbNumMaxLinesFTXActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtNumMaxRepFTX">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="txtNumMaxRepFTX" noResource="true"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chbEliminarRepeticionesFTX">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Eliminar repeticiones"/>
+            <Property name="name" type="java.lang.String" value="chbEliminarRepeticionesFTX" noResource="true"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chbEliminarRepeticionesFTXActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtNumMaxLinesFTX">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="txtNumMaxLinesFTX" noResource="true"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="javax.swing.JCheckBox" name="chbSegmentoFTX">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="chbSegmentoFTX" noResource="true"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chbSegmentoFTXActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -78,12 +78,15 @@ public class C_Text extends C_Validation{
         String result = "";
         while(BlockText.contains(String.valueOf(Token))){
             if(TextStartWith(BlockText,StartOfLine)){
-                result += BlockText.substring(0,BlockText.indexOf(Token));
+                result += BlockText.substring(0,BlockText.indexOf(Token))+";";
             }
             BlockText = BlockText.substring(BlockText.indexOf(Token)+1);
         }
         if(TextStartWith(BlockText,StartOfLine)){
                 result += BlockText;
+        }
+        if((result.length()>0) && (result.charAt(result.length()-1) == ';')){
+            result = result.substring(0,result.length()-1);
         }
         return result;
     }
@@ -286,7 +289,7 @@ public class C_Text extends C_Validation{
         }
         return result;
     }
-    public String DeleteDuplicateLinesToMinimumOfThem(String BlockText, char Token, int MaximumLines, boolean SearchUpToDown){
+    public String DeleteDuplicateLinesToMinimumOfThem(String BlockText, char Token, int MaximumLines, boolean DeleteUpToDown){
         
         String result = "";
         int numLines=CountCharacterInText(BlockText, Token) +1;
@@ -294,8 +297,20 @@ public class C_Text extends C_Validation{
             result = BlockText;
         }else{
             String[] Lines = PutLinesDelimitedInArray(BlockText, numLines, Token);
-            Lines = DeleteDuplicateLinesInArrayToMinimumOfThem(Lines,MaximumLines,SearchUpToDown);
-            Lines = DeleteLinesInArrayToMinimumOfThem(Lines,MaximumLines,SearchUpToDown);
+            Lines = DeleteDuplicateLinesInArrayToMinimumOfThem(Lines,MaximumLines,DeleteUpToDown);
+            result = PutStringElementsOfArrayInBlockText(Lines);
+        }
+        return result;
+    }
+    public String DeleteLinesToMinimumOfThem(String BlockText, char Token, int MaximumLines, boolean DeleteUpToDown){
+        
+        String result = "";
+        int numLines=CountCharacterInText(BlockText, Token) +1;
+        if (numLines == 1){
+            result = BlockText;
+        }else{
+            String[] Lines = PutLinesDelimitedInArray(BlockText, numLines, Token);
+            Lines = DeleteLinesInArrayToMinimumOfThem(Lines,MaximumLines,DeleteUpToDown);
             result = PutStringElementsOfArrayInBlockText(Lines);
         }
         return result;

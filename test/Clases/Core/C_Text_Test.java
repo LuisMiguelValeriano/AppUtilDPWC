@@ -43,7 +43,15 @@ public class C_Text_Test extends C_Text{
         System.out.println("Resultado 1: " + TextStartWith("DTM+203:201412221801:203'","DTM")); 
         System.out.println("Resultado 2: " + TextStartWith("","DTM"));
     }
-    
+    @Test
+    public void GetTextAtStartLineInBlockTextDelimited(){
+        String BlockText1 = "UNH+93767+COARRI:D:95B:UN:ITG10';BGM+270++9';TDT+20+449N+1++HSD:172:166+++9227273:146::CAP TALBOT'\n" +
+";DTM+132:201501030700:203';DTM+133:201501032300:203';NAD+CA+HSD:160:166';NAD+CF+HSD:160:166';EQD+CN+SUDU1910806+22G1:102:5++2+5'\n" +
+";RFF+BN:4LIMES7540';RFF+ABT';TMD+3';DTM+203:201501032209:203';LOC+147+0191006:139:5';LOC+11+NLRTM:139:6'\n" +
+";LOC+9+PECLL:139:6';MEA+AAE+G+KGM:23700';SEL+AFZ5046+SH+1';SEL+AHB6615+CA+1';SEL+AFL0243+CU+1'\n" +
+";TDT+10+B5V764+3+31+20508368276:172:87:20508368276+++B5V764';CNT+16:1';UNT+000022+93767'";
+        System.out.println("Resultado 1: " + GetTextAtStartLineInBlockTextDelimited(BlockText1, "UNT", ';'));
+    }
     @Test
     public void DelimitedReplaceCaractersInText(){
         System.out.println("Resultado 1: " + DelimitedReplaceCaractersInText("DTM+203:201412221801:203'", "", "DTM", "201412221802")); 
@@ -82,7 +90,10 @@ public class C_Text_Test extends C_Text{
 ";LOC+9+PECLL:139:6';MEA+AAE+G+KGM:23700';SEL+AFZ5046+SH+1';SEL+AHB6615+CA+1';SEL+AFL0243+CU+1'\n" +
 ";TDT+10+B5V764+3+31+20508368276:172:87:20508368276+++B5V764';CNT+16:1';UNT+000022+93767'";
         System.out.println("Resultado 2 : " + CountTextAtStartLineInBlockTextDelimited(BlockText2,"DTM",';'));
-        String BlockText3 = "DTM+132:201501030700:203';DTM+133:201501032300:203'";
+        String BlockText3 = "DTM+132:201501030700:203';DTM+133:201501032300:203';NAD+CA+HSD:160:166';NAD+CF+HSD:160:166';EQD+CN+SUDU1910806+22G1:102:5++2+5'\n" +
+";RFF+BN:4LIMES7540';RFF+ABT';TMD+3';DTM+203:201501032209:203';LOC+147+0191006:139:5';LOC+11+NLRTM:139:6'\n" +
+";LOC+9+PECLL:139:6';MEA+AAE+G+KGM:23700';SEL+AFZ5046+SH+1';SEL+AHB6615+CA+1';SEL+AFL0243+CU+1'\n" +
+";TDT+10+B5V764+3+31+20508368276:172:87:20508368276+++B5V764';CNT+16:1';UNT+000022+93767';DTM+132:201501030700:203'";
         System.out.println("Resultado 3 : " + CountTextAtStartLineInBlockTextDelimited(BlockText3,"DTM",';'));
         String BlockText4 = "DTM+132:201501030700:203';DTM+133:201501032300:203';";
         System.out.println("Resultado 4 : " + CountTextAtStartLineInBlockTextDelimited(BlockText4,"DTM",';'));

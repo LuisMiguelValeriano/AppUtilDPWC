@@ -67,6 +67,27 @@ public class C_File extends C_Text{
             con salto de linea que son las lineas contenidas en "Cadena" y delimitadas con "Token".  
         */
         String Line = "";
+        while(Cadena.length()>0){
+            if(Cadena.contains(String.valueOf(Token))){
+                if(Cadena.length() == 1){
+                    Line = "";
+                    Cadena = "";
+                    pw.println(Line);
+                }else{
+                    Line = Cadena.substring(0, Cadena.indexOf(String.valueOf(Token))+1);
+                    Cadena = Cadena.substring(Cadena.indexOf(String.valueOf(Token))+1);
+                    pw.println(Line);
+                }
+            }else{
+                Line = Cadena.substring(0);
+                Cadena = "";
+                if(Line.charAt(Line.length()-1) == ';'){
+                    Line = Line.replace(";", "");
+                }
+                pw.println(Line);
+            }
+        }
+        /*
         for(int i=0;i<Cadena.length();i++){
             if(Cadena.charAt(i) == Token){
                 pw.println(Line);
@@ -75,5 +96,6 @@ public class C_File extends C_Text{
                 Line+=Cadena.charAt(i);
             }
         }
+        */
     }
 }
