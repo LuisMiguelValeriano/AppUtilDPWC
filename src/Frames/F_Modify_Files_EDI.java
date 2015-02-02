@@ -16,8 +16,7 @@ import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileFilter;
-import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -33,6 +32,8 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
         initComponents();
         Obj_ComponentFrame.setEnableJPanelComponentsWithCheckBox(pnlReferencia, chbReferencia);
         Obj_ComponentFrame.setEnableJPanelComponentsWithCheckBox(pnlUNBUNZ, chbUNBUNZ);
+        Obj_ComponentFrame.setEnableJPanelComponentsWithCheckBox(pnlDGS, chbSegmentoDGS);
+        Obj_ComponentFrame.setEnableJPanelComponentsWithCheckBox(pnlFTX, chbSegmentoFTX);
     }
 
     /**
@@ -58,16 +59,34 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
         chbUNBUNZ = new javax.swing.JCheckBox();
         btnSelectEDI = new javax.swing.JButton();
         lblPathEDI = new javax.swing.JLabel();
+        pnlDGS = new javax.swing.JPanel();
+        chbEliminarRepeticionesDGS = new javax.swing.JCheckBox();
+        txtNumMaxRepDGS = new javax.swing.JTextField();
+        chbNumMaxLinesDGS = new javax.swing.JCheckBox();
+        txtNumMaxLinesDGS = new javax.swing.JTextField();
+        chbSegmentoDGS = new javax.swing.JCheckBox();
+        pnlFTX = new javax.swing.JPanel();
+        chbNumMaxLinesFTX = new javax.swing.JCheckBox();
+        txtNumMaxRepFTX = new javax.swing.JTextField();
+        chbEliminarRepeticionesFTX = new javax.swing.JCheckBox();
+        txtNumMaxLinesFTX = new javax.swing.JTextField();
+        chbSegmentoFTX = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         pnlReferencia.setBorder(javax.swing.BorderFactory.createTitledBorder("Cambiar Referencia"));
+        pnlReferencia.setName("pnlReferencia"); // NOI18N
+
+        txtReferencia.setName("txtReferencia"); // NOI18N
 
         lblReferencia.setText("Texto de referencia :");
+        lblReferencia.setName("lblReferencia"); // NOI18N
 
         chbTDT20.setText("TDT+20");
+        chbTDT20.setName("chbTDT20"); // NOI18N
 
         chbRFFVON.setText("RFF+VON");
+        chbRFFVON.setName("chbRFFVON"); // NOI18N
 
         javax.swing.GroupLayout pnlReferenciaLayout = new javax.swing.GroupLayout(pnlReferencia);
         pnlReferencia.setLayout(pnlReferenciaLayout);
@@ -103,6 +122,7 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
             }
         });
 
+        chbReferencia.setName("chbReferencia"); // NOI18N
         chbReferencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chbReferenciaActionPerformed(evt);
@@ -110,11 +130,13 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
         });
 
         pnlUNBUNZ.setBorder(javax.swing.BorderFactory.createTitledBorder("Sumar unidad a minuto y segundo a UNB-UNZ"));
+        pnlUNBUNZ.setName("pnlUNBUNZ"); // NOI18N
 
         lblUNBUNZ.setText("Unidad Sumada :");
+        lblUNBUNZ.setName("lblUNBUNZ"); // NOI18N
 
-        txtUNBUNZ.setText("1");
         txtUNBUNZ.setToolTipText("");
+        txtUNBUNZ.setName("txtUNBUNZ"); // NOI18N
 
         javax.swing.GroupLayout pnlUNBUNZLayout = new javax.swing.GroupLayout(pnlUNBUNZ);
         pnlUNBUNZ.setLayout(pnlUNBUNZLayout);
@@ -134,6 +156,7 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
                 .addComponent(txtUNBUNZ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        chbUNBUNZ.setName("chbUNBUNZ"); // NOI18N
         chbUNBUNZ.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chbUNBUNZActionPerformed(evt);
@@ -150,16 +173,126 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
         lblPathEDI.setForeground(new java.awt.Color(0, 0, 255));
         lblPathEDI.setText("No ha seleccionado archivo EDI");
 
+        pnlDGS.setBorder(javax.swing.BorderFactory.createTitledBorder("Controlar Segemento DGS"));
+        pnlDGS.setName("pnlDGS"); // NOI18N
+
+        chbEliminarRepeticionesDGS.setText("Eliminar repeticiones");
+        chbEliminarRepeticionesDGS.setName("chbEliminarRepeticionesDGS"); // NOI18N
+        chbEliminarRepeticionesDGS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chbEliminarRepeticionesDGSActionPerformed(evt);
+            }
+        });
+
+        txtNumMaxRepDGS.setName("txtNumMaxRepDGS"); // NOI18N
+
+        chbNumMaxLinesDGS.setText("Número maximo de lineas :");
+        chbNumMaxLinesDGS.setName("chbNumMaxLinesDGS"); // NOI18N
+        chbNumMaxLinesDGS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chbNumMaxLinesDGSActionPerformed(evt);
+            }
+        });
+
+        txtNumMaxLinesDGS.setName("txtNumMaxLinesDGS"); // NOI18N
+
+        javax.swing.GroupLayout pnlDGSLayout = new javax.swing.GroupLayout(pnlDGS);
+        pnlDGS.setLayout(pnlDGSLayout);
+        pnlDGSLayout.setHorizontalGroup(
+            pnlDGSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlDGSLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlDGSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(chbEliminarRepeticionesDGS)
+                    .addComponent(chbNumMaxLinesDGS))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(pnlDGSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(txtNumMaxLinesDGS, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
+                    .addComponent(txtNumMaxRepDGS))
+                .addContainerGap())
+        );
+        pnlDGSLayout.setVerticalGroup(
+            pnlDGSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlDGSLayout.createSequentialGroup()
+                .addGroup(pnlDGSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNumMaxRepDGS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(chbEliminarRepeticionesDGS))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(pnlDGSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(chbNumMaxLinesDGS)
+                    .addComponent(txtNumMaxLinesDGS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+
+        chbSegmentoDGS.setName("chbSegmentoDGS"); // NOI18N
+        chbSegmentoDGS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chbSegmentoDGSActionPerformed(evt);
+            }
+        });
+
+        pnlFTX.setBorder(javax.swing.BorderFactory.createTitledBorder("Controlar Segemento FTX"));
+        pnlFTX.setName("pnlFTX"); // NOI18N
+
+        chbNumMaxLinesFTX.setText("Número maximo de lineas :");
+        chbNumMaxLinesFTX.setName("chbNumMaxLinesFTX"); // NOI18N
+        chbNumMaxLinesFTX.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chbNumMaxLinesFTXActionPerformed(evt);
+            }
+        });
+
+        txtNumMaxRepFTX.setName("txtNumMaxRepFTX"); // NOI18N
+
+        chbEliminarRepeticionesFTX.setText("Eliminar repeticiones");
+        chbEliminarRepeticionesFTX.setName("chbEliminarRepeticionesFTX"); // NOI18N
+        chbEliminarRepeticionesFTX.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chbEliminarRepeticionesFTXActionPerformed(evt);
+            }
+        });
+
+        txtNumMaxLinesFTX.setName("txtNumMaxLinesFTX"); // NOI18N
+
+        javax.swing.GroupLayout pnlFTXLayout = new javax.swing.GroupLayout(pnlFTX);
+        pnlFTX.setLayout(pnlFTXLayout);
+        pnlFTXLayout.setHorizontalGroup(
+            pnlFTXLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlFTXLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlFTXLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(chbEliminarRepeticionesFTX)
+                    .addComponent(chbNumMaxLinesFTX))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(pnlFTXLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtNumMaxLinesFTX, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
+                    .addComponent(txtNumMaxRepFTX))
+                .addContainerGap())
+        );
+        pnlFTXLayout.setVerticalGroup(
+            pnlFTXLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlFTXLayout.createSequentialGroup()
+                .addGroup(pnlFTXLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNumMaxRepFTX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(chbEliminarRepeticionesFTX))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlFTXLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNumMaxLinesFTX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(chbNumMaxLinesFTX)))
+        );
+
+        chbSegmentoFTX.setName("chbSegmentoFTX"); // NOI18N
+        chbSegmentoFTX.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chbSegmentoFTXActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(86, 86, 86)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 4, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
@@ -168,13 +301,22 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
                         .addComponent(lblPathEDI))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(chbReferencia, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(chbUNBUNZ, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(chbReferencia)
+                                .addComponent(chbUNBUNZ, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(chbSegmentoDGS)
+                            .addComponent(chbSegmentoFTX, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(pnlDGS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(pnlUNBUNZ, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(pnlReferencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(pnlReferencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(pnlFTX, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(10, 10, 10))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(86, 86, 86)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,16 +327,21 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
                     .addComponent(lblPathEDI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(pnlUNBUNZ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pnlReferencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(chbUNBUNZ)
-                        .addGap(27, 27, 27)
-                        .addComponent(chbReferencia)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 158, Short.MAX_VALUE)
+                    .addComponent(pnlUNBUNZ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(chbUNBUNZ))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(chbReferencia)
+                    .addComponent(pnlReferencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(chbSegmentoDGS)
+                    .addComponent(pnlDGS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(chbSegmentoFTX)
+                    .addComponent(pnlFTX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(23, 23, 23))
         );
@@ -203,10 +350,18 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
     }// </editor-fold>//GEN-END:initComponents
 
     private void chbReferenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbReferenciaActionPerformed
+        if(!chbReferencia.isSelected()){
+            chbTDT20.setSelected(false);
+            chbRFFVON.setSelected(false);
+            txtReferencia.setText("");
+        }
         Obj_ComponentFrame.setEnableJPanelComponentsWithCheckBox(pnlReferencia, chbReferencia);
     }//GEN-LAST:event_chbReferenciaActionPerformed
 
     private void chbUNBUNZActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbUNBUNZActionPerformed
+        if(!chbUNBUNZ.isSelected()){
+            txtUNBUNZ.setText("");
+        }
         Obj_ComponentFrame.setEnableJPanelComponentsWithCheckBox(pnlUNBUNZ, chbUNBUNZ);
     }//GEN-LAST:event_chbUNBUNZActionPerformed
 
@@ -276,17 +431,50 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
                         }
                     }
                     if(O_File.TextStartWith(Linea,"UNT")){
-                        Resultado+=Linea+";";
-                        if(O_File.CountTextAtStartLineInBlockTextDelimited(Resultado,"DGS",';')>6 || O_File.CountTextAtStartLineInBlockTextDelimited(Resultado,"FTX",';')>6){
-                            if(O_File.CountTextAtStartLineInBlockTextDelimited(Resultado,"DGS",';')>6){
-                                
+                        Resultado+=Linea;
+                        if(chbSegmentoDGS.isSelected()){
+                            String TextReplaceDGS = "";
+                            if(chbEliminarRepeticionesDGS.isSelected() && O_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "DGS", ';') > (txtNumMaxRepDGS.getText().equals("")?0:Integer.parseInt(txtNumMaxRepDGS.getText()))){
+                                TextReplaceDGS = O_File.GetTextAtStartLineInBlockTextDelimited(Resultado, "DGS", ';');
+                                if(txtNumMaxRepDGS.getText().equals("") || txtNumMaxRepDGS.getText().equals("0")){
+                                    TextReplaceDGS = O_File.DeleteDuplicateLinesToMinimumOfThem(TextReplaceDGS, ';', 0, false);
+                                }else{
+                                    TextReplaceDGS = O_File.DeleteDuplicateLinesToMinimumOfThem(TextReplaceDGS, ';', Integer.parseInt(txtNumMaxRepDGS.getText()), false);
+                                }
+                                Resultado = Resultado.replace(O_File.GetTextAtStartLineInBlockTextDelimited(Resultado, "DGS", ';'), TextReplaceDGS);
+                            }
+                            if(chbNumMaxLinesDGS.isSelected() && O_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "DGS", ';') > (txtNumMaxLinesDGS.getText().equals("")?0:Integer.parseInt(txtNumMaxLinesDGS.getText()))){
+                                TextReplaceDGS = O_File.GetTextAtStartLineInBlockTextDelimited(Resultado, "DGS", ';');
+                                if(txtNumMaxLinesDGS.getText().equals("") || txtNumMaxLinesDGS.getText().equals("0")){
+                                    TextReplaceDGS = O_File.DeleteLinesToMinimumOfThem(TextReplaceDGS, ';', 0, false);
+                                }else{
+                                    TextReplaceDGS = O_File.DeleteLinesToMinimumOfThem(TextReplaceDGS, ';', Integer.parseInt(txtNumMaxLinesDGS.getText()), false);
+                                }
+                                Resultado = Resultado.replace(O_File.GetTextAtStartLineInBlockTextDelimited(Resultado, "DGS", ';'), TextReplaceDGS);
                             }
                         }
-                        else{
-                            if(Print){
-                                O_File.MultilaneWriteArchive(pw, Resultado, ';');
+                        if(chbSegmentoFTX.isSelected()){
+                            String TextReplaceFTX = "";
+                            if(chbEliminarRepeticionesFTX.isSelected() && O_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "FTX", ';') > (txtNumMaxRepFTX.getText().equals("")?0:Integer.parseInt(txtNumMaxRepFTX.getText()))){
+                                TextReplaceFTX = O_File.GetTextAtStartLineInBlockTextDelimited(Resultado, "FTX", ';');
+                                if(txtNumMaxRepFTX.getText().equals("") || txtNumMaxRepFTX.getText().equals("0")){
+                                    TextReplaceFTX = O_File.DeleteDuplicateLinesToMinimumOfThem(TextReplaceFTX, ';', 0, false);
+                                }else{
+                                    TextReplaceFTX = O_File.DeleteDuplicateLinesToMinimumOfThem(TextReplaceFTX, ';', Integer.parseInt(txtNumMaxRepFTX.getText()), false);
+                                }
+                                Resultado = Resultado.replace(O_File.GetTextAtStartLineInBlockTextDelimited(Resultado, "FTX", ';'), TextReplaceFTX);
+                            }
+                            if(chbNumMaxLinesFTX.isSelected() && O_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "FTX", ';') > (txtNumMaxLinesFTX.getText().equals("")?0:Integer.parseInt(txtNumMaxLinesFTX.getText()))){
+                                TextReplaceFTX = O_File.GetTextAtStartLineInBlockTextDelimited(Resultado, "FTX", ';');
+                                if(txtNumMaxLinesFTX.getText().equals("") || txtNumMaxLinesFTX.getText().equals("0")){
+                                    TextReplaceFTX = O_File.DeleteLinesToMinimumOfThem(TextReplaceFTX, ';', 0, false);
+                                }else{
+                                    TextReplaceFTX = O_File.DeleteLinesToMinimumOfThem(TextReplaceFTX, ';', Integer.parseInt(txtNumMaxLinesFTX.getText()), false);
+                                }
+                                Resultado = Resultado.replace(O_File.GetTextAtStartLineInBlockTextDelimited(Resultado, "FTX", ';'), TextReplaceFTX);
                             }
                         }
+                        O_File.MultilaneWriteArchive(pw, Resultado, ';');
                     }
                     else{
                         Resultado+=Linea+";";
@@ -295,11 +483,82 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
                         pw.println(Linea);
                     }
                 }
+                fr.close();
+                fw.close();
+                JOptionPane.showMessageDialog(null,"Se Genero Exitosamente el archivo resultante", "Resultado", JOptionPane.INFORMATION_MESSAGE);
             } catch (IOException ex) {
-                Logger.getLogger(F_Modify_Files_EDI.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null,"Se produjo un error en la generacion del archivo resultante. "+ ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_btnSelectEDIActionPerformed
+
+    private void chbSegmentoDGSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbSegmentoDGSActionPerformed
+        if(chbSegmentoDGS.isSelected()){
+            Obj_ComponentFrame.setEnableJPanelComponentsWithCheckBox(pnlDGS, chbSegmentoDGS,"txtNumMaxLinesDGS","txtNumMaxRepDGS");
+        }else{
+            chbNumMaxLinesDGS.setSelected(false);
+            chbEliminarRepeticionesDGS.setSelected(false);
+            txtNumMaxLinesDGS.setText("");
+            txtNumMaxRepDGS.setText("");
+            Obj_ComponentFrame.setEnableJPanelComponentsWithCheckBox(pnlDGS, chbSegmentoDGS);
+        }
+    }//GEN-LAST:event_chbSegmentoDGSActionPerformed
+
+    private void chbNumMaxLinesDGSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbNumMaxLinesDGSActionPerformed
+        if(chbNumMaxLinesDGS.isSelected()){
+           txtNumMaxLinesDGS.setEnabled(true);
+        }else{
+           if(!txtNumMaxLinesDGS.getText().equals("")){
+               txtNumMaxLinesDGS.setText("");
+           }
+           txtNumMaxLinesDGS.setEnabled(false);
+        }
+    }//GEN-LAST:event_chbNumMaxLinesDGSActionPerformed
+
+    private void chbNumMaxLinesFTXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbNumMaxLinesFTXActionPerformed
+        if(chbNumMaxLinesFTX.isSelected()){
+           txtNumMaxLinesFTX.setEnabled(true);
+        }else{
+           if(!txtNumMaxLinesFTX.getText().equals("")){
+               txtNumMaxLinesFTX.setText("");
+           }
+           txtNumMaxLinesFTX.setEnabled(false);
+        }
+    }//GEN-LAST:event_chbNumMaxLinesFTXActionPerformed
+
+    private void chbSegmentoFTXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbSegmentoFTXActionPerformed
+        if(chbSegmentoFTX.isSelected()){
+            Obj_ComponentFrame.setEnableJPanelComponentsWithCheckBox(pnlFTX, chbSegmentoFTX,"txtNumMaxLinesFTX","txtNumMaxRepFTX");
+        }else{
+            chbNumMaxLinesFTX.setSelected(false);
+            chbEliminarRepeticionesFTX.setSelected(false);
+            txtNumMaxLinesFTX.setText("");
+            txtNumMaxRepFTX.setText("");
+            Obj_ComponentFrame.setEnableJPanelComponentsWithCheckBox(pnlFTX, chbSegmentoFTX);
+        }
+    }//GEN-LAST:event_chbSegmentoFTXActionPerformed
+
+    private void chbEliminarRepeticionesDGSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbEliminarRepeticionesDGSActionPerformed
+        if(chbEliminarRepeticionesDGS.isSelected()){
+           txtNumMaxRepDGS.setEnabled(true);
+        }else{
+           if(!txtNumMaxRepDGS.getText().equals("")){
+               txtNumMaxRepDGS.setText("");
+           }
+           txtNumMaxRepDGS.setEnabled(false);
+        }
+    }//GEN-LAST:event_chbEliminarRepeticionesDGSActionPerformed
+
+    private void chbEliminarRepeticionesFTXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbEliminarRepeticionesFTXActionPerformed
+        if(chbEliminarRepeticionesFTX.isSelected()){
+           txtNumMaxRepFTX.setEnabled(true);
+        }else{
+           if(!txtNumMaxRepFTX.getText().equals("")){
+               txtNumMaxRepFTX.setText("");
+           }
+           txtNumMaxRepFTX.setEnabled(false);
+        }
+    }//GEN-LAST:event_chbEliminarRepeticionesFTXActionPerformed
     
     /**
      * @param args the command line arguments
@@ -339,8 +598,14 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSelectEDI;
+    private javax.swing.JCheckBox chbEliminarRepeticionesDGS;
+    private javax.swing.JCheckBox chbEliminarRepeticionesFTX;
+    private javax.swing.JCheckBox chbNumMaxLinesDGS;
+    private javax.swing.JCheckBox chbNumMaxLinesFTX;
     private javax.swing.JCheckBox chbRFFVON;
     private javax.swing.JCheckBox chbReferencia;
+    private javax.swing.JCheckBox chbSegmentoDGS;
+    private javax.swing.JCheckBox chbSegmentoFTX;
     private javax.swing.JCheckBox chbTDT20;
     private javax.swing.JCheckBox chbUNBUNZ;
     private javax.swing.JButton jButton1;
@@ -348,8 +613,14 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
     private javax.swing.JLabel lblPathEDI;
     private javax.swing.JLabel lblReferencia;
     private javax.swing.JLabel lblUNBUNZ;
+    private javax.swing.JPanel pnlDGS;
+    private javax.swing.JPanel pnlFTX;
     private javax.swing.JPanel pnlReferencia;
     private javax.swing.JPanel pnlUNBUNZ;
+    private javax.swing.JTextField txtNumMaxLinesDGS;
+    private javax.swing.JTextField txtNumMaxLinesFTX;
+    private javax.swing.JTextField txtNumMaxRepDGS;
+    private javax.swing.JTextField txtNumMaxRepFTX;
     private javax.swing.JTextField txtReferencia;
     private javax.swing.JTextField txtUNBUNZ;
     // End of variables declaration//GEN-END:variables

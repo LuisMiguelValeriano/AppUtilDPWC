@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package Clases.Core;
 
 import org.junit.After;
@@ -14,7 +15,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author lvaleriano
+ * @author LuisMiguel
  */
 public class C_General_Test extends C_General{
     
@@ -36,18 +37,13 @@ public class C_General_Test extends C_General{
     @After
     public void tearDown() {
     }
-
+    @Test
+    public void AddNMinutesDWPC(){
+        System.out.println("Resultado 0552: " +AddNMinutesDWPC("0552", 1));
+    }
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
     // @Test
     // public void hello() {}
-    
-    @Test
-    public void AddNMinutesDWPC(){
-        System.out.println("Resultado 01 : " +  AddNMinutesDWPC("01", 1));
-        System.out.println("Resultado 1 : " +  AddNMinutesDWPC("1", 1));
-        System.out.println("Resultado 59 : " +  AddNMinutesDWPC("59", 1));
-        System.out.println("Resultado 0a : " +  AddNMinutesDWPC("0a", 1));
-    }
 }
