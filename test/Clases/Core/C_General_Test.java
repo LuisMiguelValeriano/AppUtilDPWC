@@ -39,7 +39,15 @@ public class C_General_Test extends C_General{
     }
     @Test
     public void AddNMinutesDWPC(){
-        System.out.println("Resultado 0552: " +AddNMinutesDWPC("0552", 1));
+        System.out.println("Resultado 0552: " + AddNMinutesDWPC("0552", 1));
+        System.out.println("Resultado 1259: " + AddNMinutesDWPC("1259", 1));
+        System.out.println("Resultado 2359: " + AddNMinutesDWPC("2359", 1));
+        System.out.println("Resultado 2300: " + AddNMinutesDWPC("2300", 1));
+        System.out.println("Resultado 0000: " + AddNMinutesDWPC("0000", 1));
+    }
+    @Test
+    public void AddToInteger(){
+        System.out.println("Resultado 0059: " + AddToInteger("0059", 1));
     }
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:

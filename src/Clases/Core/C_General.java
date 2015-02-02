@@ -41,16 +41,27 @@ public class C_General {
             return "ERROR - No se puede sumar un segundo al numero";
         }
     }
-    public String AddNMinutesDWPC(String mySecond, int minutesToAdd){
+    public String AddNMinutesDWPC(String HHMM, int minutesToAdd){
         try {
-            int secondResult = Integer.parseInt(AddToInteger(mySecond,minutesToAdd));
-            if(secondResult >= 60){
-                if(secondResult%60 < 10){
-                    return "0"+(secondResult%60);
-                }
-                return ""+(secondResult%60);
+            if(HHMM.length()!=4){
+                return "ERROR - No se puede sumar "+minutesToAdd+" minutos al numero con mas de 4 digitos.";
             }else{
-                return AddToInteger(mySecond,1);
+                String HH = HHMM.substring(0, 2);
+                String MM = HHMM.substring(2, 4);
+                int secondResult = Integer.parseInt(AddToInteger(MM,minutesToAdd));
+                if(secondResult >= 60){
+                    if(Integer.parseInt(HH) == 23){
+                        HH="00";
+                    }else{
+                        HH = AddToInteger(HH, minutesToAdd);
+                    }
+                    if(secondResult%60 < 10){
+                        return HH+"0"+(secondResult%60);
+                    }
+                    return HH+(secondResult%60);
+                }else{
+                    return HH+AddToInteger(MM, minutesToAdd);
+                }
             }
         } catch (Exception e) {
             return "ERROR - No se puede sumar "+minutesToAdd+" minutos al numero.";
