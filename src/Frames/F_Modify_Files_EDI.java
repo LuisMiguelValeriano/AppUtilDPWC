@@ -404,11 +404,11 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
                 PrintWriter pw = new PrintWriter(fw);
                 //Leemos la primera linea
                 if((Linea = br.readLine())!=null){
-                    if(chbUNBUNZ.isSelected()){
-                        String seconds = O_File.AddToInteger(O_File.GetTextFromOneCharterToAnother(Linea,"'",1,"+",1,false),1);
-                        String minutes = O_File.AddNMinutesDWPC(O_File.GetTextFromOneCharterToAnother(Linea,"+",1,":",1,false),Integer.parseInt(txtUNBUNZ.getText()));
-                        Linea = Linea.replace(O_File.GetTextFromOneCharterToAnother(Linea,"'",1,"+",1,false), seconds);
-                        Linea = Linea.replace(O_File.GetTextFromOneCharterToAnother(Linea,"+",1,":",1,false), minutes);
+                    if(chbUNBUNZ.isSelected() && !txtUNBUNZ.getText().equals("")){
+                        String secondsUNB = O_File.AddToInteger(O_File.GetTextFromOneCharterToAnother(Linea,"'",1,"+",1,false),1);
+                        String minutesUNB = O_File.AddNMinutesDWPC(O_File.GetTextFromOneCharterToAnother(Linea,"+",1,":",1,false),Integer.parseInt(txtUNBUNZ.getText()));
+                        Linea = Linea.replace(O_File.GetTextFromOneCharterToAnother(Linea,"'",1,"+",1,false), secondsUNB);
+                        Linea = Linea.replace(O_File.GetTextFromOneCharterToAnother(Linea,"+",1,":",1,false), minutesUNB);
                     }
                     pw.println(Linea);
                 }
@@ -480,6 +480,10 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
                         Resultado+=Linea+";";
                     }
                     if(O_File.TextStartWith(Linea,"UNZ")){
+                        if(chbUNBUNZ.isSelected() && !txtUNBUNZ.getText().equals("")){
+                            String secondsUNZ = O_File.AddToInteger(O_File.GetTextFromOneCharterToAnother(Linea,"'",1,"+",1,false),1);
+                            Linea = Linea.replace(O_File.GetTextFromOneCharterToAnother(Linea,"'",1,"+",1,false), secondsUNZ);
+                        }
                         pw.println(Linea);
                     }
                 }

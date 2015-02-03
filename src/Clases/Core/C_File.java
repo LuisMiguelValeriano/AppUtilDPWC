@@ -74,7 +74,7 @@ public class C_File extends C_Text{
                     Cadena = "";
                     pw.println(Line);
                 }else{
-                    Line = Cadena.substring(0, Cadena.indexOf(String.valueOf(Token))+1);
+                    Line = Cadena.substring(0, Cadena.indexOf(String.valueOf(Token)));
                     Cadena = Cadena.substring(Cadena.indexOf(String.valueOf(Token))+1);
                     pw.println(Line);
                 }
