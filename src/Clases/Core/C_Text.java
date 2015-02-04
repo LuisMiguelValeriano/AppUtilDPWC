@@ -135,7 +135,9 @@ public class C_Text extends C_Validation{
         Nota:
             Si no encuentra una ocurrencia de los caracteres delimitantes "BeginDelimiter", y 
             "EndDelimiter" tomara como defecto en "BeginDelimiter" el valo de 0 y en "EndDelimiter"
-            el valor de (la longitud de CompleteText -1).
+            el valor de (la longitud de CompleteText -1). Ademas si BeginDelimiter y EndDelimiter son
+            iguales entonces apartir de BeginDelimiter se volvera a contar el numero de ocurrencias para
+            encontrar a EndDelimiter.
         */
         int indexBeginDelimiter;
         int indexEndDelimiter;
@@ -213,7 +215,29 @@ public class C_Text extends C_Validation{
         return count;
     }
     public String[] DeleteDuplicateLinesInArrayToMinimumOfThem (String[] Array, int MaximumLines, boolean DeleteUpToDown){
-        if(Array.length > MaximumLines){
+        /*
+        Parametros:
+            -Array: es un array de String.
+            -MaximumLines: se eliminara los duplicados hasta tener una cierta
+             cantidad de elementos en el Array diferentes de vacio y este es
+             MaixumumLines.
+            -DeleteUpToDown: Indicara si eliminara los repetidos de arriba hacia
+             abajo si es true y caso contrario cuando sea false se eliminara desde
+             abajo hacia arriba.
+        Resultante:
+            Nos retornara un nuevo Array de Strings ya habiendo eliminados los 
+            repetidos hasta llegar a un cierto numero de lineas en el cual deja
+            de eliminar repetidos.
+        Nota:
+            La funcion eliminara todos los repetidos del Array solo cuando MaximumLines 
+            sea igual a 0, cuando MaximumLines es menor a 0 o es mayor a la cantidad 
+            de elementos en el Array retornara el mismo Array sin modificacion alguna,
+            y cuando MaximumLines sea mayor o igual a 1 y a su vez sea menor a la cantidad 
+            de elementos en el Array este metodo eliminara segun DeleteUpToDown los 
+            elementos del Array hasta llegar a un numero de elementos igual a MaximumLines.
+            Entonces no siempre eliminara todos los repetidos del Array.
+        */
+        if(Array.length > MaximumLines && MaximumLines >= 0){
             int AuxNumLines = Array.length;
             if(DeleteUpToDown){
                 for(int i=0; i<Array.length; i++){
@@ -253,6 +277,26 @@ public class C_Text extends C_Validation{
         
     }
     public String[] DeleteLinesInArrayToMinimumOfThem (String[] Array, int MaximumLines, boolean DeleteUpToDown){
+        /*
+        Parametros:
+            -Array: es un array de String.
+            -MaximumLines: es un entero que indica que cantidad de elementos deben 
+             permanecer en el Array.
+            -DeleteUpToDown: Indicara si eliminara los lementos de arriba hacia
+             abajo si es true y caso contrario cuando sea false se eliminara desde
+             abajo hacia arriba.
+        Resultante:
+            Nos retornara un nuevo Array de Strings habiendole eliminado elementos
+            hasta llegar al numero de lineas igual a MaximumLines y eliminara de
+            arriba hacia abajo si DeleteUpToDown es true y caso contrario eliminara
+            en direccion opuesta.
+        Nota:
+            La funcion eliminara del Array elementos cuando cumpla que La cantidad
+            de elementos es mayor que MaximumLines y cuando asu vez MaximumLines
+            sea mayor a 0. Si MaximumLines es menor a 0 o MaximumLines es mayor a
+            la cantidad de elemento en Array retornara el mismo Array sin
+            modificacion alguna.
+        */
         if(Array.length > MaximumLines && MaximumLines>0){
             String[] ArrayWithMaximumLength = new String[MaximumLines];
             int numLines = Array.length;
@@ -278,19 +322,45 @@ public class C_Text extends C_Validation{
             return Array;
         }
     }
-    public String PutStringElementsOfArrayInBlockText(String[] Array){
+    public String PutStringElementsOfArrayInBlockText(String[] Array, char Token){
+        /*
+        Parametros:
+            -Array: es un array de String.
+            -Token: es un char que separara cada elemento del Array.
+        Resultante:
+            Nos retornara una cadena de String el cual contiene todos los elementos
+            del Array pero separados por Token.
+        */
         String result="";
         for(int i=0; i<Array.length; i++){
             if(i == Array.length - 1){
                 result += Array[i];
             }else{
-                result += Array[i] + ";";
+                result += Array[i] + String.valueOf(Token);
             }
         }
         return result;
     }
     public String DeleteDuplicateLinesToMinimumOfThem(String BlockText, char Token, int MaximumLines, boolean DeleteUpToDown){
-        
+        /*
+        Parametros:
+            -BlockText: Es el conjunto de lineas dibididas por Token en una sola cadena de String.
+            -Token: Es el caracter que separa cada linea dentro de BlockText.
+            -MaximumLines: se eliminara los duplicados hasta tener una cierta
+             cantidad de elementos en BlockText.
+            -DeleteUpToDown: Indicara si eliminara los repetidos de izquierda hacia
+             derecha si es true y caso contrario cuando sea false se eliminara desde
+             derecha hacia izquierda.
+        Resultante:
+            Nos retornara una cadena de String habiendole eliminado elementos
+            hasta llegar al numero de lineas igual a MaximumLines.
+        Nota:
+            La funcion eliminara de BlockText elementos cuando cumpla que la cantidad
+            de elementos es mayor que MaximumLines y cuando asu vez MaximumLines
+            sea mayor a 0. Si MaximumLines es menor a 0 o MaximumLines es mayor a
+            la cantidad de elementos en BlockText retornara el mismo BlockText sin
+            modificacion alguna.
+        */
         String result = "";
         int numLines=CountCharacterInText(BlockText, Token) +1;
         if (numLines == 1){
@@ -298,12 +368,32 @@ public class C_Text extends C_Validation{
         }else{
             String[] Lines = PutLinesDelimitedInArray(BlockText, numLines, Token);
             Lines = DeleteDuplicateLinesInArrayToMinimumOfThem(Lines,MaximumLines,DeleteUpToDown);
-            result = PutStringElementsOfArrayInBlockText(Lines);
+            result = PutStringElementsOfArrayInBlockText(Lines,Token);
         }
         return result;
     }
     public String DeleteLinesToMinimumOfThem(String BlockText, char Token, int MaximumLines, boolean DeleteUpToDown){
-        
+        /*
+        Parametros:
+            -BlockText: es una cadena String que contiene lineas separadas por un Token.
+            -Token: Es el caracter que separa cada linea dentro de BlockText.
+            -MaximumLines: es un entero que indica que cantidad de elementos deben 
+             permanecer en BlockText.
+            -DeleteUpToDown: Indicara si eliminara los lementos de arriba hacia
+             abajo si es true y caso contrario cuando sea false se eliminara desde
+             abajo hacia arriba.
+        Resultante:
+            Nos retornara una nueva cadena String habiendole eliminado elementos
+            a BlockText hasta llegar al numero de lineas igual a MaximumLines y eliminara de
+            izquierda a derecha si DeleteUpToDown es true y caso contrario eliminara
+            en direccion opuesta.
+        Nota:
+            La funcion eliminara de BlockText elementos cuando cumpla que La cantidad
+            de elementos es mayor que MaximumLines y cuando asu vez MaximumLines
+            sea mayor a 0. Si MaximumLines es menor a 0 o MaximumLines es mayor a
+            la cantidad de elementos en BlockText retornara el mismo BlockText sin
+            modificacion alguna.
+        */
         String result = "";
         int numLines=CountCharacterInText(BlockText, Token) +1;
         if (numLines == 1){
@@ -311,11 +401,18 @@ public class C_Text extends C_Validation{
         }else{
             String[] Lines = PutLinesDelimitedInArray(BlockText, numLines, Token);
             Lines = DeleteLinesInArrayToMinimumOfThem(Lines,MaximumLines,DeleteUpToDown);
-            result = PutStringElementsOfArrayInBlockText(Lines);
+            result = PutStringElementsOfArrayInBlockText(Lines, Token);
         }
         return result;
     }
     public String[] DeleteNullStringsInArray(String[] Array){
+        /*
+        Parametros:
+            -Array : Es un array de Strings
+        Resultante:
+            Nos retornara un nuevo array de Strings el cual contendra todos los 
+            elementos de Array pero sin los elementos vacios.
+        */
         int countNotNullString = 0;
         for(int i = 0; i<Array.length; i++){
             if(!Array[i].equals("")){
@@ -333,6 +430,17 @@ public class C_Text extends C_Validation{
         return ArrayWithOutNullString;
     }
     public String[] PutLinesDelimitedInArray (String BlockText,int ArraySize, char Token){
+        /*
+        Parametros:
+            -BlockText: es una cadena String que contiene lineas separadas por un Token.
+            -ArraySize: es un entero que representara el tamaño del array que vamos
+            a devolver y deberia ser la cantidad de lineas separadas por el Token que
+            contiene BlockText.
+            -Token: Es el caracter que separa cada linea dentro de BlockText.
+        Resultante:
+            Nos retornara un array de Strings el cual contendra todas las lineas
+            delimitadas por el token que contiene BlockText.
+        */
         String[] Array = new String[ArraySize];
         for(int i=0;i<ArraySize;i++){
             if(i == ArraySize-1){

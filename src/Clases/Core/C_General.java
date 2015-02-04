@@ -13,6 +13,16 @@ import java.util.ArrayList;
  */
 public class C_General {
     public String AddToInteger(String myNumber, int numberToAdd){
+        /*
+        Parametros:
+            -myNumber: es un String que representa a un entero al cual se le sumara
+             en un futuro numberToAdd.
+            -numberToAdd: es un entero al cual se le sumara a myNumber.
+        Resultante:
+            Nos retornara la sumatoria de myNumber y numberToAdd pero le agregaremos
+            si es necesario ceros a la izquierda si el resultado tiene una longitud
+            menor al String myNumber.
+        */
         try {
             int number = Integer.parseInt(myNumber);
             number += numberToAdd;
@@ -30,6 +40,12 @@ public class C_General {
         }
     }
     public String AddOneSecondDWPC(String mySecond){
+        /*
+        Parametros:
+            -mySecond: es un String que representa a los segundos que van de 00 a 59.
+        Resultante:
+            Nos retornara un String con el formato SS sumandole un segundo a mySecond.
+        */
         try {
             int secondResult = Integer.parseInt(AddToInteger(mySecond,1));
             if(secondResult >= 60){
@@ -42,6 +58,17 @@ public class C_General {
         }
     }
     public String AddNMinutesDWPC(String HHMM, int minutesToAdd){
+        /*
+        Parametros:
+            -HHMM: es un String que representa los dos primero digitos a la hora
+             desde 00 a 23 y los dos digitos siguientes a los minutos de 00 a 59.
+            -minutesToAdd: es un entero al cual se le sumara a solo a los minutos.
+        Resultante:
+            Nos retornara un String con el formato HHMM habiendole sumado la cantidad
+            de minutos que es representada por minutesToAdd.
+        Nota:
+            Tener en cuenta que si HHMM es 2359 el resultante sera 0000.
+        */
         try {
             if(HHMM.length()!=4){
                 return "ERROR - No se puede sumar "+minutesToAdd+" minutos al numero con mas de 4 digitos.";
