@@ -13,8 +13,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -444,15 +442,16 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         C_File O_File = new C_File();
-
+        PrintWriter pw;
         try {
             fr = O_File.ReturnObjectOfArchiveReadyToRead(lblPathEDI.getText());
             BufferedReader br = new BufferedReader(fr);
             String Resultado="";
             String Linea="";
-            boolean Print=false;
-            fw = O_File.ReturnCreatedObjectOfArchiveToWrite(O_File.GetTextFromOneCharterToAnother(lblPathEDI.getText(),"", 1, ".", 1, true)+"_RESULT.txt");
-            PrintWriter pw = new PrintWriter(fw);
+            int originalNumLinesDGS = 0;
+            int originalNumLinesFTX = 0;
+            fw = O_File.ReturnCreatedObjectOfArchiveToWrite(O_File.GetTextFromOneCharterToAnother(lblPathEDI.getText(),"", 1, ".", 1, true)+"_RESULT_1.txt");
+            pw = new PrintWriter(fw);
             //Leemos la primera linea
             if((Linea = br.readLine())!=null){
                 if(chbUNBUNZ.isSelected() && !txtUNBUNZ.getText().equals("")){
@@ -467,7 +466,6 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
             while((Linea=br.readLine())!=null){
                 if(O_File.TextStartWith(Linea,"UNH")){
                     Resultado="";
-                    Print=false;
                 }
                 if(O_File.TextStartWith(Linea,"BGM") && (chbFecDis.isSelected() || chbFecEmb.isSelected())){
                     if(O_File.TextStartWith(Linea,"BGM+270")){
@@ -481,9 +479,6 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
                     if(chbReferencia.isSelected() && chbTDT20.isSelected()){
                         Linea = O_File.DelimitedReplaceCaractersInText(Linea,"TDT+20+","+",txtReferencia.getText());
                     }
-                    /*if(TextEndWith(Linea, VesselName)){
-                        Print=true;
-                    }*/
                 }
                 if(O_File.TextStartWith(Linea,"RFF+VON")){
                     if(chbReferencia.isSelected() && chbRFFVON.isSelected()){
@@ -506,6 +501,7 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
                     Resultado+=Linea;
                     if(chbSegmentoDGS.isSelected()){
                         String TextReplaceDGS = "";
+                        originalNumLinesDGS = O_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "DGS", ';');
                         if(chbEliminarRepeticionesDGS.isSelected() && O_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "DGS", ';') > (txtNumMaxRepDGS.getText().equals("")?0:Integer.parseInt(txtNumMaxRepDGS.getText()))){
                             TextReplaceDGS = O_File.GetTextAtStartLineInBlockTextDelimited(Resultado, "DGS", ';');
                             if(txtNumMaxRepDGS.getText().equals("") || txtNumMaxRepDGS.getText().equals("0")){
@@ -527,6 +523,7 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
                     }
                     if(chbSegmentoFTX.isSelected()){
                         String TextReplaceFTX = "";
+                        originalNumLinesFTX = O_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "FTX", ';');
                         if(chbEliminarRepeticionesFTX.isSelected() && O_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "FTX", ';') > (txtNumMaxRepFTX.getText().equals("")?0:Integer.parseInt(txtNumMaxRepFTX.getText()))){
                             TextReplaceFTX = O_File.GetTextAtStartLineInBlockTextDelimited(Resultado, "FTX", ';');
                             if(txtNumMaxRepFTX.getText().equals("") || txtNumMaxRepFTX.getText().equals("0")){
@@ -545,6 +542,12 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
                             }
                             Resultado = Resultado.replace(O_File.GetTextAtStartLineInBlockTextDelimited(Resultado, "FTX", ';'), TextReplaceFTX);
                         }
+                    }
+                    if(originalNumLinesDGS > O_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "DGS", ';') || originalNumLinesFTX > O_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "FTX", ';')){
+                        int difNumLinesDGSFTX = (originalNumLinesDGS - O_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "DGS", ';')) + (originalNumLinesFTX - O_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "FTX", ';'));
+                        String LastLineUNT = O_File.GetTextAtStartLineInBlockTextDelimited(Resultado, "UNT", ';');
+                        String NewLineUNT = LastLineUNT.replace(O_File.GetTextFromOneCharterToAnother(LastLineUNT, "+", 1, "+", 1, true), O_File.AddToInteger(O_File.GetTextFromOneCharterToAnother(LastLineUNT, "+", 1, "+", 1, true), -difNumLinesDGSFTX));
+                        Resultado = Resultado.replace(LastLineUNT, NewLineUNT);
                     }
                     O_File.MultilaneWriteArchive(pw, Resultado, ';');
                 }
@@ -576,13 +579,6 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
             File myFile = chosser.getSelectedFile();
             String FilePath = myFile.getPath();
             lblPathEDI.setText(FilePath);
-            
-            //Declaramos fr y fw
-            /*FileReader fr = null;
-            FileWriter fw = null;
-            */
-            //Instanciamos el objeto O_FILE
-            
         }
     }//GEN-LAST:event_btnSelectEDIActionPerformed
 

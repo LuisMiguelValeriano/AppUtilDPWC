@@ -56,6 +56,7 @@ public class C_File extends C_Text{
         }
         return archivo;
     }
+    //public PrintWriter Return
     public void MultilaneWriteArchive(PrintWriter pw, String Cadena, char Token){
         /*
         Parametros:
