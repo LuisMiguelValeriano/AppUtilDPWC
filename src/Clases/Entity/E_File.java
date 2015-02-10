@@ -16,7 +16,7 @@ import java.io.PrintWriter;
  * @author lvaleriano
  */
 public class E_File {
-    private File archivo;
+    private File archivoToRead;
     private FileReader fr;
     private BufferedReader br;
     private FileWriter fw;
@@ -25,12 +25,6 @@ public class E_File {
     /**
      * @return the archivo
      */
-    public File getArchivo() {
-        return archivo;
-    }
-    public void setArchivo(File archivo) {
-        this.archivo = archivo;
-    }
     public FileReader getFr() {
         return fr;
     }
@@ -54,5 +48,11 @@ public class E_File {
     }
     public void setPw(PrintWriter pw) {
         this.pw = pw;
+    }
+    public File getArchivoToRead() {
+        return archivoToRead;
+    }
+    public void setArchivoToRead(File archivoToRead) {
+        this.archivoToRead = archivoToRead;
     }
 }

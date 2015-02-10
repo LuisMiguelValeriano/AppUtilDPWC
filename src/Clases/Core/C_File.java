@@ -6,12 +6,16 @@
 
 package Clases.Core;
 
+import Clases.Entity.E_File;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -30,13 +34,19 @@ public class C_File extends C_Text{
         */
         File archivo = null;
         FileReader fr = null;
+        //E_File OE_File = new E_File();
         try {
+            //OE_File.setArchivo(new File(FilePath));
+            //OE_File.setFr(new FileReader(OE_File.getArchivo()));
+            
             archivo = new File(FilePath);
             fr = new FileReader(archivo);
+            
         } catch (FileNotFoundException ex) {
             JOptionPane.showMessageDialog(null,"No se encontro el archivo .txt en la ruta indicada. "+ ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
         return fr;
+        //return OE_File.getFr();
     }
     public FileWriter ReturnCreatedObjectOfArchiveToWrite(String FilePath){
         /*
@@ -56,7 +66,23 @@ public class C_File extends C_Text{
         }
         return archivo;
     }
-    //public PrintWriter Return
+    public void CreateObjectOfArchiveReadyToRead(E_File OE_File, String FilePath){
+        try {
+            OE_File.setArchivoToRead(new File(FilePath));
+            OE_File.setFr(new FileReader(OE_File.getArchivoToRead()));
+            OE_File.setBr(new BufferedReader(OE_File.getFr()));
+        } catch (FileNotFoundException ex) {
+            JOptionPane.showMessageDialog(null,"No se encontro el archivo .txt en la ruta indicada. "+ ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    public void CreateObjectOfArchiveToWrite(E_File OE_File, String FilePath){
+        try {
+            OE_File.setFw(new FileWriter(FilePath));
+            OE_File.setPw(new PrintWriter(OE_File.getFw()));
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null,"No se creo el archivo .txt resultante en la ruta indicada. "+ ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
     public void MultilaneWriteArchive(PrintWriter pw, String Cadena, char Token){
         /*
         Parametros:

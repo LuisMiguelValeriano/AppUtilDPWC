@@ -7,12 +7,9 @@ package Frames;
 
 import Clases.Core.C_ComponentFrame;
 import Clases.Core.C_File;
-import java.io.BufferedReader;
+import Clases.Entity.E_File;
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -23,9 +20,6 @@ import javax.swing.JOptionPane;
 public class F_Modify_Files_EDI extends javax.swing.JFrame{
 
     C_ComponentFrame Obj_ComponentFrame = new C_ComponentFrame();
-    //Declaramos fr y fw
-    FileReader fr = null;
-    FileWriter fw = null;
     /**
      * Creates new form F_Modify_Files_EDI
      */
@@ -441,129 +435,132 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
     }//GEN-LAST:event_chbUNBUNZActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        C_File O_File = new C_File();
-        PrintWriter pw;
         try {
-            fr = O_File.ReturnObjectOfArchiveReadyToRead(lblPathEDI.getText());
-            BufferedReader br = new BufferedReader(fr);
+            C_File OC_File = new C_File();
+            E_File OE_File = new E_File();
+            OC_File.CreateObjectOfArchiveReadyToRead(OE_File, lblPathEDI.getText());
             String Resultado="";
-            String Linea="";
+            String Accion = "";
+            String Linea;
             int originalNumLinesDGS = 0;
             int originalNumLinesFTX = 0;
-            fw = O_File.ReturnCreatedObjectOfArchiveToWrite(O_File.GetTextFromOneCharterToAnother(lblPathEDI.getText(),"", 1, ".", 1, true)+"_RESULT_1.txt");
-            pw = new PrintWriter(fw);
+            int numLinesInArchive = 0;
+            OC_File.CreateObjectOfArchiveToWrite(OE_File, OC_File.GetTextFromOneCharterToAnother(lblPathEDI.getText(),"", 1, ".", 1, true)+"_RESULT_1.txt");
             //Leemos la primera linea
-            if((Linea = br.readLine())!=null){
+            if((Linea = OE_File.getBr().readLine())!=null){
                 if(chbUNBUNZ.isSelected() && !txtUNBUNZ.getText().equals("")){
-                    String secondsUNB = O_File.AddToInteger(O_File.GetTextFromOneCharterToAnother(Linea,"'",1,"+",1,false),1);
-                    String minutesUNB = O_File.AddNMinutesDWPC(O_File.GetTextFromOneCharterToAnother(Linea,"+",1,":",1,false),Integer.parseInt(txtUNBUNZ.getText()));
-                    Linea = Linea.replace(O_File.GetTextFromOneCharterToAnother(Linea,"'",1,"+",1,false), secondsUNB);
-                    Linea = Linea.replace(O_File.GetTextFromOneCharterToAnother(Linea,"+",1,":",1,false), minutesUNB);
+                    String secondsUNB = OC_File.AddToInteger(OC_File.GetTextFromOneCharterToAnother(Linea,"'",1,"+",1,false),1);
+                    String minutesUNB = OC_File.AddNMinutesDWPC(OC_File.GetTextFromOneCharterToAnother(Linea,"+",1,":",1,false),Integer.parseInt(txtUNBUNZ.getText()));
+                    Linea = Linea.replace(OC_File.GetTextFromOneCharterToAnother(Linea,"'",1,"+",1,false), secondsUNB);
+                    Linea = Linea.replace(OC_File.GetTextFromOneCharterToAnother(Linea,"+",1,":",1,false), minutesUNB);
                 }
-                pw.println(Linea);
+                OE_File.getPw().println(Linea);
+                numLinesInArchive++;
             }
-            String Accion = "";
-            while((Linea=br.readLine())!=null){
-                if(O_File.TextStartWith(Linea,"UNH")){
+            while((Linea=OE_File.getBr().readLine())!=null){
+                if(OC_File.TextStartWith(Linea,"UNH")){
                     Resultado="";
                 }
-                if(O_File.TextStartWith(Linea,"BGM") && (chbFecDis.isSelected() || chbFecEmb.isSelected())){
-                    if(O_File.TextStartWith(Linea,"BGM+270")){
+                if(OC_File.TextStartWith(Linea,"BGM") && (chbFecDis.isSelected() || chbFecEmb.isSelected())){
+                    if(OC_File.TextStartWith(Linea,"BGM+270")){
                         Accion = "LOAD";
                     }
-                    if(O_File.TextStartWith(Linea,"BGM+98")){
+                    if(OC_File.TextStartWith(Linea,"BGM+98")){
                         Accion = "DISCHARGE";
                     }
                 }
-                if(O_File.TextStartWith(Linea,"TDT+20")){ 
+                if(OC_File.TextStartWith(Linea,"TDT+20")){ 
                     if(chbReferencia.isSelected() && chbTDT20.isSelected()){
-                        Linea = O_File.DelimitedReplaceCaractersInText(Linea,"TDT+20+","+",txtReferencia.getText());
+                        Linea = OC_File.DelimitedReplaceCaractersInText(Linea,"TDT+20+","+",txtReferencia.getText());
                     }
                 }
-                if(O_File.TextStartWith(Linea,"RFF+VON")){
+                if(OC_File.TextStartWith(Linea,"RFF+VON")){
                     if(chbReferencia.isSelected() && chbRFFVON.isSelected()){
-                        Linea = O_File.DelimitedReplaceCaractersInText(Linea,"RFF+VON:","'",txtReferencia.getText());
+                        Linea = OC_File.DelimitedReplaceCaractersInText(Linea,"RFF+VON:","'",txtReferencia.getText());
                     }
                 }
-                if(O_File.TextStartWith(Linea,"DTM+203") && (chbFecDis.isSelected() || chbFecEmb.isSelected())){
+                if(OC_File.TextStartWith(Linea,"DTM+203") && (chbFecDis.isSelected() || chbFecEmb.isSelected())){
                     switch (Accion){
                         case "LOAD":
-                            Linea = Linea.replace(O_File.GetTextFromOneCharterToAnother(Linea, ":", 1, ":", 1, true),txtFecEmb.getText());
+                            Linea = Linea.replace(OC_File.GetTextFromOneCharterToAnother(Linea, ":", 1, ":", 1, true),txtFecEmb.getText());
                             break;
                         case "DISCHARGE":
-                            Linea = Linea.replace(O_File.GetTextFromOneCharterToAnother(Linea, ":", 1, ":", 1, true),txtFecDis.getText());
+                            Linea = Linea.replace(OC_File.GetTextFromOneCharterToAnother(Linea, ":", 1, ":", 1, true),txtFecDis.getText());
                             break;
                         default:
                             break;
                     }
                 }
-                if(O_File.TextStartWith(Linea,"UNT")){
+                if(OC_File.TextStartWith(Linea,"UNT")){
                     Resultado+=Linea;
+                    numLinesInArchive++;
                     if(chbSegmentoDGS.isSelected()){
-                        String TextReplaceDGS = "";
-                        originalNumLinesDGS = O_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "DGS", ';');
-                        if(chbEliminarRepeticionesDGS.isSelected() && O_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "DGS", ';') > (txtNumMaxRepDGS.getText().equals("")?0:Integer.parseInt(txtNumMaxRepDGS.getText()))){
-                            TextReplaceDGS = O_File.GetTextAtStartLineInBlockTextDelimited(Resultado, "DGS", ';');
+                        String TextReplaceDGS;
+                        originalNumLinesDGS = OC_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "DGS", ';');
+                        if(chbEliminarRepeticionesDGS.isSelected() && OC_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "DGS", ';') > (txtNumMaxRepDGS.getText().equals("")?0:Integer.parseInt(txtNumMaxRepDGS.getText()))){
+                            TextReplaceDGS = OC_File.GetTextAtStartLineInBlockTextDelimited(Resultado, "DGS", ';');
                             if(txtNumMaxRepDGS.getText().equals("") || txtNumMaxRepDGS.getText().equals("0")){
-                                TextReplaceDGS = O_File.DeleteDuplicateLinesToMinimumOfThem(TextReplaceDGS, ';', 0, false);
+                                TextReplaceDGS = OC_File.DeleteDuplicateLinesToMinimumOfThem(TextReplaceDGS, ';', 0, false);
                             }else{
-                                TextReplaceDGS = O_File.DeleteDuplicateLinesToMinimumOfThem(TextReplaceDGS, ';', Integer.parseInt(txtNumMaxRepDGS.getText()), false);
+                                TextReplaceDGS = OC_File.DeleteDuplicateLinesToMinimumOfThem(TextReplaceDGS, ';', Integer.parseInt(txtNumMaxRepDGS.getText()), false);
                             }
-                            Resultado = Resultado.replace(O_File.GetTextAtStartLineInBlockTextDelimited(Resultado, "DGS", ';'), TextReplaceDGS);
+                            Resultado = Resultado.replace(OC_File.GetTextAtStartLineInBlockTextDelimited(Resultado, "DGS", ';'), TextReplaceDGS);
                         }
-                        if(chbNumMaxLinesDGS.isSelected() && O_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "DGS", ';') > (txtNumMaxLinesDGS.getText().equals("")?0:Integer.parseInt(txtNumMaxLinesDGS.getText()))){
-                            TextReplaceDGS = O_File.GetTextAtStartLineInBlockTextDelimited(Resultado, "DGS", ';');
+                        if(chbNumMaxLinesDGS.isSelected() && OC_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "DGS", ';') > (txtNumMaxLinesDGS.getText().equals("")?0:Integer.parseInt(txtNumMaxLinesDGS.getText()))){
+                            TextReplaceDGS = OC_File.GetTextAtStartLineInBlockTextDelimited(Resultado, "DGS", ';');
                             if(txtNumMaxLinesDGS.getText().equals("") || txtNumMaxLinesDGS.getText().equals("0")){
-                                TextReplaceDGS = O_File.DeleteLinesToMinimumOfThem(TextReplaceDGS, ';', 0, false);
+                                TextReplaceDGS = OC_File.DeleteLinesToMinimumOfThem(TextReplaceDGS, ';', 0, false);
                             }else{
-                                TextReplaceDGS = O_File.DeleteLinesToMinimumOfThem(TextReplaceDGS, ';', Integer.parseInt(txtNumMaxLinesDGS.getText()), false);
+                                TextReplaceDGS = OC_File.DeleteLinesToMinimumOfThem(TextReplaceDGS, ';', Integer.parseInt(txtNumMaxLinesDGS.getText()), false);
                             }
-                            Resultado = Resultado.replace(O_File.GetTextAtStartLineInBlockTextDelimited(Resultado, "DGS", ';'), TextReplaceDGS);
+                            Resultado = Resultado.replace(OC_File.GetTextAtStartLineInBlockTextDelimited(Resultado, "DGS", ';'), TextReplaceDGS);
                         }
                     }
                     if(chbSegmentoFTX.isSelected()){
-                        String TextReplaceFTX = "";
-                        originalNumLinesFTX = O_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "FTX", ';');
-                        if(chbEliminarRepeticionesFTX.isSelected() && O_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "FTX", ';') > (txtNumMaxRepFTX.getText().equals("")?0:Integer.parseInt(txtNumMaxRepFTX.getText()))){
-                            TextReplaceFTX = O_File.GetTextAtStartLineInBlockTextDelimited(Resultado, "FTX", ';');
+                        String TextReplaceFTX;
+                        originalNumLinesFTX = OC_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "FTX", ';');
+                        if(chbEliminarRepeticionesFTX.isSelected() && OC_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "FTX", ';') > (txtNumMaxRepFTX.getText().equals("")?0:Integer.parseInt(txtNumMaxRepFTX.getText()))){
+                            TextReplaceFTX = OC_File.GetTextAtStartLineInBlockTextDelimited(Resultado, "FTX", ';');
                             if(txtNumMaxRepFTX.getText().equals("") || txtNumMaxRepFTX.getText().equals("0")){
-                                TextReplaceFTX = O_File.DeleteDuplicateLinesToMinimumOfThem(TextReplaceFTX, ';', 0, false);
+                                TextReplaceFTX = OC_File.DeleteDuplicateLinesToMinimumOfThem(TextReplaceFTX, ';', 0, false);
                             }else{
-                                TextReplaceFTX = O_File.DeleteDuplicateLinesToMinimumOfThem(TextReplaceFTX, ';', Integer.parseInt(txtNumMaxRepFTX.getText()), false);
+                                TextReplaceFTX = OC_File.DeleteDuplicateLinesToMinimumOfThem(TextReplaceFTX, ';', Integer.parseInt(txtNumMaxRepFTX.getText()), false);
                             }
-                            Resultado = Resultado.replace(O_File.GetTextAtStartLineInBlockTextDelimited(Resultado, "FTX", ';'), TextReplaceFTX);
+                            Resultado = Resultado.replace(OC_File.GetTextAtStartLineInBlockTextDelimited(Resultado, "FTX", ';'), TextReplaceFTX);
                         }
-                        if(chbNumMaxLinesFTX.isSelected() && O_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "FTX", ';') > (txtNumMaxLinesFTX.getText().equals("")?0:Integer.parseInt(txtNumMaxLinesFTX.getText()))){
-                            TextReplaceFTX = O_File.GetTextAtStartLineInBlockTextDelimited(Resultado, "FTX", ';');
+                        if(chbNumMaxLinesFTX.isSelected() && OC_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "FTX", ';') > (txtNumMaxLinesFTX.getText().equals("")?0:Integer.parseInt(txtNumMaxLinesFTX.getText()))){
+                            TextReplaceFTX = OC_File.GetTextAtStartLineInBlockTextDelimited(Resultado, "FTX", ';');
                             if(txtNumMaxLinesFTX.getText().equals("") || txtNumMaxLinesFTX.getText().equals("0")){
-                                TextReplaceFTX = O_File.DeleteLinesToMinimumOfThem(TextReplaceFTX, ';', 0, false);
+                                TextReplaceFTX = OC_File.DeleteLinesToMinimumOfThem(TextReplaceFTX, ';', 0, false);
                             }else{
-                                TextReplaceFTX = O_File.DeleteLinesToMinimumOfThem(TextReplaceFTX, ';', Integer.parseInt(txtNumMaxLinesFTX.getText()), false);
+                                TextReplaceFTX = OC_File.DeleteLinesToMinimumOfThem(TextReplaceFTX, ';', Integer.parseInt(txtNumMaxLinesFTX.getText()), false);
                             }
-                            Resultado = Resultado.replace(O_File.GetTextAtStartLineInBlockTextDelimited(Resultado, "FTX", ';'), TextReplaceFTX);
+                            Resultado = Resultado.replace(OC_File.GetTextAtStartLineInBlockTextDelimited(Resultado, "FTX", ';'), TextReplaceFTX);
                         }
                     }
-                    if(originalNumLinesDGS > O_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "DGS", ';') || originalNumLinesFTX > O_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "FTX", ';')){
-                        int difNumLinesDGSFTX = (originalNumLinesDGS - O_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "DGS", ';')) + (originalNumLinesFTX - O_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "FTX", ';'));
-                        String LastLineUNT = O_File.GetTextAtStartLineInBlockTextDelimited(Resultado, "UNT", ';');
-                        String NewLineUNT = LastLineUNT.replace(O_File.GetTextFromOneCharterToAnother(LastLineUNT, "+", 1, "+", 1, true), O_File.AddToInteger(O_File.GetTextFromOneCharterToAnother(LastLineUNT, "+", 1, "+", 1, true), -difNumLinesDGSFTX));
+                    if(originalNumLinesDGS > (chbSegmentoDGS.isSelected()?OC_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "DGS", ';'):0) || originalNumLinesFTX > (chbSegmentoFTX.isSelected()?OC_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "FTX", ';'):0)){
+                        int difNumLinesDGSFTX = (originalNumLinesDGS - (chbSegmentoDGS.isSelected()?OC_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "DGS", ';'):0)) + (originalNumLinesFTX - (chbSegmentoFTX.isSelected()?OC_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "FTX", ';'):0));
+                        String LastLineUNT = OC_File.GetTextAtStartLineInBlockTextDelimited(Resultado, "UNT", ';');
+                        String NewLineUNT = LastLineUNT.replace(OC_File.GetTextFromOneCharterToAnother(LastLineUNT, "+", 1, "+", 1, true), OC_File.AddToInteger(OC_File.GetTextFromOneCharterToAnother(LastLineUNT, "+", 1, "+", 1, true), -difNumLinesDGSFTX));
                         Resultado = Resultado.replace(LastLineUNT, NewLineUNT);
                     }
-                    O_File.MultilaneWriteArchive(pw, Resultado, ';');
+                    OC_File.MultilaneWriteArchive(OE_File.getPw(), Resultado, ';');
                 }
                 else{
                     Resultado+=Linea+";";
+                    numLinesInArchive++;
                 }
-                if(O_File.TextStartWith(Linea,"UNZ")){
+                if(OC_File.TextStartWith(Linea,"UNZ")){
                     if(chbUNBUNZ.isSelected() && !txtUNBUNZ.getText().equals("")){
-                        String secondsUNZ = O_File.AddToInteger(O_File.GetTextFromOneCharterToAnother(Linea,"'",1,"+",1,false),1);
-                        Linea = Linea.replace(O_File.GetTextFromOneCharterToAnother(Linea,"'",1,"+",1,false), secondsUNZ);
+                        String secondsUNZ = OC_File.AddToInteger(OC_File.GetTextFromOneCharterToAnother(Linea,"'",1,"+",1,false),1);
+                        Linea = Linea.replace(OC_File.GetTextFromOneCharterToAnother(Linea,"'",1,"+",1,false), secondsUNZ);
                     }
-                    pw.println(Linea);
+                    OE_File.getPw().println(Linea);
+                    numLinesInArchive++;
                 }
             }
-            fr.close();
-            fw.close();
+            OE_File.getFr().close();
+            OE_File.getFw().close();
             JOptionPane.showMessageDialog(null,"Se Genero Exitosamente el archivo resultante", "Resultado", JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null,"Se produjo un error en la generacion del archivo resultante. "+ ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
