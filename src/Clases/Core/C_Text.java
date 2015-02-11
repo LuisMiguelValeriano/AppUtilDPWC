@@ -452,4 +452,13 @@ public class C_Text extends C_Validation{
         }
         return Array;
     }
+    public String ReturnLineUNBaddDeterminateMinuteAndSecond(String Line, int NumberOfMinutesAndSecond){
+        if(TextStartWith(Line,"UNB")){
+            String secondsUNB = AddToInteger(GetTextFromOneCharterToAnother(Line,"'",1,"+",1,false),NumberOfMinutesAndSecond);
+            String minutesUNB = AddNMinutesDWPC(GetTextFromOneCharterToAnother(Line,"+",1,":",1,false),NumberOfMinutesAndSecond);
+            Line = Line.replace(GetTextFromOneCharterToAnother(Line,"'",1,"+",1,false), secondsUNB);
+            Line = Line.replace(GetTextFromOneCharterToAnother(Line,"+",1,":",1,false), minutesUNB);
+        }
+        return Line;
+    }
 }

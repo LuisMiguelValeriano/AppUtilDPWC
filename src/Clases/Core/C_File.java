@@ -14,8 +14,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -75,9 +73,9 @@ public class C_File extends C_Text{
             JOptionPane.showMessageDialog(null,"No se encontro el archivo .txt en la ruta indicada. "+ ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    public void CreateObjectOfArchiveToWrite(E_File OE_File, String FilePath){
+    public void CreateObjectOfArchiveToWrite(E_File OE_File, String FilePath, boolean WriteInArchiveExist){
         try {
-            OE_File.setFw(new FileWriter(FilePath));
+            OE_File.setFw(new FileWriter(FilePath,WriteInArchiveExist));
             OE_File.setPw(new PrintWriter(OE_File.getFw()));
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null,"No se creo el archivo .txt resultante en la ruta indicada. "+ ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -114,15 +112,5 @@ public class C_File extends C_Text{
                 pw.println(Line);
             }
         }
-        /*
-        for(int i=0;i<Cadena.length();i++){
-            if(Cadena.charAt(i) == Token){
-                pw.println(Line);
-                Line="";
-            }else{
-                Line+=Cadena.charAt(i);
-            }
-        }
-        */
     }
 }

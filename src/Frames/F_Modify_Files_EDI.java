@@ -10,6 +10,8 @@ import Clases.Core.C_File;
 import Clases.Entity.E_File;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -438,6 +440,7 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
         try {
             C_File OC_File = new C_File();
             E_File OE_File = new E_File();
+            List ArrayNumOfSectionUNHUNTbyArchive = new ArrayList();
             OC_File.CreateObjectOfArchiveReadyToRead(OE_File, lblPathEDI.getText());
             String Resultado="";
             String Accion = "";
@@ -445,14 +448,18 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
             int originalNumLinesDGS = 0;
             int originalNumLinesFTX = 0;
             int numLinesInArchive = 0;
-            OC_File.CreateObjectOfArchiveToWrite(OE_File, OC_File.GetTextFromOneCharterToAnother(lblPathEDI.getText(),"", 1, ".", 1, true)+"_RESULT_1.txt");
+            int countNumArchives = 1;
+            int numOfSectionUNHUNTbyArchive = 0;
+            String LineUNB = "";
+            int NumOfBackSlash = OC_File.CountCharacterInText(lblPathEDI.getText(), '\\');
+            File directorio = new File(OC_File.GetTextFromOneCharterToAnother(lblPathEDI.getText(),"", 1, "\\", NumOfBackSlash, true)+"\\"+OC_File.GetTextFromOneCharterToAnother(lblPathEDI.getText(),".", 1, "\\", 1, false));
+            directorio.mkdir();
+            OC_File.CreateObjectOfArchiveToWrite(OE_File, OC_File.GetTextFromOneCharterToAnother(directorio.getPath(),"", 1, ".", 1, true)+"\\"+OC_File.GetTextFromOneCharterToAnother(lblPathEDI.getText(),".", 1, "\\", 1, false)+"_RESULT_"+countNumArchives+".txt", false);
             //Leemos la primera linea
             if((Linea = OE_File.getBr().readLine())!=null){
-                if(chbUNBUNZ.isSelected() && !txtUNBUNZ.getText().equals("")){
-                    String secondsUNB = OC_File.AddToInteger(OC_File.GetTextFromOneCharterToAnother(Linea,"'",1,"+",1,false),1);
-                    String minutesUNB = OC_File.AddNMinutesDWPC(OC_File.GetTextFromOneCharterToAnother(Linea,"+",1,":",1,false),Integer.parseInt(txtUNBUNZ.getText()));
-                    Linea = Linea.replace(OC_File.GetTextFromOneCharterToAnother(Linea,"'",1,"+",1,false), secondsUNB);
-                    Linea = Linea.replace(OC_File.GetTextFromOneCharterToAnother(Linea,"+",1,":",1,false), minutesUNB);
+                if(chbUNBUNZ.isSelected()){
+                    LineUNB = Linea;
+                    Linea = OC_File.ReturnLineUNBaddDeterminateMinuteAndSecond(Linea, countNumArchives);
                 }
                 OE_File.getPw().println(Linea);
                 numLinesInArchive++;
@@ -493,7 +500,6 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
                 }
                 if(OC_File.TextStartWith(Linea,"UNT")){
                     Resultado+=Linea;
-                    numLinesInArchive++;
                     if(chbSegmentoDGS.isSelected()){
                         String TextReplaceDGS;
                         originalNumLinesDGS = OC_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "DGS", ';');
@@ -544,19 +550,42 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
                         String NewLineUNT = LastLineUNT.replace(OC_File.GetTextFromOneCharterToAnother(LastLineUNT, "+", 1, "+", 1, true), OC_File.AddToInteger(OC_File.GetTextFromOneCharterToAnother(LastLineUNT, "+", 1, "+", 1, true), -difNumLinesDGSFTX));
                         Resultado = Resultado.replace(LastLineUNT, NewLineUNT);
                     }
+                    int countLinesBetweenUNHUNT = OC_File.CountCharacterInText(Resultado, ';') + 1;
+                    if( numLinesInArchive + countLinesBetweenUNHUNT > 2999){
+                        OE_File.getFw().close();
+                        countNumArchives++;
+                        OC_File.CreateObjectOfArchiveToWrite(OE_File, OC_File.GetTextFromOneCharterToAnother(directorio.getPath(),"", 1, ".", 1, true)+"\\"+OC_File.GetTextFromOneCharterToAnother(lblPathEDI.getText(),".", 1, "\\", 1, false)+"_RESULT_"+countNumArchives+".txt", false);
+                        OE_File.getPw().println(OC_File.ReturnLineUNBaddDeterminateMinuteAndSecond(LineUNB, countNumArchives));
+                        numLinesInArchive = 1;
+                        ArrayNumOfSectionUNHUNTbyArchive.add(numOfSectionUNHUNTbyArchive);
+                        numOfSectionUNHUNTbyArchive = 0;
+                    }
                     OC_File.MultilaneWriteArchive(OE_File.getPw(), Resultado, ';');
+                    numOfSectionUNHUNTbyArchive++;
+                    numLinesInArchive += countLinesBetweenUNHUNT;
                 }
                 else{
                     Resultado+=Linea+";";
-                    numLinesInArchive++;
                 }
                 if(OC_File.TextStartWith(Linea,"UNZ")){
-                    if(chbUNBUNZ.isSelected() && !txtUNBUNZ.getText().equals("")){
-                        String secondsUNZ = OC_File.AddToInteger(OC_File.GetTextFromOneCharterToAnother(Linea,"'",1,"+",1,false),1);
-                        Linea = Linea.replace(OC_File.GetTextFromOneCharterToAnother(Linea,"'",1,"+",1,false), secondsUNZ);
+                    String[] ListOfArchiveCreated = directorio.list();
+                    if(ListOfArchiveCreated == null){
+                        JOptionPane.showMessageDialog(null,"No se encontro ningun archivo en el directorio " + directorio.getPath(), "Resultado", JOptionPane.INFORMATION_MESSAGE);
+                    }else{
+                        for(int i = 0; i < ListOfArchiveCreated.length; i++){
+                            if(ListOfArchiveCreated.length-1 == i){
+                                ArrayNumOfSectionUNHUNTbyArchive.add(numOfSectionUNHUNTbyArchive);
+                            }
+                            OE_File.getFw().close();
+                            OC_File.CreateObjectOfArchiveToWrite(OE_File, OC_File.GetTextFromOneCharterToAnother(directorio.getPath(),"", 1, ".", 1, true)+"\\"+ListOfArchiveCreated[i], true);
+                            if(chbUNBUNZ.isSelected()){
+                                String secondsUNZ = OC_File.AddToInteger(OC_File.GetTextFromOneCharterToAnother(Linea,"'",1,"+",1,false),i+1);
+                                OE_File.getPw().println(OC_File.GetTextFromOneCharterToAnother(Linea,"",1,"+",1,true)+"+"+ArrayNumOfSectionUNHUNTbyArchive.get(i)+"+"+secondsUNZ+"'");
+                            }else{
+                                OE_File.getPw().println(OC_File.GetTextFromOneCharterToAnother(Linea,"",1,"+",1,true)+"+"+ArrayNumOfSectionUNHUNTbyArchive.get(i)+"+"+OC_File.GetTextFromOneCharterToAnother(Linea,"",1,"+",1,false));
+                            }
+                        }
                     }
-                    OE_File.getPw().println(Linea);
-                    numLinesInArchive++;
                 }
             }
             OE_File.getFr().close();
