@@ -5,7 +5,13 @@
  */
 package Clases.Core;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -93,5 +99,11 @@ public class C_General {
         } catch (Exception e) {
             return "ERROR - No se puede sumar "+minutesToAdd+" minutos al numero.";
         }
+    }
+    public String ReturnDateYYYYMMDDHHSS(String Date){
+        Date = Date.replace("-", "");
+        Date = Date.replace(" ", "");
+        Date = Date.replace(":", "");
+        return Date;
     }
 }

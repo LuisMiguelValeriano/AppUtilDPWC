@@ -28,7 +28,7 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
     public F_Modify_Files_EDI() {
         initComponents();
         Obj_ComponentFrame.setEnableJPanelComponentsWithCheckBox(pnlReferencia, chbReferencia);
-        Obj_ComponentFrame.setEnableJPanelComponentsWithCheckBox(pnlUNBUNZ, chbUNBUNZ);
+        //Obj_ComponentFrame.setEnableJPanelComponentsWithCheckBox(pnlUNBUNZ, chbUNBUNZ);
         Obj_ComponentFrame.setEnableJPanelComponentsWithCheckBox(pnlDGS, chbSegmentoDGS);
         Obj_ComponentFrame.setEnableJPanelComponentsWithCheckBox(pnlFTX, chbSegmentoFTX);
         Obj_ComponentFrame.setEnableJPanelComponentsWithCheckBox(pnlDISEMB, chbFecDISEMB);
@@ -52,9 +52,6 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
         chbRFFVON = new javax.swing.JCheckBox();
         jButton1 = new javax.swing.JButton();
         chbReferencia = new javax.swing.JCheckBox();
-        pnlUNBUNZ = new javax.swing.JPanel();
-        lblUNBUNZ = new javax.swing.JLabel();
-        txtUNBUNZ = new javax.swing.JTextField();
         chbUNBUNZ = new javax.swing.JCheckBox();
         btnSelectEDI = new javax.swing.JButton();
         lblPathEDI = new javax.swing.JLabel();
@@ -76,6 +73,15 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
         txtFecDis = new javax.swing.JTextField();
         txtFecEmb = new javax.swing.JTextField();
         chbFecDISEMB = new javax.swing.JCheckBox();
+        lblUNBUNZ = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        taMensaje = new javax.swing.JTextArea();
+        jPanel2 = new javax.swing.JPanel();
+        lblNombreNave = new javax.swing.JLabel();
+        lblNumViaje = new javax.swing.JLabel();
+        txtNombreNave = new javax.swing.JTextField();
+        txtNumViaje = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -133,33 +139,6 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
                 chbReferenciaActionPerformed(evt);
             }
         });
-
-        pnlUNBUNZ.setBorder(javax.swing.BorderFactory.createTitledBorder("Sumar unidad a minuto y segundo a UNB-UNZ"));
-        pnlUNBUNZ.setName("pnlUNBUNZ"); // NOI18N
-
-        lblUNBUNZ.setText("Unidad Sumada :");
-        lblUNBUNZ.setName("lblUNBUNZ"); // NOI18N
-
-        txtUNBUNZ.setToolTipText("");
-        txtUNBUNZ.setName("txtUNBUNZ"); // NOI18N
-
-        javax.swing.GroupLayout pnlUNBUNZLayout = new javax.swing.GroupLayout(pnlUNBUNZ);
-        pnlUNBUNZ.setLayout(pnlUNBUNZLayout);
-        pnlUNBUNZLayout.setHorizontalGroup(
-            pnlUNBUNZLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlUNBUNZLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblUNBUNZ)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtUNBUNZ, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        pnlUNBUNZLayout.setVerticalGroup(
-            pnlUNBUNZLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlUNBUNZLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(lblUNBUNZ)
-                .addComponent(txtUNBUNZ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
 
         chbUNBUNZ.setName("chbUNBUNZ"); // NOI18N
         chbUNBUNZ.addActionListener(new java.awt.event.ActionListener() {
@@ -267,7 +246,7 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
                 .addGroup(pnlFTXLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(chbEliminarRepeticionesFTX)
                     .addComponent(chbNumMaxLinesFTX))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addGroup(pnlFTXLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtNumMaxLinesFTX, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
                     .addComponent(txtNumMaxRepFTX))
@@ -312,6 +291,26 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
         });
 
         txtFecDis.setName("txtFecDis"); // NOI18N
+        txtFecDis.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                txtFecDisInputMethodTextChanged(evt);
+            }
+        });
+        txtFecDis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFecDisActionPerformed(evt);
+            }
+        });
+        txtFecDis.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtFecDisKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFecDisKeyTyped(evt);
+            }
+        });
 
         txtFecEmb.setName("txtFecEmb"); // NOI18N
 
@@ -351,39 +350,105 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
             }
         });
 
+        lblUNBUNZ.setText("Sumar unidad a minuto y segundo a UNB-UNZ");
+        lblUNBUNZ.setName("lblUNBUNZ"); // NOI18N
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Mensaje para correo :"));
+
+        taMensaje.setColumns(20);
+        taMensaje.setRows(5);
+        jScrollPane1.setViewportView(taMensaje);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
+        );
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Campos para completar mensaje :"));
+
+        lblNombreNave.setText("Nombre de la Nave :");
+
+        lblNumViaje.setText("Número de viaje :");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(lblNombreNave)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtNombreNave))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(lblNumViaje)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtNumViaje)))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNombreNave)
+                    .addComponent(txtNombreNave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNumViaje)
+                    .addComponent(txtNumViaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 4, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
                         .addComponent(btnSelectEDI)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblPathEDI))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(chbReferencia)
-                                    .addComponent(chbUNBUNZ, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addComponent(chbSegmentoDGS)
-                                .addComponent(chbSegmentoFTX, javax.swing.GroupLayout.Alignment.TRAILING))
-                            .addComponent(chbFecDISEMB))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblPathEDI)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(pnlDISEMB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(pnlDGS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(pnlUNBUNZ, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(pnlReferencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(pnlFTX, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(10, 10, 10))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(93, 93, 93)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(89, 89, 89)
+                                .addComponent(jButton1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(chbUNBUNZ)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblUNBUNZ))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(chbReferencia)
+                                        .addComponent(chbSegmentoDGS)
+                                        .addComponent(chbSegmentoFTX, javax.swing.GroupLayout.Alignment.TRAILING))
+                                    .addComponent(chbFecDISEMB))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(pnlDISEMB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(pnlDGS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(pnlReferencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(pnlFTX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(14, 14, 14))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -392,29 +457,34 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSelectEDI)
                     .addComponent(lblPathEDI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlUNBUNZ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(chbUNBUNZ))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(chbReferencia)
-                    .addComponent(pnlReferencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(chbSegmentoDGS)
-                    .addComponent(pnlDGS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(chbSegmentoFTX)
-                    .addComponent(pnlFTX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(chbFecDISEMB)
-                    .addComponent(pnlDISEMB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(chbUNBUNZ)
+                            .addComponent(lblUNBUNZ))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(chbReferencia)
+                            .addComponent(pnlReferencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(chbSegmentoDGS)
+                            .addComponent(pnlDGS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(chbSegmentoFTX)
+                            .addComponent(pnlFTX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(chbFecDISEMB)
+                            .addComponent(pnlDISEMB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -430,10 +500,7 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
     }//GEN-LAST:event_chbReferenciaActionPerformed
 
     private void chbUNBUNZActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbUNBUNZActionPerformed
-        if(!chbUNBUNZ.isSelected()){
-            txtUNBUNZ.setText("");
-        }
-        Obj_ComponentFrame.setEnableJPanelComponentsWithCheckBox(pnlUNBUNZ, chbUNBUNZ);
+        //Obj_ComponentFrame.setEnableJPanelComponentsWithCheckBox(pnlUNBUNZ, chbUNBUNZ);
     }//GEN-LAST:event_chbUNBUNZActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -451,10 +518,15 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
             int countNumArchives = 1;
             int numOfSectionUNHUNTbyArchive = 0;
             String LineUNB = "";
+            /*String MensajeCorreo = "Estimada,\n\n"+
+                                   "Envío archivo COARRI  para la nave "+txtNombreNave.getText()+" "+txtNumViaje.getText()+". El Nro. de referencia de los movimientos de embarque y descarga es : "+txtReferencia.getText()+"\n\n"+
+                                   "Fecha de embarque :\t"+(OC_File.FormatOfDateYYYY_MM_DD_HH_SS(txtFecEmb.getText())?)+"\n"+
+                                   "Fecha de descarga :\t"+txtFecDis.getText();
+            */                       
             int NumOfBackSlash = OC_File.CountCharacterInText(lblPathEDI.getText(), '\\');
             File directorio = new File(OC_File.GetTextFromOneCharterToAnother(lblPathEDI.getText(),"", 1, "\\", NumOfBackSlash, true)+"\\"+OC_File.GetTextFromOneCharterToAnother(lblPathEDI.getText(),".", 1, "\\", 1, false));
             directorio.mkdir();
-            OC_File.CreateObjectOfArchiveToWrite(OE_File, OC_File.GetTextFromOneCharterToAnother(directorio.getPath(),"", 1, ".", 1, true)+"\\"+OC_File.GetTextFromOneCharterToAnother(lblPathEDI.getText(),".", 1, "\\", 1, false)+"_RESULT_"+countNumArchives+".txt", false);
+            OC_File.CreateObjectOfArchiveToWrite(OE_File, OC_File.GetTextFromOneCharterToAnother(directorio.getPath(),"", 1, ".", 1, true)+"\\"+OC_File.GetTextFromOneCharterToAnother(lblPathEDI.getText(),".", 1, "\\", 1, false)+"_RESULT_"+countNumArchives+".edi", false);
             //Leemos la primera linea
             if((Linea = OE_File.getBr().readLine())!=null){
                 if(chbUNBUNZ.isSelected()){
@@ -554,7 +626,7 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
                     if( numLinesInArchive + countLinesBetweenUNHUNT > 2999){
                         OE_File.getFw().close();
                         countNumArchives++;
-                        OC_File.CreateObjectOfArchiveToWrite(OE_File, OC_File.GetTextFromOneCharterToAnother(directorio.getPath(),"", 1, ".", 1, true)+"\\"+OC_File.GetTextFromOneCharterToAnother(lblPathEDI.getText(),".", 1, "\\", 1, false)+"_RESULT_"+countNumArchives+".txt", false);
+                        OC_File.CreateObjectOfArchiveToWrite(OE_File, OC_File.GetTextFromOneCharterToAnother(directorio.getPath(),"", 1, ".", 1, true)+"\\"+OC_File.GetTextFromOneCharterToAnother(lblPathEDI.getText(),".", 1, "\\", 1, false)+"_RESULT_"+countNumArchives+".edi", false);
                         OE_File.getPw().println(OC_File.ReturnLineUNBaddDeterminateMinuteAndSecond(LineUNB, countNumArchives));
                         numLinesInArchive = 1;
                         ArrayNumOfSectionUNHUNTbyArchive.add(numOfSectionUNHUNTbyArchive);
@@ -590,6 +662,7 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
             }
             OE_File.getFr().close();
             OE_File.getFw().close();
+            //taMensaje.setText(MensajeCorreo);
             JOptionPane.showMessageDialog(null,"Se Genero Exitosamente el archivo resultante", "Resultado", JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null,"Se produjo un error en la generacion del archivo resultante. "+ ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -709,6 +782,69 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
            txtFecEmb.setEnabled(false);
         }
     }//GEN-LAST:event_chbFecEmbActionPerformed
+
+    private void txtFecDisInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_txtFecDisInputMethodTextChanged
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null,"Si ingreso", "Resultado", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_txtFecDisInputMethodTextChanged
+
+    private void txtFecDisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFecDisActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFecDisActionPerformed
+
+    private void txtFecDisKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFecDisKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFecDisKeyPressed
+
+    private void txtFecDisKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFecDisKeyTyped
+        // TODO add your handling code here:
+        if(!txtFecDis.getText().equals("")){
+            switch (txtFecDis.getText().length()){
+                case 4: 
+                    txtFecDis.setText(txtFecDis.getText()+"-");
+                    break;
+                case 7: 
+                    txtFecDis.setText(txtFecDis.getText()+"-");
+                    break;
+                case 10: 
+                    txtFecDis.setText(txtFecDis.getText()+" ");
+                    break;
+                case 13: 
+                    txtFecDis.setText(txtFecDis.getText()+":");
+                    break;
+            }
+            /*
+            if (txtFecDis.getText().length() >= 4){
+                if(txtFecDis.getText().length() == 4){
+                    txtFecDis.setText(txtFecDis.getText()+"-");
+                }else{
+                    txtFecDis.setText(txtFecDis.getText().substring(0, 5)+"-"+txtFecDis.getText().substring(5));
+                }
+            }
+            if (txtFecDis.getText().length() >= 7){
+                if(txtFecDis.getText().length() == 7){
+                    txtFecDis.setText(txtFecDis.getText()+"-");
+                }else{
+                    txtFecDis.setText(txtFecDis.getText().substring(0, 8)+"-"+txtFecDis.getText().substring(8));
+                }
+            }
+            if (txtFecDis.getText().length() >= 10){
+                if(txtFecDis.getText().length() == 10){
+                    txtFecDis.setText(txtFecDis.getText()+" ");
+                }else{
+                    txtFecDis.setText(txtFecDis.getText().substring(0, 11)+" "+txtFecDis.getText().substring(11));
+                }
+            }
+            if (txtFecDis.getText().length() >= 13){
+                if(txtFecDis.getText().length() == 13){
+                    txtFecDis.setText(txtFecDis.getText()+":");
+                }else{
+                    txtFecDis.setText(txtFecDis.getText().substring(0, 14)+":"+txtFecDis.getText().substring(14));
+                }
+            }
+            */
+        }
+    }//GEN-LAST:event_txtFecDisKeyTyped
     
     /**
      * @param args the command line arguments
@@ -763,6 +899,11 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
     private javax.swing.JCheckBox chbUNBUNZ;
     private javax.swing.JButton jButton1;
     private javax.swing.JFileChooser jFileChooser1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblNombreNave;
+    private javax.swing.JLabel lblNumViaje;
     private javax.swing.JLabel lblPathEDI;
     private javax.swing.JLabel lblReferencia;
     private javax.swing.JLabel lblUNBUNZ;
@@ -770,14 +911,15 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
     private javax.swing.JPanel pnlDISEMB;
     private javax.swing.JPanel pnlFTX;
     private javax.swing.JPanel pnlReferencia;
-    private javax.swing.JPanel pnlUNBUNZ;
+    private javax.swing.JTextArea taMensaje;
     private javax.swing.JTextField txtFecDis;
     private javax.swing.JTextField txtFecEmb;
+    private javax.swing.JTextField txtNombreNave;
     private javax.swing.JTextField txtNumMaxLinesDGS;
     private javax.swing.JTextField txtNumMaxLinesFTX;
     private javax.swing.JTextField txtNumMaxRepDGS;
     private javax.swing.JTextField txtNumMaxRepFTX;
+    private javax.swing.JTextField txtNumViaje;
     private javax.swing.JTextField txtReferencia;
-    private javax.swing.JTextField txtUNBUNZ;
     // End of variables declaration//GEN-END:variables
 }

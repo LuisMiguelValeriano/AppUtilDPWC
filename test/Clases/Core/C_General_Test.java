@@ -38,6 +38,10 @@ public class C_General_Test extends C_General{
     public void tearDown() {
     }
     @Test
+    public void ReturnDateYYYYMMDDHHSS(){
+        System.out.println("Fecha 2015-02-28 11:50 : "+ ReturnDateYYYYMMDDHHSS("2015-02-28 11:50"));
+    }
+    @Test
     public void AddNMinutesDWPC(){
         System.out.println("Resultado 0552: " + AddNMinutesDWPC("0552", 1));
         System.out.println("Resultado 1259: " + AddNMinutesDWPC("1259", 1));
