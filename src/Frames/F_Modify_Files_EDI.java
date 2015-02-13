@@ -70,8 +70,8 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
         pnlDISEMB = new javax.swing.JPanel();
         chbFecDis = new javax.swing.JCheckBox();
         chbFecEmb = new javax.swing.JCheckBox();
-        txtFecDis = new javax.swing.JTextField();
-        txtFecEmb = new javax.swing.JTextField();
+        txtFecDis = new javax.swing.JFormattedTextField();
+        txtFecEmb = new javax.swing.JFormattedTextField();
         chbFecDISEMB = new javax.swing.JCheckBox();
         lblUNBUNZ = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -107,12 +107,17 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
                 .addContainerGap()
                 .addGroup(pnlReferenciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblReferencia)
-                    .addComponent(chbTDT20))
+                    .addGroup(pnlReferenciaLayout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(chbTDT20)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlReferenciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(chbRFFVON)
-                    .addComponent(txtReferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtReferencia)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlReferenciaLayout.createSequentialGroup()
+                        .addGap(0, 34, Short.MAX_VALUE)
+                        .addComponent(chbRFFVON)
+                        .addGap(33, 33, 33)))
+                .addContainerGap())
         );
         pnlReferenciaLayout.setVerticalGroup(
             pnlReferenciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,9 +195,9 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
                     .addComponent(chbEliminarRepeticionesDGS)
                     .addComponent(chbNumMaxLinesDGS))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(pnlDGSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(txtNumMaxLinesDGS, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
-                    .addComponent(txtNumMaxRepDGS))
+                .addGroup(pnlDGSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtNumMaxRepDGS, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
+                    .addComponent(txtNumMaxLinesDGS))
                 .addContainerGap())
         );
         pnlDGSLayout.setVerticalGroup(
@@ -246,10 +251,10 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
                 .addGroup(pnlFTXLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(chbEliminarRepeticionesFTX)
                     .addComponent(chbNumMaxLinesFTX))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pnlFTXLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtNumMaxLinesFTX, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
-                    .addComponent(txtNumMaxRepFTX))
+                    .addComponent(txtNumMaxRepFTX, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+                    .addComponent(txtNumMaxLinesFTX))
                 .addContainerGap())
         );
         pnlFTXLayout.setVerticalGroup(
@@ -290,29 +295,19 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
             }
         });
 
+        try {
+            txtFecDis.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-##-## ##:##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         txtFecDis.setName("txtFecDis"); // NOI18N
-        txtFecDis.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-                txtFecDisInputMethodTextChanged(evt);
-            }
-        });
-        txtFecDis.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFecDisActionPerformed(evt);
-            }
-        });
-        txtFecDis.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtFecDisKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtFecDisKeyTyped(evt);
-            }
-        });
 
-        txtFecEmb.setName("txtFecEmb"); // NOI18N
+        try {
+            txtFecEmb.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-##-## ##:##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtFecEmb.setName("txtFecDis"); // NOI18N
 
         javax.swing.GroupLayout pnlDISEMBLayout = new javax.swing.GroupLayout(pnlDISEMB);
         pnlDISEMB.setLayout(pnlDISEMBLayout);
@@ -365,7 +360,7 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -421,8 +416,7 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnSelectEDI)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblPathEDI)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(lblPathEDI))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
@@ -441,14 +435,16 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
                                     .addComponent(chbFecDISEMB))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(pnlDISEMB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(pnlDGS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(pnlReferencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(pnlFTX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(pnlDISEMB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                    .addComponent(pnlFTX, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(pnlDGS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(14, 14, 14))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 5, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -507,163 +503,180 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
         try {
             C_File OC_File = new C_File();
             E_File OE_File = new E_File();
-            List ArrayNumOfSectionUNHUNTbyArchive = new ArrayList();
-            OC_File.CreateObjectOfArchiveReadyToRead(OE_File, lblPathEDI.getText());
-            String Resultado="";
-            String Accion = "";
-            String Linea;
-            int originalNumLinesDGS = 0;
-            int originalNumLinesFTX = 0;
-            int numLinesInArchive = 0;
-            int countNumArchives = 1;
-            int numOfSectionUNHUNTbyArchive = 0;
-            String LineUNB = "";
-            /*String MensajeCorreo = "Estimada,\n\n"+
-                                   "Envío archivo COARRI  para la nave "+txtNombreNave.getText()+" "+txtNumViaje.getText()+". El Nro. de referencia de los movimientos de embarque y descarga es : "+txtReferencia.getText()+"\n\n"+
-                                   "Fecha de embarque :\t"+(OC_File.FormatOfDateYYYY_MM_DD_HH_SS(txtFecEmb.getText())?)+"\n"+
-                                   "Fecha de descarga :\t"+txtFecDis.getText();
-            */                       
-            int NumOfBackSlash = OC_File.CountCharacterInText(lblPathEDI.getText(), '\\');
-            File directorio = new File(OC_File.GetTextFromOneCharterToAnother(lblPathEDI.getText(),"", 1, "\\", NumOfBackSlash, true)+"\\"+OC_File.GetTextFromOneCharterToAnother(lblPathEDI.getText(),".", 1, "\\", 1, false));
-            directorio.mkdir();
-            OC_File.CreateObjectOfArchiveToWrite(OE_File, OC_File.GetTextFromOneCharterToAnother(directorio.getPath(),"", 1, ".", 1, true)+"\\"+OC_File.GetTextFromOneCharterToAnother(lblPathEDI.getText(),".", 1, "\\", 1, false)+"_RESULT_"+countNumArchives+".edi", false);
-            //Leemos la primera linea
-            if((Linea = OE_File.getBr().readLine())!=null){
-                if(chbUNBUNZ.isSelected()){
-                    LineUNB = Linea;
-                    Linea = OC_File.ReturnLineUNBaddDeterminateMinuteAndSecond(Linea, countNumArchives);
+            if((!txtNumMaxLinesDGS.getText().isEmpty() &&  !OC_File.IsInteger(txtNumMaxLinesDGS.getText())) || (!txtNumMaxLinesFTX.getText().isEmpty() &&  !OC_File.IsInteger(txtNumMaxLinesFTX.getText())) || (!txtNumMaxRepDGS.getText().isEmpty() &&  !OC_File.IsInteger(txtNumMaxRepDGS.getText())) || (!txtNumMaxRepFTX.getText().isEmpty() &&  !OC_File.IsInteger(txtNumMaxRepFTX.getText())) || lblPathEDI.getText().equals("No ha seleccionado archivo EDI")){
+                if(lblPathEDI.getText().equals("No ha seleccionado archivo EDI")){
+                    JOptionPane.showMessageDialog(null,"Debes Seleccionar un archivo", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
-                OE_File.getPw().println(Linea);
-                numLinesInArchive++;
-            }
-            while((Linea=OE_File.getBr().readLine())!=null){
-                if(OC_File.TextStartWith(Linea,"UNH")){
-                    Resultado="";
+                if(!txtNumMaxRepDGS.getText().isEmpty() &&  !OC_File.IsInteger(txtNumMaxRepDGS.getText())){
+                    JOptionPane.showMessageDialog(null,"El campo eliminar repeticiones DGS debe ser un numero", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
-                if(OC_File.TextStartWith(Linea,"BGM") && (chbFecDis.isSelected() || chbFecEmb.isSelected())){
-                    if(OC_File.TextStartWith(Linea,"BGM+270")){
-                        Accion = "LOAD";
+                if(!txtNumMaxLinesDGS.getText().isEmpty() &&  !OC_File.IsInteger(txtNumMaxLinesDGS.getText())){
+                    JOptionPane.showMessageDialog(null,"El campo maximo de lineas DGS debe ser un numero", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+                if(!txtNumMaxRepFTX.getText().isEmpty() &&  !OC_File.IsInteger(txtNumMaxRepFTX.getText())){
+                    JOptionPane.showMessageDialog(null,"El campo eliminar repeticiones FTX debe ser un numero", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+                if(!txtNumMaxLinesFTX.getText().isEmpty() &&  !OC_File.IsInteger(txtNumMaxLinesFTX.getText())){
+                    JOptionPane.showMessageDialog(null,"El campo maximo de lineas FTX debe ser un numero", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+            }else{
+                List ArrayNumOfSectionUNHUNTbyArchive = new ArrayList();
+                OC_File.CreateObjectOfArchiveReadyToRead(OE_File, lblPathEDI.getText());
+                String Resultado="";
+                String Accion = "";
+                String Linea;
+                int originalNumLinesDGS = 0;
+                int originalNumLinesFTX = 0;
+                int numLinesInArchive = 0;
+                int countNumArchives = 1;
+                int numOfSectionUNHUNTbyArchive = 0;
+                String LineUNB = "";
+                String MensajeCorreo = "Estimada,\n\n"+
+                                       "Envío archivo COARRI  para la nave "+txtNombreNave.getText()+" "+txtNumViaje.getText()+". El Nro. de referencia de los movimientos de embarque y descarga es : "+txtReferencia.getText()+"\n\n"+
+                                       "Fecha de embarque :\t"+txtFecEmb.getText()+"\n"+
+                                       "Fecha de descarga :\t"+txtFecDis.getText(); 
+                int NumOfBackSlash = OC_File.CountCharacterInText(lblPathEDI.getText(), '\\');
+                File directorio = new File(OC_File.GetTextFromOneCharterToAnother(lblPathEDI.getText(),"", 1, "\\", NumOfBackSlash, true)+"\\"+OC_File.GetTextFromOneCharterToAnother(lblPathEDI.getText(),".", 1, "\\", 1, false));
+                directorio.mkdir();
+                OC_File.CreateObjectOfArchiveToWrite(OE_File, OC_File.GetTextFromOneCharterToAnother(directorio.getPath(),"", 1, ".", 1, true)+"\\"+OC_File.GetTextFromOneCharterToAnother(lblPathEDI.getText(),".", 1, "\\", 1, false)+"_RESULT_"+countNumArchives+".edi", false);
+                //Leemos la primera linea
+                if((Linea = OE_File.getBr().readLine())!=null){
+                    if(chbUNBUNZ.isSelected()){
+                        LineUNB = Linea;
+                        Linea = OC_File.ReturnLineUNBaddDeterminateMinuteAndSecond(Linea, countNumArchives);
                     }
-                    if(OC_File.TextStartWith(Linea,"BGM+98")){
-                        Accion = "DISCHARGE";
-                    }
+                    OE_File.getPw().println(Linea);
+                    numLinesInArchive++;
                 }
-                if(OC_File.TextStartWith(Linea,"TDT+20")){ 
-                    if(chbReferencia.isSelected() && chbTDT20.isSelected()){
-                        Linea = OC_File.DelimitedReplaceCaractersInText(Linea,"TDT+20+","+",txtReferencia.getText());
+                while((Linea=OE_File.getBr().readLine())!=null){
+                    if(OC_File.TextStartWith(Linea,"UNH")){
+                        Resultado="";
                     }
-                }
-                if(OC_File.TextStartWith(Linea,"RFF+VON")){
-                    if(chbReferencia.isSelected() && chbRFFVON.isSelected()){
-                        Linea = OC_File.DelimitedReplaceCaractersInText(Linea,"RFF+VON:","'",txtReferencia.getText());
-                    }
-                }
-                if(OC_File.TextStartWith(Linea,"DTM+203") && (chbFecDis.isSelected() || chbFecEmb.isSelected())){
-                    switch (Accion){
-                        case "LOAD":
-                            Linea = Linea.replace(OC_File.GetTextFromOneCharterToAnother(Linea, ":", 1, ":", 1, true),txtFecEmb.getText());
-                            break;
-                        case "DISCHARGE":
-                            Linea = Linea.replace(OC_File.GetTextFromOneCharterToAnother(Linea, ":", 1, ":", 1, true),txtFecDis.getText());
-                            break;
-                        default:
-                            break;
-                    }
-                }
-                if(OC_File.TextStartWith(Linea,"UNT")){
-                    Resultado+=Linea;
-                    if(chbSegmentoDGS.isSelected()){
-                        String TextReplaceDGS;
-                        originalNumLinesDGS = OC_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "DGS", ';');
-                        if(chbEliminarRepeticionesDGS.isSelected() && OC_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "DGS", ';') > (txtNumMaxRepDGS.getText().equals("")?0:Integer.parseInt(txtNumMaxRepDGS.getText()))){
-                            TextReplaceDGS = OC_File.GetTextAtStartLineInBlockTextDelimited(Resultado, "DGS", ';');
-                            if(txtNumMaxRepDGS.getText().equals("") || txtNumMaxRepDGS.getText().equals("0")){
-                                TextReplaceDGS = OC_File.DeleteDuplicateLinesToMinimumOfThem(TextReplaceDGS, ';', 0, false);
-                            }else{
-                                TextReplaceDGS = OC_File.DeleteDuplicateLinesToMinimumOfThem(TextReplaceDGS, ';', Integer.parseInt(txtNumMaxRepDGS.getText()), false);
-                            }
-                            Resultado = Resultado.replace(OC_File.GetTextAtStartLineInBlockTextDelimited(Resultado, "DGS", ';'), TextReplaceDGS);
+                    if(OC_File.TextStartWith(Linea,"BGM") && (chbFecDis.isSelected() || chbFecEmb.isSelected())){
+                        if(OC_File.TextStartWith(Linea,"BGM+270")){
+                            Accion = "LOAD";
                         }
-                        if(chbNumMaxLinesDGS.isSelected() && OC_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "DGS", ';') > (txtNumMaxLinesDGS.getText().equals("")?0:Integer.parseInt(txtNumMaxLinesDGS.getText()))){
-                            TextReplaceDGS = OC_File.GetTextAtStartLineInBlockTextDelimited(Resultado, "DGS", ';');
-                            if(txtNumMaxLinesDGS.getText().equals("") || txtNumMaxLinesDGS.getText().equals("0")){
-                                TextReplaceDGS = OC_File.DeleteLinesToMinimumOfThem(TextReplaceDGS, ';', 0, false);
-                            }else{
-                                TextReplaceDGS = OC_File.DeleteLinesToMinimumOfThem(TextReplaceDGS, ';', Integer.parseInt(txtNumMaxLinesDGS.getText()), false);
-                            }
-                            Resultado = Resultado.replace(OC_File.GetTextAtStartLineInBlockTextDelimited(Resultado, "DGS", ';'), TextReplaceDGS);
+                        if(OC_File.TextStartWith(Linea,"BGM+98")){
+                            Accion = "DISCHARGE";
                         }
                     }
-                    if(chbSegmentoFTX.isSelected()){
-                        String TextReplaceFTX;
-                        originalNumLinesFTX = OC_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "FTX", ';');
-                        if(chbEliminarRepeticionesFTX.isSelected() && OC_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "FTX", ';') > (txtNumMaxRepFTX.getText().equals("")?0:Integer.parseInt(txtNumMaxRepFTX.getText()))){
-                            TextReplaceFTX = OC_File.GetTextAtStartLineInBlockTextDelimited(Resultado, "FTX", ';');
-                            if(txtNumMaxRepFTX.getText().equals("") || txtNumMaxRepFTX.getText().equals("0")){
-                                TextReplaceFTX = OC_File.DeleteDuplicateLinesToMinimumOfThem(TextReplaceFTX, ';', 0, false);
-                            }else{
-                                TextReplaceFTX = OC_File.DeleteDuplicateLinesToMinimumOfThem(TextReplaceFTX, ';', Integer.parseInt(txtNumMaxRepFTX.getText()), false);
-                            }
-                            Resultado = Resultado.replace(OC_File.GetTextAtStartLineInBlockTextDelimited(Resultado, "FTX", ';'), TextReplaceFTX);
-                        }
-                        if(chbNumMaxLinesFTX.isSelected() && OC_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "FTX", ';') > (txtNumMaxLinesFTX.getText().equals("")?0:Integer.parseInt(txtNumMaxLinesFTX.getText()))){
-                            TextReplaceFTX = OC_File.GetTextAtStartLineInBlockTextDelimited(Resultado, "FTX", ';');
-                            if(txtNumMaxLinesFTX.getText().equals("") || txtNumMaxLinesFTX.getText().equals("0")){
-                                TextReplaceFTX = OC_File.DeleteLinesToMinimumOfThem(TextReplaceFTX, ';', 0, false);
-                            }else{
-                                TextReplaceFTX = OC_File.DeleteLinesToMinimumOfThem(TextReplaceFTX, ';', Integer.parseInt(txtNumMaxLinesFTX.getText()), false);
-                            }
-                            Resultado = Resultado.replace(OC_File.GetTextAtStartLineInBlockTextDelimited(Resultado, "FTX", ';'), TextReplaceFTX);
+                    if(OC_File.TextStartWith(Linea,"TDT+20")){ 
+                        if(chbReferencia.isSelected() && chbTDT20.isSelected()){
+                            Linea = OC_File.DelimitedReplaceCaractersInText(Linea,"TDT+20+","+",txtReferencia.getText());
                         }
                     }
-                    if(originalNumLinesDGS > (chbSegmentoDGS.isSelected()?OC_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "DGS", ';'):0) || originalNumLinesFTX > (chbSegmentoFTX.isSelected()?OC_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "FTX", ';'):0)){
-                        int difNumLinesDGSFTX = (originalNumLinesDGS - (chbSegmentoDGS.isSelected()?OC_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "DGS", ';'):0)) + (originalNumLinesFTX - (chbSegmentoFTX.isSelected()?OC_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "FTX", ';'):0));
-                        String LastLineUNT = OC_File.GetTextAtStartLineInBlockTextDelimited(Resultado, "UNT", ';');
-                        String NewLineUNT = LastLineUNT.replace(OC_File.GetTextFromOneCharterToAnother(LastLineUNT, "+", 1, "+", 1, true), OC_File.AddToInteger(OC_File.GetTextFromOneCharterToAnother(LastLineUNT, "+", 1, "+", 1, true), -difNumLinesDGSFTX));
-                        Resultado = Resultado.replace(LastLineUNT, NewLineUNT);
+                    if(OC_File.TextStartWith(Linea,"RFF+VON")){
+                        if(chbReferencia.isSelected() && chbRFFVON.isSelected()){
+                            Linea = OC_File.DelimitedReplaceCaractersInText(Linea,"RFF+VON:","'",txtReferencia.getText());
+                        }
                     }
-                    int countLinesBetweenUNHUNT = OC_File.CountCharacterInText(Resultado, ';') + 1;
-                    if( numLinesInArchive + countLinesBetweenUNHUNT > 2999){
-                        OE_File.getFw().close();
-                        countNumArchives++;
-                        OC_File.CreateObjectOfArchiveToWrite(OE_File, OC_File.GetTextFromOneCharterToAnother(directorio.getPath(),"", 1, ".", 1, true)+"\\"+OC_File.GetTextFromOneCharterToAnother(lblPathEDI.getText(),".", 1, "\\", 1, false)+"_RESULT_"+countNumArchives+".edi", false);
-                        OE_File.getPw().println(OC_File.ReturnLineUNBaddDeterminateMinuteAndSecond(LineUNB, countNumArchives));
-                        numLinesInArchive = 1;
-                        ArrayNumOfSectionUNHUNTbyArchive.add(numOfSectionUNHUNTbyArchive);
-                        numOfSectionUNHUNTbyArchive = 0;
+                    if(OC_File.TextStartWith(Linea,"DTM+203") && (chbFecDis.isSelected() || chbFecEmb.isSelected())){
+                        switch (Accion){
+                            case "LOAD":
+                                Linea = Linea.replace(OC_File.GetTextFromOneCharterToAnother(Linea, ":", 1, ":", 1, true),OC_File.ReturnDateYYYYMMDDHHSS(txtFecEmb.getText()));
+                                break;
+                            case "DISCHARGE":
+                                Linea = Linea.replace(OC_File.GetTextFromOneCharterToAnother(Linea, ":", 1, ":", 1, true),OC_File.ReturnDateYYYYMMDDHHSS(txtFecDis.getText()));
+                                break;
+                            default:
+                                break;
+                        }
                     }
-                    OC_File.MultilaneWriteArchive(OE_File.getPw(), Resultado, ';');
-                    numOfSectionUNHUNTbyArchive++;
-                    numLinesInArchive += countLinesBetweenUNHUNT;
-                }
-                else{
-                    Resultado+=Linea+";";
-                }
-                if(OC_File.TextStartWith(Linea,"UNZ")){
-                    String[] ListOfArchiveCreated = directorio.list();
-                    if(ListOfArchiveCreated == null){
-                        JOptionPane.showMessageDialog(null,"No se encontro ningun archivo en el directorio " + directorio.getPath(), "Resultado", JOptionPane.INFORMATION_MESSAGE);
-                    }else{
-                        for(int i = 0; i < ListOfArchiveCreated.length; i++){
-                            if(ListOfArchiveCreated.length-1 == i){
-                                ArrayNumOfSectionUNHUNTbyArchive.add(numOfSectionUNHUNTbyArchive);
+                    if(OC_File.TextStartWith(Linea,"UNT")){
+                        Resultado+=Linea;
+                        if(chbSegmentoDGS.isSelected()){
+                            String TextReplaceDGS;
+                            originalNumLinesDGS = OC_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "DGS", ';');
+                            if(chbEliminarRepeticionesDGS.isSelected() && OC_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "DGS", ';') > (txtNumMaxRepDGS.getText().equals("")?0:Integer.parseInt(txtNumMaxRepDGS.getText()))){
+                                TextReplaceDGS = OC_File.GetTextAtStartLineInBlockTextDelimited(Resultado, "DGS", ';');
+                                if(txtNumMaxRepDGS.getText().equals("") || txtNumMaxRepDGS.getText().equals("0")){
+                                    TextReplaceDGS = OC_File.DeleteDuplicateLinesToMinimumOfThem(TextReplaceDGS, ';', 0, false);
+                                }else{
+                                    TextReplaceDGS = OC_File.DeleteDuplicateLinesToMinimumOfThem(TextReplaceDGS, ';', Integer.parseInt(txtNumMaxRepDGS.getText()), false);
+                                }
+                                Resultado = Resultado.replace(OC_File.GetTextAtStartLineInBlockTextDelimited(Resultado, "DGS", ';'), TextReplaceDGS);
                             }
+                            if(chbNumMaxLinesDGS.isSelected() && OC_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "DGS", ';') > (txtNumMaxLinesDGS.getText().equals("")?0:Integer.parseInt(txtNumMaxLinesDGS.getText()))){
+                                TextReplaceDGS = OC_File.GetTextAtStartLineInBlockTextDelimited(Resultado, "DGS", ';');
+                                if(txtNumMaxLinesDGS.getText().equals("") || txtNumMaxLinesDGS.getText().equals("0")){
+                                    TextReplaceDGS = OC_File.DeleteLinesToMinimumOfThem(TextReplaceDGS, ';', 0, false);
+                                }else{
+                                    TextReplaceDGS = OC_File.DeleteLinesToMinimumOfThem(TextReplaceDGS, ';', Integer.parseInt(txtNumMaxLinesDGS.getText()), false);
+                                }
+                                Resultado = Resultado.replace(OC_File.GetTextAtStartLineInBlockTextDelimited(Resultado, "DGS", ';'), TextReplaceDGS);
+                            }
+                        }
+                        if(chbSegmentoFTX.isSelected()){
+                            String TextReplaceFTX;
+                            originalNumLinesFTX = OC_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "FTX", ';');
+                            if(chbEliminarRepeticionesFTX.isSelected() && OC_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "FTX", ';') > (txtNumMaxRepFTX.getText().equals("")?0:Integer.parseInt(txtNumMaxRepFTX.getText()))){
+                                TextReplaceFTX = OC_File.GetTextAtStartLineInBlockTextDelimited(Resultado, "FTX", ';');
+                                if(txtNumMaxRepFTX.getText().equals("") || txtNumMaxRepFTX.getText().equals("0")){
+                                    TextReplaceFTX = OC_File.DeleteDuplicateLinesToMinimumOfThem(TextReplaceFTX, ';', 0, false);
+                                }else{
+                                    TextReplaceFTX = OC_File.DeleteDuplicateLinesToMinimumOfThem(TextReplaceFTX, ';', Integer.parseInt(txtNumMaxRepFTX.getText()), false);
+                                }
+                                Resultado = Resultado.replace(OC_File.GetTextAtStartLineInBlockTextDelimited(Resultado, "FTX", ';'), TextReplaceFTX);
+                            }
+                            if(chbNumMaxLinesFTX.isSelected() && OC_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "FTX", ';') > (txtNumMaxLinesFTX.getText().equals("")?0:Integer.parseInt(txtNumMaxLinesFTX.getText()))){
+                                TextReplaceFTX = OC_File.GetTextAtStartLineInBlockTextDelimited(Resultado, "FTX", ';');
+                                if(txtNumMaxLinesFTX.getText().equals("") || txtNumMaxLinesFTX.getText().equals("0")){
+                                    TextReplaceFTX = OC_File.DeleteLinesToMinimumOfThem(TextReplaceFTX, ';', 0, false);
+                                }else{
+                                    TextReplaceFTX = OC_File.DeleteLinesToMinimumOfThem(TextReplaceFTX, ';', Integer.parseInt(txtNumMaxLinesFTX.getText()), false);
+                                }
+                                Resultado = Resultado.replace(OC_File.GetTextAtStartLineInBlockTextDelimited(Resultado, "FTX", ';'), TextReplaceFTX);
+                            }
+                        }
+                        if(originalNumLinesDGS > (chbSegmentoDGS.isSelected()?OC_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "DGS", ';'):0) || originalNumLinesFTX > (chbSegmentoFTX.isSelected()?OC_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "FTX", ';'):0)){
+                            int difNumLinesDGSFTX = (originalNumLinesDGS - (chbSegmentoDGS.isSelected()?OC_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "DGS", ';'):0)) + (originalNumLinesFTX - (chbSegmentoFTX.isSelected()?OC_File.CountTextAtStartLineInBlockTextDelimited(Resultado, "FTX", ';'):0));
+                            String LastLineUNT = OC_File.GetTextAtStartLineInBlockTextDelimited(Resultado, "UNT", ';');
+                            String NewLineUNT = LastLineUNT.replace(OC_File.GetTextFromOneCharterToAnother(LastLineUNT, "+", 1, "+", 1, true), OC_File.AddToInteger(OC_File.GetTextFromOneCharterToAnother(LastLineUNT, "+", 1, "+", 1, true), -difNumLinesDGSFTX));
+                            Resultado = Resultado.replace(LastLineUNT, NewLineUNT);
+                        }
+                        int countLinesBetweenUNHUNT = OC_File.CountCharacterInText(Resultado, ';') + 1;
+                        if( numLinesInArchive + countLinesBetweenUNHUNT > 2999){
                             OE_File.getFw().close();
-                            OC_File.CreateObjectOfArchiveToWrite(OE_File, OC_File.GetTextFromOneCharterToAnother(directorio.getPath(),"", 1, ".", 1, true)+"\\"+ListOfArchiveCreated[i], true);
-                            if(chbUNBUNZ.isSelected()){
-                                String secondsUNZ = OC_File.AddToInteger(OC_File.GetTextFromOneCharterToAnother(Linea,"'",1,"+",1,false),i+1);
-                                OE_File.getPw().println(OC_File.GetTextFromOneCharterToAnother(Linea,"",1,"+",1,true)+"+"+ArrayNumOfSectionUNHUNTbyArchive.get(i)+"+"+secondsUNZ+"'");
-                            }else{
-                                OE_File.getPw().println(OC_File.GetTextFromOneCharterToAnother(Linea,"",1,"+",1,true)+"+"+ArrayNumOfSectionUNHUNTbyArchive.get(i)+"+"+OC_File.GetTextFromOneCharterToAnother(Linea,"",1,"+",1,false));
+                            countNumArchives++;
+                            OC_File.CreateObjectOfArchiveToWrite(OE_File, OC_File.GetTextFromOneCharterToAnother(directorio.getPath(),"", 1, ".", 1, true)+"\\"+OC_File.GetTextFromOneCharterToAnother(lblPathEDI.getText(),".", 1, "\\", 1, false)+"_RESULT_"+countNumArchives+".edi", false);
+                            OE_File.getPw().println(OC_File.ReturnLineUNBaddDeterminateMinuteAndSecond(LineUNB, countNumArchives));
+                            numLinesInArchive = 1;
+                            ArrayNumOfSectionUNHUNTbyArchive.add(numOfSectionUNHUNTbyArchive);
+                            numOfSectionUNHUNTbyArchive = 0;
+                        }
+                        OC_File.MultilaneWriteArchive(OE_File.getPw(), Resultado, ';');
+                        numOfSectionUNHUNTbyArchive++;
+                        numLinesInArchive += countLinesBetweenUNHUNT;
+                    }
+                    else{
+                        Resultado+=Linea+";";
+                    }
+                    if(OC_File.TextStartWith(Linea,"UNZ")){
+                        String[] ListOfArchiveCreated = directorio.list();
+                        if(ListOfArchiveCreated == null){
+                            JOptionPane.showMessageDialog(null,"No se encontro ningun archivo en el directorio " + directorio.getPath(), "Resultado", JOptionPane.INFORMATION_MESSAGE);
+                        }else{
+                            for(int i = 0; i < ListOfArchiveCreated.length; i++){
+                                if(ListOfArchiveCreated.length-1 == i){
+                                    ArrayNumOfSectionUNHUNTbyArchive.add(numOfSectionUNHUNTbyArchive);
+                                }
+                                OE_File.getFw().close();
+                                OC_File.CreateObjectOfArchiveToWrite(OE_File, OC_File.GetTextFromOneCharterToAnother(directorio.getPath(),"", 1, ".", 1, true)+"\\"+ListOfArchiveCreated[i], true);
+                                if(chbUNBUNZ.isSelected()){
+                                    String secondsUNZ = OC_File.AddToInteger(OC_File.GetTextFromOneCharterToAnother(Linea,"'",1,"+",1,false),i+1);
+                                    OE_File.getPw().println(OC_File.GetTextFromOneCharterToAnother(Linea,"",1,"+",1,true)+"+"+ArrayNumOfSectionUNHUNTbyArchive.get(i)+"+"+secondsUNZ+"'");
+                                }else{
+                                    OE_File.getPw().println(OC_File.GetTextFromOneCharterToAnother(Linea,"",1,"+",1,true)+"+"+ArrayNumOfSectionUNHUNTbyArchive.get(i)+"+"+OC_File.GetTextFromOneCharterToAnother(Linea,"",1,"+",1,false));
+                                }
                             }
                         }
                     }
                 }
+                OE_File.getFr().close();
+                OE_File.getFw().close();
+                //taMensaje.setText(MensajeCorreo);
+                JOptionPane.showMessageDialog(null,"Se Genero Exitosamente el archivo resultante", "Resultado", JOptionPane.INFORMATION_MESSAGE);
             }
-            OE_File.getFr().close();
-            OE_File.getFw().close();
-            //taMensaje.setText(MensajeCorreo);
-            JOptionPane.showMessageDialog(null,"Se Genero Exitosamente el archivo resultante", "Resultado", JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null,"Se produjo un error en la generacion del archivo resultante. "+ ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -782,69 +795,6 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
            txtFecEmb.setEnabled(false);
         }
     }//GEN-LAST:event_chbFecEmbActionPerformed
-
-    private void txtFecDisInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_txtFecDisInputMethodTextChanged
-        // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null,"Si ingreso", "Resultado", JOptionPane.INFORMATION_MESSAGE);
-    }//GEN-LAST:event_txtFecDisInputMethodTextChanged
-
-    private void txtFecDisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFecDisActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtFecDisActionPerformed
-
-    private void txtFecDisKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFecDisKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtFecDisKeyPressed
-
-    private void txtFecDisKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFecDisKeyTyped
-        // TODO add your handling code here:
-        if(!txtFecDis.getText().equals("")){
-            switch (txtFecDis.getText().length()){
-                case 4: 
-                    txtFecDis.setText(txtFecDis.getText()+"-");
-                    break;
-                case 7: 
-                    txtFecDis.setText(txtFecDis.getText()+"-");
-                    break;
-                case 10: 
-                    txtFecDis.setText(txtFecDis.getText()+" ");
-                    break;
-                case 13: 
-                    txtFecDis.setText(txtFecDis.getText()+":");
-                    break;
-            }
-            /*
-            if (txtFecDis.getText().length() >= 4){
-                if(txtFecDis.getText().length() == 4){
-                    txtFecDis.setText(txtFecDis.getText()+"-");
-                }else{
-                    txtFecDis.setText(txtFecDis.getText().substring(0, 5)+"-"+txtFecDis.getText().substring(5));
-                }
-            }
-            if (txtFecDis.getText().length() >= 7){
-                if(txtFecDis.getText().length() == 7){
-                    txtFecDis.setText(txtFecDis.getText()+"-");
-                }else{
-                    txtFecDis.setText(txtFecDis.getText().substring(0, 8)+"-"+txtFecDis.getText().substring(8));
-                }
-            }
-            if (txtFecDis.getText().length() >= 10){
-                if(txtFecDis.getText().length() == 10){
-                    txtFecDis.setText(txtFecDis.getText()+" ");
-                }else{
-                    txtFecDis.setText(txtFecDis.getText().substring(0, 11)+" "+txtFecDis.getText().substring(11));
-                }
-            }
-            if (txtFecDis.getText().length() >= 13){
-                if(txtFecDis.getText().length() == 13){
-                    txtFecDis.setText(txtFecDis.getText()+":");
-                }else{
-                    txtFecDis.setText(txtFecDis.getText().substring(0, 14)+":"+txtFecDis.getText().substring(14));
-                }
-            }
-            */
-        }
-    }//GEN-LAST:event_txtFecDisKeyTyped
     
     /**
      * @param args the command line arguments
@@ -912,8 +862,8 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
     private javax.swing.JPanel pnlFTX;
     private javax.swing.JPanel pnlReferencia;
     private javax.swing.JTextArea taMensaje;
-    private javax.swing.JTextField txtFecDis;
-    private javax.swing.JTextField txtFecEmb;
+    private javax.swing.JFormattedTextField txtFecDis;
+    private javax.swing.JFormattedTextField txtFecEmb;
     private javax.swing.JTextField txtNombreNave;
     private javax.swing.JTextField txtNumMaxLinesDGS;
     private javax.swing.JTextField txtNumMaxLinesFTX;

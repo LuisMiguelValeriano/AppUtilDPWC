@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
     <Component class="javax.swing.JFileChooser" name="jFileChooser1">
     </Component>
@@ -34,7 +34,6 @@
                       <Component id="btnSelectEDI" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lblPathEDI" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -58,19 +57,22 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="pnlDISEMB" max="32767" attributes="0"/>
-                                  <Component id="pnlDGS" max="32767" attributes="0"/>
                                   <Component id="pnlReferencia" max="32767" attributes="0"/>
-                                  <Component id="pnlFTX" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="pnlDISEMB" max="32767" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="pnlFTX" max="32767" attributes="0"/>
+                                  <Component id="pnlDGS" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <Component id="jPanel2" max="32767" attributes="0"/>
+                          <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanel1" max="32767" attributes="0"/>
+                      <EmptySpace pref="5" max="32767" attributes="0"/>
+                      <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+              <EmptySpace min="14" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -138,15 +140,22 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="lblReferencia" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="chbTDT20" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblReferencia" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                          <Component id="chbTDT20" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="chbRFFVON" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtReferencia" min="-2" pref="113" max="-2" attributes="0"/>
+                      <Component id="txtReferencia" max="32767" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="0" pref="34" max="32767" attributes="0"/>
+                          <Component id="chbRFFVON" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -251,10 +260,10 @@
                       <Component id="chbEliminarRepeticionesDGS" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="chbNumMaxLinesDGS" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="12" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="txtNumMaxLinesDGS" pref="58" max="32767" attributes="0"/>
-                      <Component id="txtNumMaxRepDGS" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="txtNumMaxRepDGS" pref="87" max="32767" attributes="0"/>
+                      <Component id="txtNumMaxLinesDGS" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -334,10 +343,10 @@
                       <Component id="chbEliminarRepeticionesFTX" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="chbNumMaxLinesFTX" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="13" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="txtNumMaxLinesFTX" pref="57" max="32767" attributes="0"/>
-                      <Component id="txtNumMaxRepFTX" max="32767" attributes="0"/>
+                      <Component id="txtNumMaxRepFTX" pref="85" max="32767" attributes="0"/>
+                      <Component id="txtNumMaxLinesFTX" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -464,20 +473,20 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chbFecEmbActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtFecDis">
+        <Component class="javax.swing.JFormattedTextField" name="txtFecDis">
           <Properties>
+            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+              <Format format="####-##-## ##:##" subtype="-1" type="5"/>
+            </Property>
             <Property name="name" type="java.lang.String" value="txtFecDis" noResource="true"/>
           </Properties>
-          <Events>
-            <EventHandler event="inputMethodTextChanged" listener="java.awt.event.InputMethodListener" parameters="java.awt.event.InputMethodEvent" handler="txtFecDisInputMethodTextChanged"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFecDisActionPerformed"/>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtFecDisKeyPressed"/>
-            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtFecDisKeyTyped"/>
-          </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtFecEmb">
+        <Component class="javax.swing.JFormattedTextField" name="txtFecEmb">
           <Properties>
-            <Property name="name" type="java.lang.String" value="txtFecEmb" noResource="true"/>
+            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+              <Format format="####-##-## ##:##" subtype="-1" type="5"/>
+            </Property>
+            <Property name="name" type="java.lang.String" value="txtFecDis" noResource="true"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -510,7 +519,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" pref="504" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="490" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>

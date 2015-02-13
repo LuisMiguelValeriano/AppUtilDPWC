@@ -5,13 +5,6 @@
  */
 package Clases.Core;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -101,6 +94,16 @@ public class C_General {
         }
     }
     public String ReturnDateYYYYMMDDHHSS(String Date){
+        /*
+        Parametros:
+            -Date: es un String que representa una fecha en formato YYYY-MM-DD HH:SS.
+        Resultante:
+            Nos retornara un String que representa a "Date" pero sin simbolos 
+            incluidos en formato YYYYMMDDHHSS.
+        Nota:
+            Tener en cuenta que este metodo no valida que la fecha sea valida, ni
+            que tenga el formato correcto en la entrada que es "Date".
+        */
         Date = Date.replace("-", "");
         Date = Date.replace(" ", "");
         Date = Date.replace(":", "");
