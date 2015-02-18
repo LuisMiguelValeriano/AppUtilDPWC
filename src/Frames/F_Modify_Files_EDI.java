@@ -674,7 +674,7 @@ public class F_Modify_Files_EDI extends javax.swing.JFrame{
                 }
                 OE_File.getFr().close();
                 OE_File.getFw().close();
-                //taMensaje.setText(MensajeCorreo);
+                taMensaje.setText(MensajeCorreo);
                 JOptionPane.showMessageDialog(null,"Se Genero Exitosamente el archivo resultante", "Resultado", JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (IOException ex) {

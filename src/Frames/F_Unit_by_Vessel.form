@@ -63,13 +63,13 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnPath" min="-2" pref="141" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="txtPathFile" max="32767" attributes="0"/>
-                      <Component id="txtVesselName" pref="265" max="32767" attributes="0"/>
+                      <Component id="txtVesselName" pref="200" max="32767" attributes="0"/>
+                      <Component id="txtPath" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -79,8 +79,8 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtPathFile" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtPath" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnPath" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="9" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -103,15 +103,18 @@
             <Property name="text" type="java.lang.String" value="SANTA ISABEL"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel2">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Path File:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtPathFile">
+        <Component class="javax.swing.JTextField" name="txtPath">
           <Properties>
             <Property name="text" type="java.lang.String" value="D:\u005cprueba.txt" containsInvalidXMLChars="true"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnPath">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Seleccionar forlder"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPathActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

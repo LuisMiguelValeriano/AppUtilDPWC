@@ -58,10 +58,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="pnlReferencia" max="32767" attributes="0"/>
-                                  <Group type="102" attributes="0">
-                                      <Component id="pnlDISEMB" max="32767" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="pnlDISEMB" max="32767" attributes="0"/>
                                   <Component id="pnlFTX" max="32767" attributes="0"/>
                                   <Component id="pnlDGS" alignment="0" max="32767" attributes="0"/>
                               </Group>

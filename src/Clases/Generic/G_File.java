@@ -31,7 +31,7 @@ public class G_File extends C_File  implements  I_File {
             fr = ReturnObjectOfArchiveReadyToRead(FilePath);
             BufferedReader br = new BufferedReader(fr);
             String Resultado="";
-            fw = ReturnCreatedObjectOfArchiveToWrite(FilePath.substring(0, FilePath.length()-4)+"_RESULT.txt");
+            fw = ReturnCreatedObjectOfArchiveToWrite(FilePath.substring(0, FilePath.length()-4)+"_RESULT.edi");
             PrintWriter pw = new PrintWriter(fw);
             if((Linea = br.readLine())!=null){
                 //GetTextFromOneCharterToAnother(Linea,"'",1,"+",1,false);
